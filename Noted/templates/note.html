@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Note
+{% endblock title %}
+
+{% block content %}
+<h2>{{ note.note_title }}</h2>
+
+{{ note.note_text }}
+
+<p>Дата: {{ note.note_time|date:'d-F-Y' }}</p>
+
+<p>Тэги: {% for tag in note.tags.all %}
+        {{ tag.name|title }}
+        {% endfor %}</p>
+
+{% endblock content %}

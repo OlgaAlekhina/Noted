@@ -1,0 +1,27 @@
+{% extends 'default.html' %}
+
+{% block title %}
+All notes
+{% endblock title %}
+
+{% block content %}
+
+<h1>Все заметки</h1>
+Количество заметок: {{ notes|length }}
+ <hr>
+    {% if notes %}
+
+        {% for note in notes %}
+
+                    <p>{{ note.note_title }}</p>
+
+                    <p>{{ note.note_text }}</p>
+
+        {% endfor %}
+
+    {% else %}
+        <h2>Заметок нет!</h2>
+    {% endif %}
+<hr>
+
+{% endblock content %}
