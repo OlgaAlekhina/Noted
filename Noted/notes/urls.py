@@ -1,5 +1,5 @@
 from django.urls import path, register_converter
-from .views import NoteDetail, NotesList, DateList, NoteAddView
+from .views import NoteDetail, NotesList, DateList, NoteAddView, NoteUpdateView, NoteDeleteView
 from .path_converters import DateConverter
 
 
@@ -10,8 +10,8 @@ urlpatterns = [
     path('', NotesList.as_view(), name='main'),
     path('<int:pk>', NoteDetail.as_view(), name='note_detail'),
     path('add', NoteAddView.as_view(), name='note_add'),
-    # path('<int:pk>/edit', PostUpdateView.as_view(), name='post_edit'),
-    # path('<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
+    path('edit/<int:pk>', NoteUpdateView.as_view(), name='note_edit'),
+    path('delete/<int:pk>', NoteDeleteView.as_view(), name='note_delete'),
     # path('<int:pk>/reply', ReplyCreateView.as_view(), name='reply'),
     # path('thanks', ThanksView.as_view(), name='thanks'),
     # path('messages/', MessagesView.as_view(), name='messages'),

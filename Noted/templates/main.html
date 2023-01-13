@@ -15,9 +15,10 @@ All notes
 
                     <p>{{ note.note_title }}</p>
 
-                  <p> <a href="{% url 'date_notes' note.note_time %}"> {{ note.note_time|date:'Y-m-d' }}</a></p>
+                  <p> <a href="{% url 'date_notes' note.note_time %}"> {{ note.note_time|date:'d-F-Y' }}</a></p>
 
                    <p>{{ note.note_text }}</p>
+<hr>
 
         {% endfor %}
 

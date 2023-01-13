@@ -15,4 +15,8 @@ Note
         {{ tag.name|title }}
         {% endfor %}</p>
 
+<p><button> <a href="{% url 'note_edit' note.id %}">Редактировать</a> </button></p>
+<p><button><a href="{% url 'note_delete' note.id %}"><u> Удалить </u></a></button></p>
+<p><button> <a href="{% url 'main' %}">На главную страницу</a> </button></p>
+
 {% endblock content %}
