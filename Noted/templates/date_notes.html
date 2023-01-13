@@ -6,25 +6,78 @@ All notes
 
 {% block content %}
 
-<h1>Все заметки</h1>
-Количество заметок: {{ notes|length }}
- <hr>
-    {% if notes %}
+<h1>Задачи на {{ date }}</h1>
 
-        {% for note in notes %}
+<hr>
+
+<h2>Сделать обязательно!</h2>
+
+    {{ notes_high|length }} note(s)
+
+    {% if notes_high %}
+
+        {% for note in notes_high %}
 
                     <p>{{ note.note_title }}</p>
 
                     <p>{{ note.note_text }}</p>
 
-                    <p>{{ note.note_priority }}</p>
 <hr>
 
         {% endfor %}
 
+<hr>
+
+
     {% else %}
-        <h2>Заметок нет!</h2>
+        <h4><i>Неотложных задач нет</i></h4>
     {% endif %}
 <hr>
+
+<h2>Текущие задачи</h2>
+
+    {{ notes_normal|length }} note(s)
+
+    {% if notes_normal %}
+
+        {% for note in notes_normal %}
+
+                    <p>{{ note.note_title }}</p>
+
+                    <p>{{ note.note_text }}</p>
+
+<hr>
+
+        {% endfor %}
+
+<hr>
+
+
+    {% else %}
+        <h4><i>Текущих задач нет</i></h4>
+    {% endif %}
+<hr>
+
+<h2>Если останется время:</h2>
+
+    {{ notes_low|length }} note(s)
+
+    {% if notes_low %}
+
+            {% for note in notes_low %}
+
+                    <p>{{ note.note_title }}</p>
+
+                    <p>{{ note.note_text }}</p>
+<hr>
+
+            {% endfor %}
+
+    {% else %}
+        <h4><i>Мелких задач нет</i></h4>
+    {% endif %}
+
+<p><button> <a href="{% url 'note_add' %}">Добавить задачу</a> </button></p>
+<p><button> <a href="{% url 'main' %}">На главную страницу</a> </button></p>
 
 {% endblock content %}
