@@ -16,8 +16,8 @@ class NoteForm(ModelForm):
 
         labels = {
             'note_title': 'Заголовок',
-            'note_text': 'Текст заметки',
+            'note_text': 'Детали',
             'note_priority': 'Приоритет',
-            'note_time': 'Когда сделать',
+            'note_time': 'Когда сделать (yyyy-mm-dd)',
             'tags': 'Тэги',
         }

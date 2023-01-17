@@ -6,6 +6,8 @@ All notes
  
 {% block content %}
 
+<h3>Привет, {{ request.user }}! </h3>
+
 <h1>Все заметки</h1>
 Количество заметок: {{ notes|length }}
  <hr>
@@ -13,7 +15,7 @@ All notes
 
         {% for note in notes %}
 
-                    <p>{{ note.note_title }}</p>
+                    <p><a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
 
                   <p> <a href="{% url 'date_notes' note.note_time %}"> {{ note.note_time|date:'d-F-Y' }}</a></p>
 
@@ -28,5 +30,7 @@ All notes
 <hr>
 
 <p><button> <a href="{% url 'note_add' %}">Добавить задачу</a> </button></p>
+
+<p><button> <a href="{% url 'logout' %}">Выйти</a> </button></p>
 
 {% endblock content %}

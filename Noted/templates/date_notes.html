@@ -10,15 +10,14 @@ All notes
 
 <hr>
 
-<h2>Сделать обязательно!</h2>
-
-    {{ notes_high|length }} note(s)
+<h2>Сделать обязательно</h2>
+<b>{{ notes_high|length }} note(s)</b>
 
     {% if notes_high %}
 
         {% for note in notes_high %}
 
-                    <p>{{ note.note_title }}</p>
+                    <p>{{ forloop.counter }}. <a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
 
                     <p>{{ note.note_text }}</p>
 
@@ -36,13 +35,13 @@ All notes
 
 <h2>Текущие задачи</h2>
 
-    {{ notes_normal|length }} note(s)
+   <b>{{ notes_normal|length }} note(s)</b>
 
     {% if notes_normal %}
 
         {% for note in notes_normal %}
 
-                    <p>{{ note.note_title }}</p>
+                    <p>{{ forloop.counter }}. <a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
 
                     <p>{{ note.note_text }}</p>
 
@@ -58,15 +57,15 @@ All notes
     {% endif %}
 <hr>
 
-<h2>Если останется время:</h2>
+<h2>Если останется время</h2>
 
-    {{ notes_low|length }} note(s)
+    <b>{{ notes_low|length }} note(s)</b>
 
     {% if notes_low %}
 
             {% for note in notes_low %}
 
-                    <p>{{ note.note_title }}</p>
+                    <p>{{ forloop.counter }}. <a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
 
                     <p>{{ note.note_text }}</p>
 <hr>
@@ -79,5 +78,6 @@ All notes
 
 <p><button> <a href="{% url 'note_add' %}">Добавить задачу</a> </button></p>
 <p><button> <a href="{% url 'main' %}">На главную страницу</a> </button></p>
+<p><button> <a href="{% url 'logout' %}">Выйти</a> </button></p>
 
 {% endblock content %}
