@@ -4,7 +4,7 @@ from .models import Note, Tag
 from .forms import NoteForm
 
 
-# выводит главную страницу с задачами на текущую неделю
+# выводит главную страницу со всеми задачами
 class NotesList(ListView):
     model = Note
     template_name = 'main.html'
@@ -52,7 +52,7 @@ class DateList(ListView):
     model = Note
     template_name = 'date_notes.html'
 
-    # выводит 3 отдельных qs для задач с разным приоритетом + текущую дату
+    # выводит 3 отдельных qs для задач с разным приоритетом + достает текущую дату из урла
     def get_context_data(self, **kwargs):
         context = super(DateList, self).get_context_data(**kwargs)
         context['notes_low'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=0)

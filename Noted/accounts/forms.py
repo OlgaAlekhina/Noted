@@ -4,6 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 
+# форма для регистрации пользователя
 class NewUserForm(UserCreationForm):
 	username = forms.CharField(label='Введите свой ник', min_length=4, max_length=150)
 	email = forms.EmailField(label='Введите email')

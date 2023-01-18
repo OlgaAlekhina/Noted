@@ -7,5 +7,4 @@ urlpatterns = [
     path('signin/', register_request, name='signin'),
     path('login/', LoginView.as_view(template_name ='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    # path('confirmation/<int:user_id>/', verify_registration, name='confirmation'),
     ]

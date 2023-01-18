@@ -3,8 +3,8 @@ from .models import Note
 from django import forms
 
 
+# форма для добавления задачи
 class NoteForm(ModelForm):
-    # post_text = forms.CharField(widget=TinyMCEWidget(attrs={'required': False, 'cols': 30, 'rows': 30}), label='Текст объявления:')
 
     class Meta:
         model = Note
