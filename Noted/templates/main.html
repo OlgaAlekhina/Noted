@@ -8,26 +8,33 @@ All notes
 
 <h3>Привет, {{ request.user }}! </h3>
 
-<h1>Все заметки</h1>
-Количество заметок: {{ notes|length }}
- <hr>
+<h1>Задачи на текущую неделю</h1>
+
+<hr>
+
+{% for day, date, notes in week_notes %}
+
+    <h2>{{ day }}</h2>
+
+    <h3><a href="{% url 'date_notes' date %}">{{ date }}</a></h3>
+
     {% if notes %}
 
         {% for note in notes %}
 
-                    <p><a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
-
-                  <p> <a href="{% url 'date_notes' note.note_time %}"> {{ note.note_time|date:'d-F-Y' }}</a></p>
-
-                   <p>{{ note.note_text }}</p>
-<hr>
+                <p>{{ forloop.counter }}. <a href="{% url 'note_detail' note.pk %}">{{ note.note_title }}</a></p>
 
         {% endfor %}
 
     {% else %}
-        <h2>Заметок нет!</h2>
+
+            <h4>Задач нет!</h4>
+
     {% endif %}
+
 <hr>
+
+{% endfor %}
 
 <p><button> <a href="{% url 'note_add' %}">Добавить задачу</a> </button></p>
 

@@ -2,13 +2,29 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Note, Tag
 from .forms import NoteForm
+import datetime
 
 
-# выводит главную страницу со всеми задачами
+# выводит главную страницу с задачами на текущую неделю
 class NotesList(ListView):
     model = Note
     template_name = 'main.html'
-    context_object_name = 'notes'
+
+    # получает 7 qs по дням недели с датами
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        date = datetime.date.today()
+        mon = date - datetime.timedelta(date.weekday())
+        week_notes = []
+        dates = []
+        for i in range(7):
+            date = mon + datetime.timedelta(i)
+            notes = Note.objects.filter(note_time=date)
+            week_notes.append(notes)
+            dates.append(date)
+        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+        context['week_notes'] = zip(days, dates, week_notes)
+        return context
 
 
 # выводит страницу с одной задачей
