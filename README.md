@@ -1,3 +1,11 @@
+Как запустить проект на своем локальном сервере через IDE PyCharm:
+
+Git -> clone -> https://github.com/OlgaAlekhina/Noted # скачать репозиторий с гитхаба на свой комп   
+python -m venv venv # создать виртуальную среду 
+venv\scripts\activate # активировать виртуальную среду (нужно делать из той папки, где лежит папка venv) 
+pip install -r requirements.txt # установить нужные зависимости для проекта
+python manage.py runserver # запустить сервер
+
 Страницы:
 
 /main/signin      # для регистрации пользователя
