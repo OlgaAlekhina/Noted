@@ -6,7 +6,7 @@ python -m venv venv # создать виртуальную среду
 
 venv\scripts\activate # активировать виртуальную среду (нужно делать из той папки, где лежит папка venv) 
 
-pip install -r requirements.txt # установить нужные зависимости для проекта
+pip install -r requirements.txt # установить зависимости для проекта, которые указаны в файле requirements.txt
 
 python manage.py runserver # запустить сервер
 
