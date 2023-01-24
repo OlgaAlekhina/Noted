@@ -30,7 +30,9 @@ python manage.py runserver # запустить сервер
 
 /main/date      # список всех задач на конкретную дату
 
+/main/next/date # страница с задачами на следующую неделю
 
+/main/previous/date
 
 Экраны, они же страницы:
 

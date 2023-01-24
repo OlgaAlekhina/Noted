@@ -24,6 +24,55 @@ class NotesList(ListView):
             dates.append(date)
         days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
         context['week_notes'] = zip(days, dates, week_notes)
+        context['next_mon'] = mon + datetime.timedelta(7)
+        context['prev_mon'] = mon - datetime.timedelta(7)
+        context['main'] = True
+        return context
+
+
+# выводит страницу с задачами на следующую неделю
+class NextList(ListView):
+    model = Note
+    template_name = 'main.html'
+
+    # получает 7 qs по дням недели с датами
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        mon = self.kwargs['next_mon']
+        week_notes = []
+        dates = []
+        for i in range(7):
+            date = mon + datetime.timedelta(i)
+            notes = Note.objects.filter(note_time=date)
+            week_notes.append(notes)
+            dates.append(date)
+        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+        context['week_notes'] = zip(days, dates, week_notes)
+        context['next_mon'] = mon + datetime.timedelta(7)
+        context['prev_mon'] = mon - datetime.timedelta(7)
+        return context
+
+
+# выводит страницу с задачами на предыдующую неделю
+class PrevList(ListView):
+    model = Note
+    template_name = 'main.html'
+
+    # получает 7 qs по дням недели с датами
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        mon = self.kwargs['prev_mon']
+        week_notes = []
+        dates = []
+        for i in range(7):
+            date = mon + datetime.timedelta(i)
+            notes = Note.objects.filter(note_time=date)
+            week_notes.append(notes)
+            dates.append(date)
+        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+        context['week_notes'] = zip(days, dates, week_notes)
+        context['next_mon'] = mon + datetime.timedelta(7)
+        context['prev_mon'] = mon - datetime.timedelta(7)
         return context
 
 
