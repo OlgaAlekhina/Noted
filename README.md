@@ -18,6 +18,8 @@ python manage.py runserver # запустить сервер
 
 /main/logout      # для выхода пользователя
 
+/main/reset_password # для восстановления пароля по email
+
 /main             # главная страница
 
 /main/id        # страница конкретной задачи
@@ -32,7 +34,7 @@ python manage.py runserver # запустить сервер
 
 /main/next/date # страница с задачами на следующую неделю
 
-/main/previous/date
+/main/previous/date # страница с задачами на предыдущую неделю
 
 Экраны, они же страницы:
 

@@ -5,6 +5,9 @@ Login
 {% endblock title %}
 
 {% block content %}
+
+{% include 'messages.html' %}
+
 <h2> Войти: </h2>
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
@@ -22,5 +25,8 @@ Login
 <input type="submit" value="Войти">
 </form>
 
-<p>Если вы не зарегистрированы: <button><a href="{% url 'signin' %}"><u>Регистрация</u></a></button></p>
+<p><button><a href="{% url 'signin' %}"><u>Регистрация</u></a></button></p>
+
+<p><button><a href="{% url 'reset_password' %}"><u>Восстановление пароля</u></a></button></p>
+
 {% endblock %}

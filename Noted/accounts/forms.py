@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
@@ -41,3 +41,10 @@ class NewUserForm(UserCreationForm):
 			self.cleaned_data['password1']
 		)
 		return user
+
+
+# Форма для изменения пароля (при его восстановлении)
+class ChangePasswordForm(SetPasswordForm):
+	class Meta:
+		model = User
+		fields = ['new_password1', 'new_password2']

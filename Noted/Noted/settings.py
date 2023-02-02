@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'notes',
     'accounts',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,11 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/main'
 
 LOGOUT_REDIRECT_URL = '/main/login'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'olga-olechka-5'
+EMAIL_HOST_PASSWORD = 'sobasya'
+EMAIL_USE_SSL = True
+SERVER_EMAIL = 'olga-olechka-5'
+DEFAULT_FROM_EMAIL = 'olga-olechka-5@yandex.ru'
