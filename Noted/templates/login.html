@@ -8,10 +8,14 @@ Login
 
 {% include 'messages.html' %}
 
-<h2> Войти: </h2>
+<main>
+    <div class="container main-area">
+        <div class="col-md-6 offset-md-3">
+
+<h2> Авторизация </h2>
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-<table>
+  <table>
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
@@ -21,12 +25,15 @@ Login
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
-<input type="submit" value="Войти">
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 <p><button><a href="{% url 'signin' %}"><u>Регистрация</u></a></button></p>
 
 <p><button><a href="{% url 'reset_password' %}"><u>Восстановление пароля</u></a></button></p>
 
-{% endblock %}
+          </div>
+    </div>
+</main>
+
+{% endblock content %}
