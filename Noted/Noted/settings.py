@@ -144,3 +144,5 @@ EMAIL_HOST_PASSWORD = 'sobasya'
 EMAIL_USE_SSL = True
 SERVER_EMAIL = 'olga-olechka-5'
 DEFAULT_FROM_EMAIL = 'olga-olechka-5@yandex.ru'
+
+

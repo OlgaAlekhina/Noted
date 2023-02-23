@@ -1,10 +1,60 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #E0E0E0;
+}
+
 .header-area {
     height: 70px;
-    width: 1280px;
-    background-color: #00ffff;
+    border-top: 0.5px solid #E0E0E0;
+    border-right: 0.5px solid #E0E0E0;
+    border-left: 0.5px solid #E0E0E0;
+    border-bottom: 3px solid #b1b1b1;
+    background: #ffffff;
 }
 
 .main-area {
     height: 762px;
-    background-color: #ffc0cb;
+    background-image: url(/static/images/my_background.jpg);
 }
+
+.button-wrapper {
+    display: flex;
+    justify-content: right;
+}
+
+#reg-res {
+    margin-top: 20px;
+}
+
+#reg-res a {
+    color: black;
+}
+
+.form-area {
+    margin-top: 40px;
+}
+
+.form-block {
+    padding-top: 40px;
+    height: 360px;
+    width: 460px;
+}
+
+.my-but {
+    text-align: center;
+    background-color: #282A25;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.my-inp {
+    height: 60px;
+}
+
+.rem-but {
+    margin-top: 5px;
+}
+
+

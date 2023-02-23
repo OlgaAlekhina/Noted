@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import NewUserForm, ChangePasswordForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -24,6 +24,37 @@ def register_request(request):
 		f = NewUserForm()
 
 	return render(request, 'registration.html', {'form': f})
+
+
+# функция для авторизации юзера по email
+def authenticate_user(email, password):
+	try:
+		user = User.objects.get(email=email)
+	except User.DoesNotExist:
+		return None
+	else:
+		if user.check_password(password):
+			return user
+
+	return None
+
+
+# выводит форму для авторизации
+def login_user(request):
+	if request.method == "POST":
+		email = request.POST['email']
+		password = request.POST['password']
+		user = authenticate_user(email, password)
+		if user is not None:
+			login(request, user)
+			messages.success(request, "Вы авторизовались в приложении Noted.")
+			return redirect('main')
+		else:
+			messages.error(request, "В процессе авторизации произошла ошибка. Попробуйте еще раз.")
+			return redirect('login')
+
+	else:
+		return render(request, "login.html", {})
 
 
 # выводит форму для ввода email и высылает на почту письмо со ссылкой для изменения пароля

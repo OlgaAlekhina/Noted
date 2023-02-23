@@ -9,30 +9,40 @@ Login
 {% include 'messages.html' %}
 
 <main>
-    <div class="container main-area">
-        <div class="col-md-6 offset-md-3">
+    <div class="container-xxl main-area">
 
-<h2> Авторизация </h2>
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-  <table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <div class="col-4 offset-4 form-block">
 
-<p><button><a href="{% url 'signin' %}"><u>Регистрация</u></a></button></p>
+            <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif;"> Авторизация </h2>
 
-<p><button><a href="{% url 'reset_password' %}"><u>Восстановление пароля</u></a></button></p>
+            <form method="post" action="{% url 'login' %}" class="form-area">
+            {% csrf_token %}
 
-          </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control my-inp" name="email" placeholder="E-mail">
+                </div>
+                <div><input type="password" class="form-control my-inp" name="password" placeholder="Пароль">
+                </div>
+                <div class="row justify-content-evenly rem-but">
+                    <div class="col-4 mb-3 form-check" style="margin-top: 16px;">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Запомнить</label>
+                    </div>
+                    <div class="col-4 button-wrapper" style="margin: 10px 0px 10px; ">
+                    <button type="submit" class="btn my-but">Войти</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row" id="reg-res">
+                <div class="col-auto me-auto">
+                    <a href="{% url 'signin' %}">Регистрация</a>
+                </div>
+                <div class="col-auto">
+                    <a href="{% url 'reset_password' %}">Забыли пароль?</a>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
