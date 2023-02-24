@@ -135,7 +135,7 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/main'
 
-LOGOUT_REDIRECT_URL = '/main/login'
+LOGOUT_REDIRECT_URL = '/login'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465

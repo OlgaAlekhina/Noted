@@ -10,10 +10,9 @@ Login
 
 <main>
     <div class="container-xxl main-area">
-
         <div class="col-4 offset-4 form-block">
 
-            <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif;"> Авторизация </h2>
+            <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif;">Авторизация</h2>
 
             <form method="post" action="{% url 'login' %}" class="form-area">
             {% csrf_token %}
@@ -29,7 +28,7 @@ Login
                         <label class="form-check-label" for="exampleCheck1">Запомнить</label>
                     </div>
                     <div class="col-4 button-wrapper" style="margin: 10px 0px 10px; ">
-                    <button type="submit" class="btn my-but">Войти</button>
+                    <button type="submit" class="btn sm-but">Войти</button>
                     </div>
                 </div>
             </form>

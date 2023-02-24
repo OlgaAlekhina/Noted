@@ -3,6 +3,14 @@ body {
     background: #E0E0E0;
 }
 
+.sm-but:hover {
+    color: white;
+}
+
+.lg-but:hover {
+    color: white;
+}
+
 .header-area {
     height: 70px;
     border-top: 0.5px solid #E0E0E0;
@@ -28,6 +36,7 @@ body {
 
 #reg-res a {
     color: black;
+    text-decoration: none;
 }
 
 .form-area {
@@ -37,10 +46,9 @@ body {
 .form-block {
     padding-top: 40px;
     height: 360px;
-    width: 460px;
 }
 
-.my-but {
+.sm-but {
     text-align: center;
     background-color: #282A25;
     width: 100px;
@@ -51,10 +59,25 @@ body {
 
 .my-inp {
     height: 60px;
+    border-radius: 5px;
 }
 
 .rem-but {
     margin-top: 5px;
+}
+
+.lg-but {
+    text-align: center;
+    background-color: #282A25;
+    width: 180px;
+    height: 40px;
+    color: white;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.lg-but-center {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 

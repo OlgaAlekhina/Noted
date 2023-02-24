@@ -6,17 +6,14 @@ from django.core.exceptions import ValidationError
 
 # форма для регистрации пользователя
 class NewUserForm(UserCreationForm):
-	username = forms.CharField(label='Введите свой ник', min_length=4, max_length=150)
-	email = forms.EmailField(label='Введите email')
-	password1 = forms.CharField(label='Введите пароль', widget=forms.PasswordInput)
-	password2 = forms.CharField(label='Подтвердите пароль', widget=forms.PasswordInput)
+	username = forms.CharField(label='', widget=forms.TextInput (attrs={'class': 'form-control my-inp', 'placeholder': 'Имя'}))
+	email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': 'form-control my-inp', 'placeholder': 'E-Mail'}))
+	password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control my-inp', 'placeholder': 'Пароль'}))
+	password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control my-inp', 'placeholder': 'Повторите пароль'}))
 
-	def clean_username(self):
-		username = self.cleaned_data['username'].lower()
-		r = User.objects.filter(username=username)
-		if r.count():
-			raise ValidationError("Этот ник занят")
-		return username
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password1', 'password2')
 
 	def clean_email(self):
 		email = self.cleaned_data['email'].lower()
