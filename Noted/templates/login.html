@@ -6,8 +6,6 @@ Login
 
 {% block content %}
 
-{% include 'messages.html' %}
-
 <main>
     <div class="container-xxl main-area">
         <div class="col-4 offset-4 form-block">
@@ -20,7 +18,8 @@ Login
                 <div class="mb-3">
                     <input type="email" class="form-control my-inp" name="email" placeholder="E-mail">
                 </div>
-                <div><input type="password" class="form-control my-inp" name="password" placeholder="Пароль">
+                <div>
+                    <input type="password" class="form-control my-inp" name="password" placeholder="Пароль">
                 </div>
                 <div class="row justify-content-evenly rem-but">
                     <div class="col-4 mb-3 form-check" style="margin-top: 16px;">

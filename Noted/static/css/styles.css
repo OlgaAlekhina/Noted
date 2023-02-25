@@ -22,7 +22,7 @@ body {
 
 .main-area {
     height: 762px;
-    background-image: url(/static/images/my_background.jpg);
+    background-image: url(/static/images/bg-1.jpg);
 }
 
 .button-wrapper {
@@ -75,9 +75,6 @@ body {
     font-family: 'Didact Gothic', sans-serif;
 }
 
-.lg-but-center {
-    margin-right: auto;
-    margin-left: auto;
-}
+
 
 

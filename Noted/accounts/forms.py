@@ -40,8 +40,4 @@ class NewUserForm(UserCreationForm):
 		return user
 
 
-# Форма для изменения пароля (при его восстановлении)
-class ChangePasswordForm(SetPasswordForm):
-	class Meta:
-		model = User
-		fields = ['new_password1', 'new_password2']
+#

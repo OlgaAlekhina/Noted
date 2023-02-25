@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm, ChangePasswordForm
+from .forms import NewUserForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
@@ -9,6 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import user_token
+from django.core.exceptions import ValidationError
 
 
 # выводит форму для регистрации нового пользователя
@@ -60,8 +61,8 @@ def login_user(request):
 # выводит форму для ввода email и высылает на почту письмо со ссылкой для изменения пароля
 def reset_password_request(request):
 	if request.method == "POST":
-		mail = request.POST['mail']
-		user = User.objects.filter(email=mail).first()
+		email = request.POST['email']
+		user = User.objects.filter(email=email).first()
 		if user:
 			msg = EmailMultiAlternatives(
 				subject='Восстановление пароля в приложении Noted',
@@ -80,11 +81,11 @@ def reset_password_request(request):
 
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
-			messages.success(request, """Мы отправили вам на электронную почту инструкции по восстановлению пароля. Оно должно прийти в течение нескольких минут. 
-										Если вы не получили наше письмо, пожалуйста, проверьте свою папку "спам". """)
+			messages.success(request, """Мы отправили вам на электронную почту письмо с инструкциями для восстановления пароля.  
+										Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте папку "Спам". """)
 			return redirect("login")
 		else:
-			messages.error(request, "Пользователь с таким email не найден.")
+			messages.error(request, "Пользователь с таким E-mail не зарегистрирован в приложении.")
 			return redirect("reset_password")
 	else:
 		return render(request=request, template_name="reset_password_form.html")
@@ -100,18 +101,18 @@ def password_reset_confirm(request, uidb64, token):
 
 	if user is not None and user_token.check_token(user, token):
 		if request.method == 'POST':
-			form = ChangePasswordForm(user, request.POST)
-			if form.is_valid():
-				form.save()
+			password1 = request.POST['password1']
+			password2 = request.POST['password2']
+			if password1 and password2 and password1 != password2:
+				messages.error(request, "Пароли не совпадают.")
+			else:
+				user.set_password(password1)
+				user.save()
 				login(request, user)
 				messages.success(request, "Пароль успешно изменен.")
 				return redirect('main')
-			else:
-				for error in list(form.errors.values()):
-					messages.error(request, error)
 
-		form = ChangePasswordForm(user)
-		return render(request, 'password_reset_confirm.html', {'form': form})
+		return render(request, 'password_reset_confirm.html', {})
 	else:
 		messages.error(request, "Ссылка устарела.")
 
