@@ -1,0 +1,42 @@
+{% extends "default.html" %}
+
+{% block title %}
+Main page
+{% endblock title %}
+
+{% block content %}
+
+<main>
+    <div class="container-xxl main-main">
+        <div class="row">
+            <div class="col-6 tasks">
+
+            <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
+
+            {% for task in today_tasks %}
+
+                <p>{{ task.task_title }}</p>
+
+            {% endfor %}
+            </div>
+            <div class="col-6 notes">
+                <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Последние заметки</h3>
+                <div class="col-8 offset-2">
+                {% for note in notes %}
+                    <div class="row note-block">
+                        <div class="col-auto me-auto">
+                            <h6><b>{{ note.note_title }}</b></h6>
+                            {{ note.note_text }}
+                        </div>
+                        <div class="col-auto">
+                            {{ note.note_time }}
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

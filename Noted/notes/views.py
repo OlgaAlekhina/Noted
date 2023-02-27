@@ -1,8 +1,19 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Note, Tag
+from .models import Note, Tag, Task
 from .forms import NoteForm
 import datetime
+
+
+# выводит главную страницу со всеми заметками и задачами на текущую дату
+def main_page(request):
+    today = datetime.date.today()
+    today_tasks = Task.objects.filter(task_time=today)
+    notes = Note.objects.all().order_by('-note_time')
+    month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+    today = f'{today.day} {month_list[int(today.month) - 1]}'
+    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': today})
 
 
 # выводит главную страницу с задачами на текущую неделю

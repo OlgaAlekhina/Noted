@@ -27,6 +27,12 @@ body {
     border: 0.5px solid #b1b1b1;
 }
 
+.main-main {
+    height: 762px;
+    border: 0.5px solid #b1b1b1;
+    background: #ffffff;
+}
+
 .button-wrapper {
     display: flex;
     justify-content: right;
@@ -75,6 +81,25 @@ body {
     height: 40px;
     color: white;
     font-family: 'Didact Gothic', sans-serif;
+}
+
+.tasks {
+    border: 0.5px solid #b1b1b1;
+    height: 762px;
+}
+
+.notes {
+    border: 0.5px solid #b1b1b1;
+    height: 762px;
+    overflow-y: scroll;
+}
+
+.note-block {
+    border: 0.5px solid #b1b1b1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 

@@ -8,7 +8,7 @@ class NoteForm(ModelForm):
 
     class Meta:
         model = Note
-        fields = ['note_title', 'note_text', 'note_author', 'note_priority', 'note_time', 'tags']
+        fields = ['note_title', 'note_text', 'note_author', 'note_time', 'tags']
 
         widgets = {
             'note_author': forms.HiddenInput(),
@@ -17,7 +17,6 @@ class NoteForm(ModelForm):
         labels = {
             'note_title': 'Заголовок',
             'note_text': 'Детали',
-            'note_priority': 'Приоритет',
             'note_time': 'Когда сделать (yyyy-mm-dd)',
             'tags': 'Тэги',
         }
