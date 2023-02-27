@@ -62,30 +62,34 @@ def login_user(request):
 def reset_password_request(request):
 	if request.method == "POST":
 		email = request.POST['email']
-		user = User.objects.filter(email=email).first()
-		if user:
-			msg = EmailMultiAlternatives(
-				subject='Восстановление пароля в приложении Noted',
-				from_email='olga-olechka-5@yandex.ru',
-				to=[user.email, ]
-			)
-
-			html_content = render_to_string(
-				'change_password_letter.html',
-				{'domain': get_current_site(request).domain,
-				'user': user,
-				'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-				'token': user_token.make_token(user),
-				'protocol': 'https' if request.is_secure() else 'http'}
+		if email:
+			user = User.objects.filter(email=email).first()
+			if user:
+				msg = EmailMultiAlternatives(
+					subject='Восстановление пароля в приложении Noted',
+					from_email='olga-olechka-5@yandex.ru',
+					to=[user.email, ]
 				)
 
-			msg.attach_alternative(html_content, "text/html")
-			msg.send()
-			messages.success(request, """Мы отправили вам на электронную почту письмо с инструкциями для восстановления пароля.  
-										Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте папку "Спам". """)
-			return redirect("login")
+				html_content = render_to_string(
+					'change_password_letter.html',
+					{'domain': get_current_site(request).domain,
+					'user': user,
+					'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+					'token': user_token.make_token(user),
+					'protocol': 'https' if request.is_secure() else 'http'}
+					)
+
+				msg.attach_alternative(html_content, "text/html")
+				msg.send()
+				messages.success(request, """Мы отправили вам на электронную почту письмо с инструкциями для восстановления пароля.  
+											Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте папку "Спам". """)
+				return redirect("login")
+			else:
+				messages.error(request, "Пользователь с таким E-mail не зарегистрирован в приложении.")
+				return redirect("reset_password")
 		else:
-			messages.error(request, "Пользователь с таким E-mail не зарегистрирован в приложении.")
+			messages.error(request, "Вы забыли ввести свой E-mail.")
 			return redirect("reset_password")
 	else:
 		return render(request=request, template_name="reset_password_form.html")

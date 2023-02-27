@@ -22,7 +22,9 @@ body {
 
 .main-area {
     height: 762px;
-    background-image: url(/static/images/bg-1.jpg);
+    background: url(/static/images/bg-1.jpg) no-repeat center fixed;
+    background-size: contain;
+    border: 0.5px solid #b1b1b1;
 }
 
 .button-wrapper {
