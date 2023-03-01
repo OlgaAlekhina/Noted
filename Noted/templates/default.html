@@ -24,7 +24,13 @@
     {% endblock title %}
 </title>
 
-<script type="text/javascript" src="/static/js/changeBackgroundImage.js"></script>
+<script>
+    window.onload = function() {
+    var today=new Date();
+    var day=today.getDate();
+    document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
+}
+</script>
 
 </head>
 <body>

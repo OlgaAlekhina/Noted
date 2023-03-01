@@ -33,6 +33,10 @@ body {
     background: #ffffff;
 }
 
+.my-sidebar {
+    float: left;
+}
+
 .button-wrapper {
     display: flex;
     justify-content: right;

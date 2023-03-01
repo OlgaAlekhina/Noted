@@ -6,39 +6,50 @@ Main page
 
 {% block content %}
 
-<main>
+
+
+
     <div class="container-xxl main-main">
-        <div class="row">
-            <div class="col-6 tasks">
-                <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
-                <div class="col-6 offset-3">
-                    {% for task in today_tasks %}
-                        <div class="row note-block">
-                            <div class="col-10">
-                                <h6><b>{{ task.task_title }}</b></h6>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+        <main class="row">
+            <div class="col-2">
+                <p><a href="{% url 'signin' %}">Регистрация</a></p>
+                <p><a href="{% url 'signin' %}">Регистрация</a></p>
+                <p><a href="{% url 'signin' %}">Регистрация</a></p>
             </div>
-            <div class="col-6 notes">
-                <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Последние заметки</h3>
-                <div class="col-8 offset-2">
-                {% for note in notes %}
-                    <div class="row note-block">
-                        <div class="col-9">
-                            <h6><b>{{ note.note_title }}</b></h6>
-                            {{ note.note_text | truncatewords:10 }}
-                        </div>
-                        <div class="col-3 ms-auto">
-                            {{ note.note_time | date:"j.m.Y" }}
+            <div class="col-10" id="tasks-notes">
+                <div class="row">
+                    <div class="col-6 tasks">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
+                        <div class="col-6 offset-3">
+                            {% for task in today_tasks %}
+                                <div class="row note-block">
+                                    <div class="col-10">
+                                        <h6><b>{{ task.task_title }}</b></h6>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
+                    <div class="col-6 notes">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Последние заметки</h3>
+                        <div class="col-8 offset-2">
+                        {% for note in notes %}
+                            <div class="row note-block">
+                                <div class="col-9">
+                                    <h6><b>{{ note.note_title }}</b></h6>
+                                    {{ note.note_text | truncatewords:10 }}
+                                </div>
+                                <div class="col-3 ms-auto">
+                                    {{ note.note_time | date:"j.m.Y" }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+
 
 {% endblock content %}

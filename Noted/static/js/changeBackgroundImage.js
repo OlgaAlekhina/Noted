@@ -4,9 +4,9 @@
 window.onload = function() {
     var today=new Date();
     var day=today.getDate();
-    document.getElementById('main-back').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
-    document.getElementById('main-back').style.backgroundRepeat = "no-repeat";
-    document.getElementById('main-back').style.backgroundPosition = "center center";
-    document.getElementById('main-back').style.backgroundSize = "contain";
-    document.getElementById('main-back').style.backgroundAttachment = "fixed";
+    document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
+    document.getElementById('tasks-notes').style.backgroundRepeat = "no-repeat";
+    document.getElementById('tasks-notes').style.backgroundPosition = "center center";
+    document.getElementById('tasks-notes').style.backgroundSize = "contain";
+    document.getElementById('tasks-notes').style.backgroundAttachment = "fixed";
 }
