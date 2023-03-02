@@ -107,6 +107,31 @@ body {
     padding: 10px;
 }
 
+.ava {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* убрать стрелку вниз в кнопке добавления заметки или задачи в сайдбаре */
+.dropdown-toggle::after {
+    content: none;
+}
+
+.nav-list {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+
+.nav-list li {
+    padding-top: 15px;
+}
+
+.nav-list a {
+    color: black;
+    text-decoration: none;
+    test-align: center;
+}
+
 
 
 

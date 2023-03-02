@@ -1,5 +1,5 @@
 from django.urls import path, register_converter
-from .views import main_page, NoteDetail, NotesList, DateList, NoteAddView, NoteUpdateView, NoteDeleteView, NextList, PrevList
+from .views import main_page, NoteDetail, calendar, DateList, NoteAddView, NoteUpdateView, NoteDeleteView, NextList, PrevList
 from .path_converters import DateConverter
 
 
@@ -15,5 +15,6 @@ urlpatterns = [
     path('<date:date>/', DateList.as_view(), name='date_notes'),
     path('next/<date:next_mon>/', NextList.as_view(), name='next_notes'),
     path('previous/<date:prev_mon>/', PrevList.as_view(), name='previous_notes'),
+    path('cal', calendar, name='calendar'),
 
     ]

@@ -5,6 +5,10 @@ from .forms import NoteForm
 import datetime
 
 
+def calendar(request):
+    return render(request, 'calendar.html', context={})
+
+
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 def main_page(request):
     today = datetime.date.today()

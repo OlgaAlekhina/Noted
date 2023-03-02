@@ -18,6 +18,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a5853bef6b.js" crossorigin="anonymous"></script>
+<!-- для календаря -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <title>
     {% block title %}
@@ -29,6 +34,9 @@
     var today=new Date();
     var day=today.getDate();
     document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
+    document.getElementById('tasks-notes').style.backgroundRepeat = "no-repeat";
+    document.getElementById('tasks-notes').style.backgroundPosition = "center";
+    document.getElementById('tasks-notes').style.backgroundSize = "cover";
 }
 </script>
 

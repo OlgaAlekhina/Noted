@@ -5,16 +5,39 @@ Main page
 {% endblock title %}
 
 {% block content %}
-
-
-
-
     <div class="container-xxl main-main">
         <main class="row">
             <div class="col-2">
-                <p><a href="{% url 'signin' %}">Регистрация</a></p>
-                <p><a href="{% url 'signin' %}">Регистрация</a></p>
-                <p><a href="{% url 'signin' %}">Регистрация</a></p>
+                <div class="ava">
+                    <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
+                    <span class="username">{{ request.user }}</span>
+                </div>
+                <div class="input-group" style="margin-bottom: 10px;">
+                    <button type="button" class="btn btn-primary" style="background: #282A25;; border-color: #282A25;">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                    <input type="search" class="form-control" placeholder="Поиск" />
+                </div>
+                <div class="input-group dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; ">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Задачу</a></li>
+                        <li><a class="dropdown-item" href="#">Заметку</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-primary" style="background: #ffffff; color: black; border: 1px solid #ced4da; width: 156px; text-align: left;">Создать</button>
+                </div>
+                <div class="nav-list">
+                    <ul style="list-style-type: none;">
+                        <li><a href="{% url 'main' %}">Главная</a></li>
+                        <li><a href="{% url 'signin' %}">Заметки</a></li>
+                        <li><a href="{% url 'signin' %}">Задачи</a></li>
+                        <li><a href="{% url 'signin' %}">Корзина</a></li>
+                        <li><a href="{% url 'signin' %}">Настройки</a></li>
+                        <li><a href="{% url 'logout' %}">Выйти</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-10" id="tasks-notes">
                 <div class="row">
