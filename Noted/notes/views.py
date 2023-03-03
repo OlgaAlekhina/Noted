@@ -1,12 +1,22 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Note, Tag, Task
+from .models import Note, Task
 from .forms import NoteForm
 import datetime
+import calendar
 
+
+noted_calendar = calendar.Calendar()
 
 def calendar(request):
-    return render(request, 'calendar.html', context={})
+    today = datetime.date.today()  # получаем текущую дату (можем использовать из нее today.day, today.month, today.year)
+
+    list_weeks = noted_calendar.monthdatescalendar(today.year, today.month) # список списков (по неделям) с датами в формате datetime.date objects
+
+    date_list = list(noted_calendar.itermonthdates(today.year,
+                                      today.month))  # список со всеми датами календаря в виде datetime.date objects
+
+    return render(request, 'calendar.html', context={'list_weeks': list_weeks, 'today': today})
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
@@ -18,6 +28,16 @@ def main_page(request):
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     today = f'{today.day} {month_list[int(today.month) - 1]}'
     return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': today})
+
+
+# выводит главную страницу со всеми заметками и задачами на конкретную дату
+def main_page_date(request, date):
+    today_tasks = Task.objects.filter(task_time=date)
+    notes = Note.objects.all().order_by('-note_time')
+    month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+    date = f'{date.day} {month_list[int(date.month) - 1]}'
+    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': date})
 
 
 # выводит главную страницу с задачами на текущую неделю
