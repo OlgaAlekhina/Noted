@@ -132,6 +132,88 @@ body {
     test-align: center;
 }
 
+/* стили для виджета "календарь" */
+.calendar-wrapper {
+  width: 100%;
+  margin: 1em auto;
+  border: 0.5px solid #b1b1b1;
+  border-radius: 5px;
+  background: #fff;
+}
+
+table {
+  clear: both;
+  width: 100%;
+  color: #444;
+}
+
+td {
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  width: 14.28571429%;
+}
+
+td a {
+    text-decoration: none;
+    color: black;
+    text-size: 0.5em;
+}
+
+thead td {
+  border: none;
+  color: #28283b;
+  text-transform: uppercase;
+}
+
+td.not-current a {
+  color: #c0c0c0;
+}
+
+td.today a {
+  font-weight: 700;
+  color: red;
+}
+
+#btnPrev {
+  float: left;
+}
+
+#btnPrev:before {
+  content: '\f104';
+  font-family: FontAwesome;
+  padding-right: 4px;
+}
+
+#btnNext {
+  float: right;
+}
+
+#btnNext:after {
+  content: '\f105';
+  font-family: FontAwesome;
+  padding-left: 4px;
+}
+
+#btnPrev,
+#btnNext {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.6em;
+  color: #c0c0c0;
+  cursor: pointer;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+#btnPrev:hover,
+#btnNext:hover {
+  color: #28283b;
+  font-weight: bold;
+}
+
 
 
 
