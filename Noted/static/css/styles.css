@@ -20,21 +20,41 @@ body {
     background: #ffffff;
 }
 
+/* стили страниц авторизации и регистрации*/
 .main-area {
-    height: 762px;
+    height: 1200px;
     border: 0.5px solid #b1b1b1;
     background: url(/static/images/bg-1.jpg) no-repeat center fixed;
     background-size: contain;
 }
-
+/* стили главной страницы*/
 .main-main {
-    height: 762px;
     border: 0.5px solid #b1b1b1;
     background: #ffffff;
 }
 
-.my-sidebar {
-    float: left;
+.tasks {
+    border: 0.5px solid #b1b1b1;
+    height: 1200px;
+    overflow-y: scroll;
+}
+
+.notes {
+    border: 0.5px solid #b1b1b1;
+    height: 1200px;
+    overflow-y: scroll;
+}
+
+.note-block {
+    border: 0.5px solid #b1b1b1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.note_date {
+    font-size: 12px;
 }
 
 .button-wrapper {
@@ -87,58 +107,21 @@ body {
     font-family: 'Didact Gothic', sans-serif;
 }
 
-.tasks {
-    border: 0.5px solid #b1b1b1;
-    height: 762px;
-    overflow-y: scroll;
-}
-
-.notes {
-    border: 0.5px solid #b1b1b1;
-    height: 762px;
-    overflow-y: scroll;
-}
-
-.note-block {
-    border: 0.5px solid #b1b1b1;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.ava {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 /* убрать стрелку вниз в кнопке добавления заметки или задачи в сайдбаре */
 .dropdown-toggle::after {
     content: none;
 }
 
-.nav-list {
-    font-family: 'Didact Gothic', sans-serif;
-    font-size: 20px;
-}
-
-.nav-list li {
-    padding-top: 15px;
-}
-
-.nav-list a {
-    color: black;
-    text-decoration: none;
-    test-align: center;
-}
-
 /* стили для виджета "календарь" */
 .calendar-wrapper {
-  width: 100%;
-  margin: 1em auto;
+  margin: 50px 25px;
   border: 0.5px solid #b1b1b1;
   border-radius: 5px;
-  background: #fff;
+  background: #f0f8ff;
+}
+
+#divCal {
+    margin-top: 10px;
 }
 
 table {
@@ -157,36 +140,38 @@ td {
 td a {
     text-decoration: none;
     color: black;
-    text-size: 0.5em;
+    font-size: 10px;
 }
 
-thead td {
-  border: none;
-  color: #28283b;
-  text-transform: uppercase;
+.days td {
+    font-size: 11px;
+    font-weight: 700;
 }
 
 td.not-current a {
   color: #c0c0c0;
 }
 
-td.today a {
-  font-weight: 700;
-  color: red;
+.today {
+    border-radius: 50%;
+    background: #C4A27F;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
 }
 
-#btnPrev {
-  float: left;
+#headCal {
+    margin: 0px 0px;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: inline;
+    font-weight: 700;
 }
 
 #btnPrev:before {
   content: '\f104';
   font-family: FontAwesome;
   padding-right: 4px;
-}
-
-#btnNext {
-  float: right;
 }
 
 #btnNext:after {
@@ -203,8 +188,6 @@ td.today a {
   font-size: 0.6em;
   color: #c0c0c0;
   cursor: pointer;
-  font-family: sans-serif;
-  text-transform: uppercase;
   transition: all 0.3s ease;
 }
 
@@ -212,6 +195,45 @@ td.today a {
 #btnNext:hover {
   color: #28283b;
   font-weight: bold;
+}
+
+/* стили боковой колонки */
+.sidebar {
+    background: #7E9FA4;
+    padding: 0px;
+}
+
+.ava {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0px 10px;
+}
+
+.username {
+    padding-left: 10px;
+}
+
+.input-group {
+    padding: 5px 20px 5px 20px;
+}
+
+.nav-list {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+    background: #ECF7FB;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 100px;
+}
+
+.nav-list li {
+    padding-top: 15px;
+}
+
+.nav-list a {
+    color: black;
+    text-decoration: none;
+    test-align: center;
 }
 
 

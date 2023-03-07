@@ -7,30 +7,31 @@ Main page
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-2">
+            <div class="col-auto col-2.5 sidebar">
                 <div class="ava">
                     <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
                 </div>
-                <div class="input-group" style="margin-bottom: 10px;">
+                <div class="input-group">
                     <button type="button" class="btn btn-primary" style="background: #282A25;; border-color: #282A25;">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </button>
                     <input type="search" class="form-control" placeholder="Поиск" />
                 </div>
                 <div class="input-group dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; ">
+                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
                         <i class="fas fa-plus" aria-hidden="true"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">Задачу</a></li>
                         <li><a class="dropdown-item" href="#">Заметку</a></li>
                     </ul>
-                    <button type="button" class="btn btn-primary" style="background: #ffffff; color: black; border: 1px solid #ced4da; width: 156px; text-align: left;">Создать</button>
+                    <button type="button" class="btn btn-primary" style="background: #ffffff; color: black; border: 1px solid #ced4da; width: 83%; text-align: left;">Создать</button>
                 </div>
                 <div class="calendar-wrapper">
-                    <button id="btnPrev" type="button">Предыдущий</button>
-                    <button id="btnNext" type="button">Следующий</button>
+                    <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
+                    <h6 id="headCal"></h6>
+                    <button id="btnNext" type="button"></button>
                     <div id="divCal"></div>
                 </div>
                 <div class="nav-list">
@@ -44,7 +45,7 @@ Main page
                     </ul>
                 </div>
             </div>
-            <div class="col-10" id="tasks-notes">
+            <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-6 tasks">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
@@ -67,7 +68,7 @@ Main page
                                     <h6><b>{{ note.note_title }}</b></h6>
                                     {{ note.note_text | truncatewords:10 }}
                                 </div>
-                                <div class="col-3 ms-auto">
+                                <div class="col-3 ms-auto note_date">
                                     {{ note.note_time | date:"j.m.Y" }}
                                 </div>
                             </div>
@@ -89,9 +90,10 @@ Main page
 </script>
 
 <script>
-var Cal = function(divId) {
+var Cal = function(divId1, divId2) {
   //Сохраняем идентификатор div
-  this.divId = divId;
+  this.divId1 = divId1;
+  this.divId2 = divId2;
   // Дни недели с понедельника
   this.DaysOfWeek = [
     'ПН',
@@ -145,11 +147,13 @@ Cal.prototype.showMonth = function(y, m) {
   , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
   // Последний день предыдущего месяца
   , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
-  var html = '<table>';
+
+  var html1 = '';
   // Запись выбранного месяца и года
-  html += '<thead><tr>';
-  html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
-  html += '</tr></thead>';
+  html1 += this.Months[m] + ', ' + y;
+
+  var html = '<table>';
+
   // заголовок дней недели
   html += '<tr class="days">';
   for(var i=0; i < this.DaysOfWeek.length;i++) {
@@ -182,7 +186,7 @@ Cal.prototype.showMonth = function(y, m) {
     var mon = m+1;
     var mon0 = (mon<10 ? '0' : '') + mon;
     if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-      html += '<td class="today"><a href=/main/' + day + '-' + mon0 + '-' + y + '/>' + i + '</td>';
+      html += '<td><span class="today"><a href=/main/' + day + '-' + mon0 + '-' + y + '/>' + i + '</span></td>';
     } else {
       html += '<td class="normal"><a href=/main/' + day + '-' + mon0 + '-' + y + '/>' + i + '</td>';
     }
@@ -207,11 +211,14 @@ Cal.prototype.showMonth = function(y, m) {
   // Конец таблицы
   html += '</table>';
   // Записываем HTML в div
-  document.getElementById(this.divId).innerHTML = html;
+
+  document.getElementById(this.divId2).innerHTML = html;
+  document.getElementById(this.divId1).innerHTML = html1;
+
 };
 
   // Начать календарь
-  var c = new Cal("divCal");
+  var c = new Cal("headCal", "divCal");
   c.showcurr();
   // Привязываем кнопки «Следующий» и «Предыдущий»
   getId('btnNext').onclick = function() {
