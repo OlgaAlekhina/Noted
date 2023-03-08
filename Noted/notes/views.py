@@ -6,17 +6,15 @@ import datetime
 import calendar
 
 
-noted_calendar = calendar.Calendar()
-
-def calendar(request):
-    today = datetime.date.today()  # получаем текущую дату (можем использовать из нее today.day, today.month, today.year)
-
-    list_weeks = noted_calendar.monthdatescalendar(today.year, today.month) # список списков (по неделям) с датами в формате datetime.date objects
-
-    date_list = list(noted_calendar.itermonthdates(today.year,
-                                      today.month))  # список со всеми датами календаря в виде datetime.date objects
-
-    return render(request, 'calendar.html', context={'list_weeks': list_weeks, 'today': today})
+# выводит страницу со всеми существующими заметками и формой добавления новой
+def all_notes(request):
+    notes = Note.objects.all().order_by('-note_time')
+    if request.method == "POST":
+        note_title = request.POST['note_title']
+        note_text = request.POST['note_text']
+        note_author = request.user
+    else:
+        return render(request, 'notes.html', context={'notes': notes})
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
@@ -161,3 +159,12 @@ class DateList(ListView):
         context['date'] = self.kwargs['date']
         return context
 
+
+# вывод календаря на питоне, но он не может переключать месяцы без перезагрузки страницы, поэтому сделала другой вариант календаря на Javascript
+noted_calendar = calendar.Calendar()
+def calendar(request):
+    today = datetime.date.today()  # получаем текущую дату (можем использовать из нее today.day, today.month, today.year)
+
+    list_weeks = noted_calendar.monthdatescalendar(today.year, today.month) # список списков (по неделям) с датами в формате datetime.date objects
+
+    return render(request, 'calendar.html', context={'list_weeks': list_weeks, 'today': today})

@@ -20,17 +20,18 @@ body {
     background: #ffffff;
 }
 
-/* стили страниц авторизации и регистрации*/
+/* стили страниц авторизации и регистрации */
 .main-area {
     height: 1200px;
     border: 0.5px solid #b1b1b1;
     background: url(/static/images/bg-1.jpg) no-repeat center fixed;
     background-size: contain;
 }
-/* стили главной страницы*/
+/* стили главной страницы */
 .main-main {
     border: 0.5px solid #b1b1b1;
-    background: #ffffff;
+    background: url(/static/images/bg-2.jpg) no-repeat center fixed;
+    background-size: contain;
 }
 
 .tasks {
@@ -55,6 +56,7 @@ body {
 
 .note_date {
     font-size: 12px;
+    margin-right: 15px;
 }
 
 .button-wrapper {
