@@ -1,0 +1,80 @@
+{% extends "default.html" %}
+
+{% block title %}
+Main page
+{% endblock title %}
+
+{% block content %}
+    <div class="container-xxl main-main">
+        <div class="row">
+            <div class="col-auto col-2.5 sidebar">
+                <div class="ava">
+                    <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
+                    <span class="username">{{ request.user }}</span>
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary" style="background: #282A25;; border-color: #282A25;">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                    <input type="search" class="form-control" placeholder="Поиск" />
+                </div>
+                <div class="input-group dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Задачу</a></li>
+                        <li><a class="dropdown-item" href="#">Заметку</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-primary" style="background: #ffffff; color: black; border: 1px solid #ced4da; width: 83%; text-align: left;">Создать</button>
+                </div>
+                <div class="nav-list" style="margin-top: 250px;">
+                    <ul style="list-style-type: none;">
+                        <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
+                        <li><a href="{% url 'notes' %}">Заметки</a></li>
+                        <li><a href="{% url 'signin' %}">Задачи</a></li>
+                        <li><a href="{% url 'signin' %}">Корзина</a></li>
+                        <li><a href="{% url 'signin' %}">Настройки</a></li>
+                        <li><a href="{% url 'logout' %}">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col" id="tasks-notes">
+                <div class="row">
+                    <div class="col-4 tasks">
+                        <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Заметки</h2>
+                        <div class="col-10 offset-1">
+                        {% for note in notes %}
+                            <div class="row note-block">
+                                <div class="col-9">
+                                    <h6><b>{{ note.note_title }}</b></h6>
+                                    {{ note.note_text | truncatewords:10 }}
+                                </div>
+                                <div class="col-3 ms-auto note_date2">
+                                    {{ note.note_time | date:"j.m.Y" }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-8 notes">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
+                        <form method="post" action="{% url 'notes' %}" class="form-area">
+                        {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text" class="form-control note-title" name="note_title" placeholder="Название">
+                                <button type="submit" class="btn btn-secondary" style="float: right;">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <textarea class="form-control note-text" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

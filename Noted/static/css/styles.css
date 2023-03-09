@@ -3,12 +3,30 @@ body {
     background: #E0E0E0;
 }
 
-.sm-but:hover {
-    color: white;
+/* убрать голубую обводку элементов форм */
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
-.lg-but:hover {
-    color: white;
+/* Убрать уголок растяжения текстового поля */
+textarea {
+    resize: none;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: orange;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
 }
 
 .header-area {
@@ -27,51 +45,13 @@ body {
     background: url(/static/images/bg-1.jpg) no-repeat center fixed;
     background-size: contain;
 }
-/* стили главной страницы */
-.main-main {
-    border: 0.5px solid #b1b1b1;
-    background: url(/static/images/bg-2.jpg) no-repeat center fixed;
-    background-size: contain;
+
+.sm-but:hover {
+    color: white;
 }
 
-.tasks {
-    border: 0.5px solid #b1b1b1;
-    height: 1200px;
-    overflow-y: scroll;
-}
-
-.notes {
-    border: 0.5px solid #b1b1b1;
-    height: 1200px;
-    overflow-y: scroll;
-}
-
-.note-block {
-    border: 0.5px solid #b1b1b1;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.note_date {
-    font-size: 12px;
-}
-
-/* стили страницы заметок */
-
-.note_date2 {
-    font-size: 12px;
-    margin-right: 15px;
-}
-
-.note-title {
-
-}
-
-.note_date {
-    font-size: 12px;
-    margin-right: 15px;
+.lg-but:hover {
+    color: white;
 }
 
 .button-wrapper {
@@ -124,17 +104,84 @@ body {
     font-family: 'Didact Gothic', sans-serif;
 }
 
-/* убрать стрелку вниз в кнопке добавления заметки или задачи в сайдбаре */
-.dropdown-toggle::after {
-    content: none;
+/* стили главной страницы */
+.main-main {
+    border: 0.5px solid #b1b1b1;
+    background: url(/static/images/bg-2.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
+.tasks {
+    border: 0.5px solid #b1b1b1;
+    height: 1200px;
+    overflow-y: scroll;
+}
+
+.notes {
+    border: 0.5px solid #b1b1b1;
+    height: 1200px;
+    overflow-y: scroll;
+}
+
+.notes::-webkit-scrollbar {
+  width: 14px;
+}
+
+/*.notes::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}*/
+
+.notes::-webkit-scrollbar-thumb {
+  background-color: rgba(154, 154, 154, 0.5);
+  border-radius: 100px;
+}
+
+.note-block {
+    border: 0.5px solid #b1b1b1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
+}
+
+.note_date {
+    font-size: 12px;
+}
+
+/* стили страницы заметок */
+
+.note_date2 {
+    font-size: 12px;
+    margin-right: 15px;
+}
+
+.note-title {
+    border: 0;
+    background: none;
+    font-size: 27px;
+    font-weight: 600;
+    width: 70%;
+    margin-left: 25px;
+}
+
+.note-text {
+    border: 0;
+    background: none;
+    width: 80%;
+    margin-left: 25px;
 }
 
 /* стили для виджета "календарь" */
 .calendar-wrapper {
-  margin: 50px 25px;
-  border: 0.5px solid #b1b1b1;
-  border-radius: 5px;
-  background: #f0f8ff;
+    margin: 50px 25px;
+    border: 0.5px solid #b1b1b1;
+    border-radius: 5px;
+    background: #f0f8ff;
 }
 
 #divCal {
@@ -216,7 +263,7 @@ td.not-current a {
 
 /* стили боковой колонки */
 .sidebar {
-    background: #7E9FA4;
+    background: rgba(126, 159, 164, 0.8);
     padding: 0px;
 }
 
@@ -234,23 +281,44 @@ td.not-current a {
     padding: 5px 20px 5px 20px;
 }
 
+/* убрать стрелку вниз в кнопке добавления заметки или задачи */
+#dropdownMenuButton1::after {
+    content: none;
+}
+
 .nav-list {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 20px;
-    background: #ECF7FB;
+    /*background: #ECF7FB;*/
+    background: #E2FFFF;
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 100px;
 }
 
+.nav-list ul {
+    padding-left: 0px;
+}
+
 .nav-list li {
-    padding-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
 }
 
 .nav-list a {
     color: black;
     text-decoration: none;
     test-align: center;
+}
+
+.current_page {
+    background: rgba(236, 247, 251, 0.5);
+    border: 0.5px solid #b1b1b1;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
 }
 
 
