@@ -56,6 +56,21 @@ body {
 
 .note_date {
     font-size: 12px;
+}
+
+/* стили страницы заметок */
+
+.note_date2 {
+    font-size: 12px;
+    margin-right: 15px;
+}
+
+.note-title {
+
+}
+
+.note_date {
+    font-size: 12px;
     margin-right: 15px;
 }
 

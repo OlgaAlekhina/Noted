@@ -50,7 +50,7 @@ Main page
                                     <h6><b>{{ note.note_title }}</b></h6>
                                     {{ note.note_text | truncatewords:10 }}
                                 </div>
-                                <div class="col-3 ms-auto note_date">
+                                <div class="col-3 ms-auto note_date2">
                                     {{ note.note_time | date:"j.m.Y" }}
                                 </div>
                             </div>
@@ -59,13 +59,13 @@ Main page
                     </div>
                     <div class="col-8 notes">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
-                        <form method="post" action="{% url 'login' %}" class="form-area">
+                        <form method="post" action="{% url 'notes' %}" class="form-area">
                         {% csrf_token %}
                             <div class="mb-3">
-                                <input type="text" class="form-control my-inp" name="note_title" placeholder="Название">
+                                <input type="text" class="form-control note-title" name="note_title" placeholder="Название">
                             </div>
                             <div>
-                                <input type="textarea" class="form-control my-inp" name="note_text" placeholder="Наберите текст...">
+                                <textarea class="form-control" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
                             <div class="row">
                                 <div class="col button-wrapper" style="margin: 10px 0px 10px; ">

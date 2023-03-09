@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Note, Task
 from .forms import NoteForm
@@ -13,6 +13,9 @@ def all_notes(request):
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
         note_author = request.user
+        note_time = datetime.date.today()
+        Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
+        return redirect ('notes')
     else:
         return render(request, 'notes.html', context={'notes': notes})
 
