@@ -6,20 +6,6 @@ import datetime
 import calendar
 
 
-# выводит страницу со всеми существующими заметками и формой добавления новой
-def all_notes(request):
-    notes = Note.objects.all().order_by('-note_time')
-    if request.method == "POST":
-        note_title = request.POST['note_title']
-        note_text = request.POST['note_text']
-        note_author = request.user
-        note_time = datetime.date.today()
-        Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
-        return redirect ('notes')
-    else:
-        return render(request, 'notes.html', context={'notes': notes})
-
-
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 def main_page(request):
     today = datetime.date.today()
@@ -39,6 +25,34 @@ def main_page_date(request, date):
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
     return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': date})
+
+
+# выводит страницу со всеми существующими заметками и формой добавления новой
+def all_notes(request):
+    notes = Note.objects.all().order_by('-note_time')
+    if request.method == "POST":
+        note_title = request.POST['note_title']
+        note_text = request.POST['note_text']
+        note_author = request.user
+        note_time = datetime.date.today()
+        Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
+        return redirect ('notes')
+    else:
+        return render(request, 'notes.html', context={'notes': notes})
+
+
+# выводит страницу со всеми существующими заметками и одной конкретной заметкой в полноэкранном режиме
+def note_details(request, pk):
+    notes = Note.objects.all().order_by('-note_time')
+    note = Note.objects.get(id=pk)
+    return render(request, 'note_details.html', context={'notes': notes, 'note': note})
+
+
+# выводит страницу со всеми существующими заметками и формой редактирования одной конкретной заметки
+def note_edit(request, pk):
+    notes = Note.objects.all().order_by('-note_time')
+    note = Note.objects.get(id=pk)
+    return render(request, 'note_details.html', context={'notes': notes, 'note': note})
 
 
 # выводит главную страницу с задачами на текущую неделю

@@ -13,7 +13,7 @@ Main page
                     <span class="username">{{ request.user }}</span>
                 </div>
                 <div class="input-group">
-                    <button type="button" class="btn btn-primary" style="background: #282A25;; border-color: #282A25;">
+                    <button type="button" class="btn btn-primary" style="background: #282A25; border-color: #282A25;">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </button>
                     <input type="search" class="form-control" style="background: #f0f8ff;" placeholder="Поиск" />
@@ -26,7 +26,7 @@ Main page
                         <li><a class="dropdown-item" href="#">Задачу</a></li>
                         <li><a class="dropdown-item" href="#">Заметку</a></li>
                     </ul>
-                    <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 83%; text-align: left;">Создать</button>
+                    <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 83.4%; text-align: left;">Создать</button>
                 </div>
                 <div class="calendar-wrapper">
                     <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
@@ -49,7 +49,7 @@ Main page
             <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-6 tasks">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
                         <div class="col-6 offset-3">
                             {% for task in today_tasks %}
                                 <div class="row note-block">
@@ -61,18 +61,20 @@ Main page
                         </div>
                     </div>
                     <div class="col-6 notes">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Последние заметки</h3>
-                        <div class="col-8 offset-2">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
+                        <div class="col-8 offset-2 main-notes">
                         {% for note in notes %}
-                            <div class="row note-block">
-                                <div class="col-9">
-                                    <h6><b>{{ note.note_title }}</b></h6>
-                                    {{ note.note_text | truncatewords:10 }}
+                            <a href="{% url 'note_details' note.id %}">
+                                <div class="row note-block">
+                                    <div class="col-9">
+                                        <h6><b>{{ note.note_title }}</b></h6>
+                                        {{ note.note_text | truncatewords:10 }}
+                                    </div>
+                                    <div class="col-3 ms-auto note_date">
+                                        {{ note.note_time | date:"j.m.Y" }}
+                                    </div>
                                 </div>
-                                <div class="col-3 ms-auto note_date">
-                                    {{ note.note_time | date:"j.m.Y" }}
-                                </div>
-                            </div>
+                            </a>
                         {% endfor %}
                         </div>
                     </div>

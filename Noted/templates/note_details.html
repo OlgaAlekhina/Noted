@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 
 {% block title %}
-All notes
+Note details
 {% endblock title %}
 
 {% block content %}
@@ -59,20 +59,15 @@ All notes
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-8 notes">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
-                        <form method="post" action="{% url 'notes' %}" class="form-area">
-                        {% csrf_token %}
-                            <div class="mb-3">
-                                <input type="text" class="form-control note-title" name="note_title" placeholder="Название">
-                                <button type="submit" class="btn btn-secondary" style="float: right;">
-                                    <i class="fa-solid fa-floppy-disk"></i>
-                                </button>
-                            </div>
-                            <div>
-                                <textarea class="form-control note-text" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
-                            </div>
-                        </form>
+                    <div class="col-8">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">{{ note.note_title }}</h3>
+                        <div style="display: flex; justify-content: flex-end">
+                            <i class="fa-regular fa-pen-to-square" style="padding-right: 10px;"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                        <div class="notes-text">
+                            {{ note.note_text }}
+                        </div>
                     </div>
                 </div>
             </div>
