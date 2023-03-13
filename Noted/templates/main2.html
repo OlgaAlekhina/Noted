@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 
 {% block title %}
-Main page
+Главная страница
 {% endblock title %}
 
 {% block content %}
@@ -68,7 +68,7 @@ Main page
                                 <div class="row note-block">
                                     <div class="col-9">
                                         <h6><b>{{ note.note_title }}</b></h6>
-                                        {{ note.note_text | truncatewords:10 }}
+                                        {{ note.note_text | truncatewords:4 }}
                                     </div>
                                     <div class="col-3 ms-auto note_date">
                                         {{ note.note_time | date:"j.m.Y" }}

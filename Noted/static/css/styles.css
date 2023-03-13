@@ -22,7 +22,7 @@ textarea {
     border-right: 0.5px solid #E0E0E0;
     border-left: 0.5px solid #E0E0E0;
     border-bottom: 3px solid #b1b1b1;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 /* стили страниц авторизации и регистрации */
