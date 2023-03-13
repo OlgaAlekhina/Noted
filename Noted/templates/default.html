@@ -30,10 +30,14 @@
 </head>
 <body>
     <header>
-        <div class="container-xxl text-center header-area" >
-            <div class="row align-items-center justify-content-between" style="height: 70px;">
-                <div class="col-auto me-auto">
+        <div class="container-xxl header-area" >
+            <div class="row align-items-center" style="height: 70px;">
+                <div class="col-6">
                     <img src="/static/images/Noted_colour_full_RGB.png" alt="Logo" width="140" height="60">
+                </div>
+                <div class="col-5 search-wrapper">
+                    <input type="search" id="search" placeholder="Поиск" />
+                    <span class="icon"><i class="fa fa-search"></i></i></span>
                 </div>
                 <div class="col-auto">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">RU</a>
@@ -46,5 +50,10 @@
     </header>
     {% block content %}
     {% endblock content %}
+    <footer>
+        <div class="container-xxl text-center footer-area" >
+            Данное приложение разработано в рамках проекта <a href="">Pineapple Practice</a>
+        </div>
+    </footer>
 </body>
 </html>
