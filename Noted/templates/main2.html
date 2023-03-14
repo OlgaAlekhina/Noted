@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-auto col-2.9 sidebar">
+            <div class="col-auto col-2.5 sidebar">
                 <div class="ava">
                     <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-6 tasks">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
-                        <div class="col-6 offset-3">
+                        <div class="col-8 offset-2">
                             {% for task in today_tasks %}
                                 <div class="row note-block">
                                     <div class="col-10">
@@ -52,6 +52,9 @@
                                     </div>
                                 </div>
                             {% endfor %}
+                            <div class="next-button">
+                            <button type="button" class="btn btn-primary"><a href="{% url 'date_notes' next_date %}">На следующий день</a></button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 notes">

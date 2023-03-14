@@ -6,7 +6,9 @@ class Task(models.Model):
     task_title = models.CharField(max_length=1000)
     task_author = models.ForeignKey(User, on_delete=models.CASCADE)
     task_time = models.DateField()
-    task_priority = models.BooleanField()
+    task_priority = models.BooleanField(default=False)
+    task_deleted = models.BooleanField(default=False)
+    task_trash = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.task_title}'
@@ -20,6 +22,7 @@ class Note(models.Model):
     note_text = models.TextField()
     note_time = models.DateField()
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
+    note_trash = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.note_title}'

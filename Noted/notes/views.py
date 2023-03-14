@@ -9,22 +9,24 @@ import calendar
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 def main_page(request):
     today = datetime.date.today()
+    next_date = today + datetime.timedelta(days=1)
     today_tasks = Task.objects.filter(task_time=today)
     notes = Note.objects.all().order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     today = f'{today.day} {month_list[int(today.month) - 1]}'
-    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': today})
+    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': today, 'next_date': next_date})
 
 
 # выводит главную страницу со всеми заметками и задачами на конкретную дату
 def main_page_date(request, date):
+    next_date = date + datetime.timedelta(days=1)
     today_tasks = Task.objects.filter(task_time=date)
     notes = Note.objects.all().order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
-    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': date})
+    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': date, 'next_date': next_date})
 
 
 # выводит страницу со всеми существующими заметками и формой добавления новой
@@ -36,7 +38,7 @@ def all_notes(request):
         note_author = request.user
         note_time = datetime.date.today()
         Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
-        return redirect ('notes')
+        return redirect('notes')
     else:
         return render(request, 'notes.html', context={'notes': notes})
 
@@ -53,6 +55,23 @@ def note_edit(request, pk):
     notes = Note.objects.all().order_by('-note_time')
     note = Note.objects.get(id=pk)
     return render(request, 'note_details.html', context={'notes': notes, 'note': note})
+
+
+# выводит страницу с задачами на текущую дату и формой добавления новой
+def all_tasks(request):
+    today = datetime.date.today()
+    today_tasks = Task.objects.filter(task_time=today)
+    if request.method == "POST":
+        task_title = request.POST['task_title']
+        task_author = request.user
+        note_time = datetime.date.today()
+        Note.objects.create(task_title=task_title, note_text=note_text, task_author=task_author, note_time=note_time)
+        return redirect('notes')
+    else:
+        return render(request, 'tasks.html', context={'today_tasks': today_tasks})
+
+
+
 
 
 # выводит главную страницу с задачами на текущую неделю

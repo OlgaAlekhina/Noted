@@ -19,10 +19,15 @@ textarea {
 
 .header-area {
     height: 70px;
-    border-top: 0.5px solid #E0E0E0;
+    /*border-top: 0.5px solid #E0E0E0;
     border-right: 0.5px solid #E0E0E0;
     border-left: 0.5px solid #E0E0E0;
-    border-bottom: 3px solid #b1b1b1;
+    border-bottom: 3px solid #b1b1b1;*/
+    border: 0.5px solid #b1b1b1;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
     background: rgba(255, 255, 255, 0.8);
     font-family: 'Didact Gothic', sans-serif;
 }
@@ -48,6 +53,7 @@ input#search {
 }
 
 /* стили страниц авторизации и регистрации */
+
 .main-area {
     height: 1200px;
     border: 0.5px solid #b1b1b1;
@@ -114,21 +120,20 @@ input#search {
 }
 
 /* стили главной страницы */
+
 .main-main {
     border: 0.5px solid #b1b1b1;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
     background: url(/static/images/bg-2.jpg) no-repeat center fixed;
     background-size: cover;
 }
 
-.tasks {
+.tasks, .notes {
     border: 0.5px solid #b1b1b1;
-    height: 1200px;
-    overflow-y: scroll;
-}
-
-.notes {
-    border: 0.5px solid #b1b1b1;
-    height: 1200px;
+    height: 1000px;
     overflow-y: scroll;
 }
 
@@ -162,6 +167,27 @@ input#search {
 
 .note_date {
     font-size: 12px;
+}
+
+.next-button {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.next-button button {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(236, 247, 251, 1);
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.next-button button:hover {
+    background: rgba(236, 247, 251, 1);
+    border: 1px solid #ced4da;
 }
 
 /* стили страницы заметок */
@@ -345,17 +371,5 @@ td.not-current a {
 
 # стили футера
 
-.footer-area {
-    height: 20px;
-    border-top: 0.5px solid #E0E0E0;
-    border-right: 0.5px solid #E0E0E0;
-    border-left: 0.5px solid #E0E0E0;
-    border-bottom: 3px solid #b1b1b1;
-    background: rgba(255, 255, 255, 0.8);
-}
-
-.footer-area a {
-    color: black;
-}
 
 
