@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Note, Task
-from .forms import NoteForm
+from .forms import TaskForm
 import datetime
 import calendar
 
@@ -64,11 +64,13 @@ def all_tasks(request):
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_author = request.user
-        note_time = datetime.date.today()
-        Note.objects.create(task_title=task_title, note_text=note_text, task_author=task_author, note_time=note_time)
-        return redirect('notes')
+        task_time = request.POST['task_time']
+        task_priority = request.POST['task_priority']
+        Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=task_author, task_time=task_time)
+        return redirect('tasks')
     else:
-        return render(request, 'tasks.html', context={'today_tasks': today_tasks})
+        form = TaskForm()
+        return render(request, 'tasks.html', context={'today_tasks': today_tasks, 'form': form})
 
 
 
@@ -153,25 +155,25 @@ class NoteDetail(DetailView):
 
 
 # выводит страницу с формой для добавления новой задачи
-class NoteAddView(CreateView):
-    template_name = 'note_add_form.html'
-    form_class = NoteForm
-
-    # это чтобы автором задачи автоматически считался текущий юзер
-    def get_initial(self):
-        initial = super().get_initial()
-        initial['note_author'] = self.request.user
-        return initial
+# class NoteAddView(CreateView):
+#     template_name = 'note_add_form.html'
+#     form_class = NoteForm
+#
+#     # это чтобы автором задачи автоматически считался текущий юзер
+#     def get_initial(self):
+#         initial = super().get_initial()
+#         initial['note_author'] = self.request.user
+#         return initial
 
 
 # выводит форму для редактирования задачи
-class NoteUpdateView(UpdateView):
-    template_name = 'note_update_form.html'
-    form_class = NoteForm
-
-    def get_object(self, **kwargs):
-        id = self.kwargs.get('pk')
-        return Note.objects.get(pk=id)
+# class NoteUpdateView(UpdateView):
+#     template_name = 'note_update_form.html'
+#     form_class = NoteForm
+#
+#     def get_object(self, **kwargs):
+#         id = self.kwargs.get('pk')
+#         return Note.objects.get(pk=id)
 
 
 # выводит страницу подтверждение удаления задачи

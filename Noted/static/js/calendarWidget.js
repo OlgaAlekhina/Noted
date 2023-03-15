@@ -140,3 +140,6 @@ Cal.prototype.showMonth = function(y, m) {
 function getId(id) {
   return document.getElementById(id);
 }
+
+
+
