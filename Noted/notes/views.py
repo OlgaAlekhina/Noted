@@ -4,29 +4,39 @@ from .models import Note, Task
 from .forms import TaskForm
 import datetime
 import calendar
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 def main_page(request):
     today = datetime.date.today()
     next_date = today + datetime.timedelta(days=1)
-    today_tasks = Task.objects.filter(task_time=today)
+    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
+    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
+    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
     notes = Note.objects.all().order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     today = f'{today.day} {month_list[int(today.month) - 1]}'
-    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': today, 'next_date': next_date})
+    return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
+                                                  'tasks_important': tasks_important, 'notes': notes, 'date': today,
+                                                  'next_date': next_date})
 
 
 # выводит главную страницу со всеми заметками и задачами на конкретную дату
 def main_page_date(request, date):
     next_date = date + datetime.timedelta(days=1)
-    today_tasks = Task.objects.filter(task_time=date)
+    tasks_active = Task.objects.filter(task_time=date, task_deleted=False, task_priority=False)
+    tasks_deleted = Task.objects.filter(task_time=date, task_deleted=True)
+    tasks_important = Task.objects.filter(task_time=date, task_deleted=False, task_priority=True)
     notes = Note.objects.all().order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
-    return render(request, 'main2.html', context={'today_tasks': today_tasks, 'notes': notes, 'date': date, 'next_date': next_date})
+    return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
+                                                  'tasks_important': tasks_important, 'notes': notes, 'date': date,
+                                                  'next_date': next_date})
 
 
 # выводит страницу со всеми существующими заметками и формой добавления новой
@@ -60,17 +70,29 @@ def note_edit(request, pk):
 # выводит страницу с задачами на текущую дату и формой добавления новой
 def all_tasks(request):
     today = datetime.date.today()
-    today_tasks = Task.objects.filter(task_time=today)
+    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
+    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
+    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_author = request.user
         task_time = request.POST['task_time']
-        task_priority = request.POST['task_priority']
+        task_priority = request.POST.get('task_priority', False)
+        if task_priority == 'on':
+            task_priority = True
         Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=task_author, task_time=task_time)
         return redirect('tasks')
     else:
         form = TaskForm()
-        return render(request, 'tasks.html', context={'today_tasks': today_tasks, 'form': form})
+        return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
+                                                      'tasks_important': tasks_important, 'form': form})
+
+
+# функция для зачеркивания задачи при нажатии на иконку мусорной корзинки
+def task_done(request, pk):
+    Task.objects.filter(id=pk).update(task_deleted=True)
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
 
 
 

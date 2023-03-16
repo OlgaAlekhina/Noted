@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-auto col-2.5 sidebar">
+            <div class="col-auto col-2 sidebar" style="width: 280px;">
                 <div class="ava">
                     <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
@@ -49,7 +49,7 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-8 notes">
+                    <div class="col-8 notes" style="background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(/static/images/bg-2.jpg); background-position: center; background-size: cover;">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
                         <form method="post" action="{% url 'notes' %}" class="form-area">
                         {% csrf_token %}

@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-auto col-2.5 sidebar">
+            <div class="col-auto col-2 sidebar" style="width: 280px;">
                 <div class="ava">
                     <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
@@ -31,19 +31,45 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-4 tasks">
+                    <div class="col-5 tasks">
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Задачи</h2>
                         <div class="col-10 offset-1">
-                        {% for task in today_tasks %}
-                            <div class="row note-block">
-                                <div class="col-9">
-                                    <h6><b>{{ task.task_title }}</b></h6>
+                            {% for task in tasks_important %}
+                                <div class="row note-block">
+                                    <div class="col-11">
+                                        <h6><b>{{ task.task_title }}</b></h6>
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-1 ms-auto">
+                                        <i class="fa-solid fa-flag"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                            {% for task in today_tasks %}
+                                <div class="row note-block">
+                                        <div class="col-9">
+                                            <h6><b>{{ task.task_title }}</b></h6>
+                                            <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% for task in tasks_deleted %}
+                                    <div class="row note-block">
+                                        <div class="col-9" style="color: grey;">
+                                            <h6><s>{{ task.task_title }}</s></h6>
+                                            <a href="">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                         </div>
                     </div>
-                    <div class="col-8 notes">
+                    <div class="col-7 notes">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить задачу</h3>
                         <form method="post" action="{% url 'tasks' %}" class="form-area">
                         {% csrf_token %}

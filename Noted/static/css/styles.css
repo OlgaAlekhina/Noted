@@ -37,7 +37,7 @@ textarea {
     padding-right: 60px;
 }
 
-input#search {
+input.header-search {
     border: 1px solid #e1e1e1;
     border-radius: 5px;
     height: 34px;
@@ -55,7 +55,7 @@ input#search {
 /* стили страниц авторизации и регистрации */
 
 .main-area {
-    height: 1200px;
+    height: 1000px;
     border: 0.5px solid #b1b1b1;
     background: url(/static/images/bg-1.jpg) no-repeat center fixed;
     background-size: contain;
@@ -142,6 +142,10 @@ input#search {
     text-decoration: none;
 }
 
+.notes {
+   /* background-image: rgba(255, 255, 255, 0.8);*/
+}
+
 .notes::-webkit-scrollbar, .tasks::-webkit-scrollbar {
   width: 22px;
 }
@@ -155,6 +159,7 @@ input#search {
 
 .note-block {
     border: 0.5px solid #b1b1b1;
+    font-size: 13px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -222,7 +227,7 @@ input#search {
 /* стили для виджета "календарь" */
 
 .calendar-wrapper {
-    margin: 150px 25px 0px 25px;
+    margin: 100px 25px 0px 25px;
     border: 0.5px solid #b1b1b1;
     border-radius: 5px;
     background: #f0f8ff;
