@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 
 {% block title %}
-Детали заметки
+Все заметки
 {% endblock title %}
 
 {% block content %}
@@ -11,16 +11,6 @@
                 <div class="ava">
                     <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
-                </div>
-                <div class="input-group dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
-                        <i class="fas fa-plus" aria-hidden="true"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Задачу</a></li>
-                        <li><a class="dropdown-item" href="#">Заметку</a></li>
-                    </ul>
-                    <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 83.4%; text-align: left;">Создать</button>
                 </div>
                 <div class="calendar-wrapper">
                     <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
@@ -32,7 +22,7 @@
                     <ul style="list-style-type: none;">
                         <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
                         <li class="current_page"><a href="{% url 'notes' %}">Заметки</a></li>
-                        <li><a href="{% url 'signin' %}">Задачи</a></li>
+                        <li><a href="{% url 'tasks' %}">Задачи</a></li>
                         <li><a href="{% url 'signin' %}">Корзина</a></li>
                         <li><a href="{% url 'signin' %}">Настройки</a></li>
                         <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
@@ -59,15 +49,20 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-8" style="background: rgba(255, 255, 255, 0.5);">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">{{ note.note_title }}</h3>
-                        <div style="display: flex; justify-content: flex-end">
-                            <a href="{% url 'note_edit' note.id %}" style="color: black; text-decoration: none;"><i class="fa-regular fa-pen-to-square" style="padding-right: 10px;"></i></a>
-                            <i class="fa-solid fa-trash"></i>
-                        </div>
-                        <div class="notes-text">
-                            {{ note.note_text|linebreaks}}
-                        </div>
+                    <div class="col-8 notes" style="background: rgba(255, 255, 255, 0.5);">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Изменить заметку</h3>
+                        <form method="post" action="{% url 'note_edit' note.id %}" class="form-area">
+                        {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text" class="form-control note-title" name="note_title" value="{{ note.note_title }}">
+                                <button type="submit" class="btn btn-secondary" style="float: right;">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <textarea class="form-control note-text" rows="25" name="note_text">{{ note.note_text }}</textarea>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

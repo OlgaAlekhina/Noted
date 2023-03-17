@@ -69,7 +69,7 @@
                                 {% endfor %}
                         </div>
                     </div>
-                    <div class="col-7 notes">
+                    <div class="col-7 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить задачу</h3>
                         <form method="post" action="{% url 'tasks' %}" class="form-area">
                         {% csrf_token %}

@@ -41,7 +41,6 @@ def main_page_date(request, date):
 
 # выводит страницу со всеми существующими заметками и формой добавления новой
 def all_notes(request):
-    notes = Note.objects.all().order_by('-note_time')
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
@@ -50,6 +49,7 @@ def all_notes(request):
         Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
         return redirect('notes')
     else:
+        notes = Note.objects.all().order_by('-note_time')
         return render(request, 'notes.html', context={'notes': notes})
 
 
@@ -62,17 +62,20 @@ def note_details(request, pk):
 
 # выводит страницу со всеми существующими заметками и формой редактирования одной конкретной заметки
 def note_edit(request, pk):
-    notes = Note.objects.all().order_by('-note_time')
-    note = Note.objects.get(id=pk)
-    return render(request, 'note_details.html', context={'notes': notes, 'note': note})
+    if request.method == "POST":
+        note_title = request.POST['note_title']
+        note_text = request.POST['note_text']
+        note_time = datetime.date.today()
+        Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time)
+        return redirect('notes')
+    else:
+        note = Note.objects.get(id=pk)
+        notes = Note.objects.all().order_by('-note_time')
+        return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
 
 
 # выводит страницу с задачами на текущую дату и формой добавления новой
 def all_tasks(request):
-    today = datetime.date.today()
-    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
-    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
-    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_author = request.user
@@ -83,6 +86,10 @@ def all_tasks(request):
         Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=task_author, task_time=task_time)
         return redirect('tasks')
     else:
+        today = datetime.date.today()
+        tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
+        tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
+        tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
         form = TaskForm()
         return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                       'tasks_important': tasks_important, 'form': form})
