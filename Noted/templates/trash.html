@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 
 {% block title %}
-Главная страница
+Корзина
 {% endblock title %}
 
 {% block content %}
@@ -34,7 +34,7 @@
                         <li><a href="{% url 'notes' %}">Заметки</a></li>
                         <li><a href="{% url 'tasks' %}">Задачи</a></li>
                         <li class="current_page"><a href="{% url 'trash' %}">Корзина</a></li>
-                        <li><a href="{% url 'signin' %}">Настройки</a></li>
+                        <li><a href="{% url 'user_settings' %}">Настройки</a></li>
                         <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
                     </ul>
                     </ul>

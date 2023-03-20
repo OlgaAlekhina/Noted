@@ -34,7 +34,7 @@
                         <li><a href="{% url 'notes' %}">Заметки</a></li>
                         <li><a href="{% url 'tasks' %}">Задачи</a></li>
                         <li><a href="{% url 'trash' %}">Корзина</a></li>
-                        <li><a href="{% url 'signin' %}">Настройки</a></li>
+                        <li><a href="{% url 'user_settings' %}">Настройки</a></li>
                         <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
                     </ul>
                     </ul>
@@ -43,7 +43,7 @@
             <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-6 tasks">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи на {{ date }}</h3>
                         <div class="col-10 offset-1">
                             {% for task in tasks_important %}
                                 <div class="row">

@@ -1,0 +1,43 @@
+{% extends "default.html" %}
+
+{% block title %}
+Все заметки
+{% endblock title %}
+
+{% block content %}
+    <div class="container-xxl main-main">
+        <div class="row">
+            <div class="col-auto col-2 sidebar" style="width: 280px;">
+                <div class="ava">
+                    <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
+                    <span class="username">{{ request.user }}</span>
+                </div>
+                <div class="calendar-wrapper">
+                    <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
+                    <h6 id="headCal"></h6>
+                    <button id="btnNext" type="button"></button>
+                    <div id="divCal"></div>
+                </div>
+                <div class="nav-list">
+                    <ul style="list-style-type: none;">
+                        <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
+                        <li><a href="{% url 'notes' %}">Заметки</a></li>
+                        <li><a href="{% url 'tasks' %}">Задачи</a></li>
+                        <li><a href="{% url 'trash' %}">Корзина</a></li>
+                        <li class="current_page"><a href="{% url 'user_settings' %}">Настройки</a></li>
+                        <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col user-settings">
+                <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Мои настройки</h2>
+                <div class="ava">
+                    <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="/static/js/calendarWidget.js"></script>
+
+{% endblock content %}

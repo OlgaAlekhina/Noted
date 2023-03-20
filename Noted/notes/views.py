@@ -123,6 +123,9 @@ def note_delete(request, pk):
     return HttpResponseRedirect(next)
 
 
+# выводит страницу настроек
+def user_settings(request):
+    return render(request, 'settings.html', context={})
 
 
 
