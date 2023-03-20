@@ -12,10 +12,10 @@ from django.urls import reverse
 def main_page(request):
     today = datetime.date.today()
     next_date = today + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
-    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
-    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
-    notes = Note.objects.all().order_by('-note_time')
+    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False, task_trash=False)
+    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True, task_trash=False)
+    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True, task_trash=False)
+    notes = Note.objects.filter(note_trash=False).order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     today = f'{today.day} {month_list[int(today.month) - 1]}'
@@ -27,10 +27,10 @@ def main_page(request):
 # выводит главную страницу со всеми заметками и задачами на конкретную дату
 def main_page_date(request, date):
     next_date = date + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=date, task_deleted=False, task_priority=False)
-    tasks_deleted = Task.objects.filter(task_time=date, task_deleted=True)
-    tasks_important = Task.objects.filter(task_time=date, task_deleted=False, task_priority=True)
-    notes = Note.objects.all().order_by('-note_time')
+    tasks_active = Task.objects.filter(task_time=date, task_deleted=False, task_priority=False, task_trash=False)
+    tasks_deleted = Task.objects.filter(task_time=date, task_deleted=True, task_trash=False)
+    tasks_important = Task.objects.filter(task_time=date, task_deleted=False, task_priority=True, task_trash=False)
+    notes = Note.objects.filter(note_trash=False).order_by('-note_time')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
@@ -49,13 +49,13 @@ def all_notes(request):
         Note.objects.create(note_title=note_title, note_text=note_text, note_author=note_author, note_time=note_time)
         return redirect('notes')
     else:
-        notes = Note.objects.all().order_by('-note_time')
+        notes = Note.objects.filter(note_trash=False).order_by('-note_time')
         return render(request, 'notes.html', context={'notes': notes})
 
 
 # выводит страницу со всеми существующими заметками и одной конкретной заметкой в полноэкранном режиме
 def note_details(request, pk):
-    notes = Note.objects.all().order_by('-note_time')
+    notes = Note.objects.filter(note_trash=False).order_by('-note_time')
     note = Note.objects.get(id=pk)
     return render(request, 'note_details.html', context={'notes': notes, 'note': note})
 
@@ -70,7 +70,7 @@ def note_edit(request, pk):
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
-        notes = Note.objects.all().order_by('-note_time')
+        notes = Note.objects.filter(note_trash=False).order_by('-note_time')
         return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
 
 
@@ -87,17 +87,38 @@ def all_tasks(request):
         return redirect('tasks')
     else:
         today = datetime.date.today()
-        tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False)
-        tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True)
-        tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True)
+        tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False, task_trash=False)
+        tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True, task_trash=False)
+        tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True, task_trash=False)
         form = TaskForm()
         return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                       'tasks_important': tasks_important, 'form': form})
 
 
-# функция для зачеркивания задачи при нажатии на иконку мусорной корзинки
+# функция для зачеркивания задачи при нажатии на кружок
 def task_done(request, pk):
     Task.objects.filter(id=pk).update(task_deleted=True)
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
+
+
+# выводит корзину с удаленными задачами и заметками
+def trash(request):
+    task_trash = Task.objects.filter(task_trash=True)
+    note_trash = Note.objects.filter(note_trash=True)
+    return render(request, 'trash.html', context={'task_trash': task_trash, 'note_trash': note_trash})
+
+
+# функция для удаления задачи при нажатии на иконку мусорной корзины
+def task_delete(request, pk):
+    Task.objects.filter(id=pk).update(task_trash=True)
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
+
+
+# функция для удаления заметки при нажатии на иконку мусорной корзины
+def note_delete(request, pk):
+    Note.objects.filter(id=pk).update(note_trash=True)
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
 

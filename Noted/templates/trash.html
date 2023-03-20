@@ -30,10 +30,10 @@
                 </div>
                 <div class="nav-list">
                     <ul style="list-style-type: none;">
-                        <li class="current_page"><a href="{% url 'main' %}">Главная</a></li>
+                        <li><a href="{% url 'main' %}">Главная</a></li>
                         <li><a href="{% url 'notes' %}">Заметки</a></li>
                         <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                        <li><a href="{% url 'trash' %}">Корзина</a></li>
+                        <li class="current_page"><a href="{% url 'trash' %}">Корзина</a></li>
                         <li><a href="{% url 'signin' %}">Настройки</a></li>
                         <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
                     </ul>
@@ -43,69 +43,24 @@
             <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-6 tasks">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
-                        <div class="col-10 offset-1">
-                            {% for task in tasks_important %}
-                                <div class="row">
-                                    <div class="col-2 check-box">
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи</h3>
+                        <div class="col-8 offset-2">
+                            {% for task in task_trash %}
+                                <div class="row note-block">
+                                    <div class="col-10">
+                                        <h6><b>{{ task.task_title }}</b></h6>
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                            <i class="fa-regular fa-circle"></i>
+                                            <i class="fa-regular fa-trash-can"></i>
                                         </a>
                                     </div>
-                                    <div class="col-10 row note-block">
-                                        <div class="col-11">
-                                            <h6><b>{{ task.task_title }}</b></h6>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-1 ms-auto">
-                                            <i class="fa-solid fa-flag"></i>
-                                        </div>
-                                    </div>
                                 </div>
                             {% endfor %}
-                            {% for task in today_tasks %}
-                                <div class="row">
-                                    <div class="col-2 check-box">
-                                        <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                            <i class="fa-regular fa-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="row col-10 note-block">
-                                        <div class="col-10">
-                                            <h6><b>{{ task.task_title }}</b></h6>
-                                            <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            {% for task in tasks_deleted %}
-                                <div class="row">
-                                    <div class="col-2 check-box">
-                                        <i class="fa-regular fa-circle-check"></i>
-                                    </div>
-                                    <div class="row col-10 note-block">
-                                        <div class="col-10"  style="color: grey;">
-                                            <h6><s>{{ task.task_title }}</s></h6>
-                                            <a href="">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            <div class="next-button">
-                            <button type="button" class="btn btn-primary"><a href="{% url 'date_notes' next_date %}">На следующий день</a></button>
-                            </div>
                         </div>
                     </div>
                     <div class="col-6 notes" style="background: rgba(255, 255, 255, 0.5);">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Заметки</h3>
                         <div class="col-8 offset-2 main-notes">
-                        {% for note in notes %}
+                        {% for note in note_trash %}
                             <a href="{% url 'note_details' note.id %}">
                                 <div class="row note-block">
                                     <div class="col-9">

@@ -195,6 +195,11 @@ input.header-search {
     border: 1px solid #ced4da;
 }
 
+.check-box {
+    display: flex;
+    align-items:center;
+}
+
 /* стили страницы заметок */
 
 .note_date2 {
