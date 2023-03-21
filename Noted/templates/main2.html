@@ -56,7 +56,7 @@
                                         <div class="col-11">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                                <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                         <div class="col-1 ms-auto">
@@ -68,15 +68,15 @@
                             {% for task in today_tasks %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
                                             <i class="fa-regular fa-circle"></i>
                                         </a>
                                     </div>
                                     <div class="row col-10 note-block">
                                         <div class="col-10">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -90,8 +90,8 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-10"  style="color: grey;">
                                             <h6><s>{{ task.task_title }}</s></h6>
-                                            <a href="">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -106,17 +106,26 @@
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
                         <div class="col-8 offset-2 main-notes">
                         {% for note in notes %}
-                            <a href="{% url 'note_details' note.id %}">
-                                <div class="row note-block">
-                                    <div class="col-9">
-                                        <h6><b>{{ note.note_title }}</b></h6>
-                                        {{ note.note_text | truncatewords:4 }}
+                            <div class="row note-block">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-3 ms-auto note_date">
+                                    <div class="col-2 ms-auto note_date">
                                         {{ note.note_time | date:"j.m.Y" }}
                                     </div>
                                 </div>
-                            </a>
+                                <div class="row align-items-start">
+                                    <div class="col-10">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatewords:3 }}</a>
+                                    </div>
+                                    <div class="col-1 ms-auto">
+                                        <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
+                                            <img src="/static/images/icons/trash_icon.svg" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                         </div>
                     </div>

@@ -31,4 +31,10 @@ class Note(models.Model):
         return f'/main/{self.id}'
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(default='/static/images/avatars/user_male_circle_icon.svg',
+                               upload_to='static/media/avatars')
+
+
 

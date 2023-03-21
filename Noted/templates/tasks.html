@@ -44,8 +44,8 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-11">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                         <div class="col-1 ms-auto">
@@ -64,8 +64,8 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-11">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -79,8 +79,8 @@
                                         <div class="row col-10 note-block">
                                             <div class="col-11" style="color: grey;">
                                                 <h6><s>{{ task.task_title }}</s></h6>
-                                                <a href="">
-                                                    <i class="fa-regular fa-trash-can"></i>
+                                                <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                    <img src="/static/images/icons/trash_icon.svg" />
                                                 </a>
                                             </div>
                                         </div>

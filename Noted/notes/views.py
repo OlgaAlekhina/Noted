@@ -119,13 +119,14 @@ def task_delete(request, pk):
 # функция для удаления заметки при нажатии на иконку мусорной корзины
 def note_delete(request, pk):
     Note.objects.filter(id=pk).update(note_trash=True)
-    next = request.GET.get('next', reverse('main'))
+    next = request.GET.get('next', reverse('notes'))
     return HttpResponseRedirect(next)
 
 
 # выводит страницу настроек
 def user_settings(request):
     return render(request, 'settings.html', context={})
+
 
 
 

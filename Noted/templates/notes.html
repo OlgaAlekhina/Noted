@@ -35,17 +35,18 @@
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
                         <div class="col-10 offset-1">
                         {% for note in notes %}
-                            <a href="{% url 'note_details' note.id %}">
-                                <div class="row note-block">
+                            <div class="row note-block">
+                                <a href="{% url 'note_details' note.id %}">
                                     <div class="col-9">
                                         <h6><b>{{ note.note_title }}</b></h6>
                                         {{ note.note_text | truncatewords:10 }}
                                     </div>
-                                    <div class="col-3 ms-auto note_date2">
-                                        {{ note.note_time | date:"j.m.Y" }}
-                                    </div>
+                                </a>
+                                <div class="col-3 ms-auto note_date2">
+                                    {{ note.note_time | date:"j.m.Y" }}
                                 </div>
-                            </a>
+                            </div>
+
                         {% endfor %}
                         </div>
                     </div>
