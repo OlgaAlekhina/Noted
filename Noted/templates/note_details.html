@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-auto col-2 sidebar" style="width: 280px;">
                 <div class="ava">
-                    <img src="/static/images/vorobey.jpg" alt="Avatar" width="80" height="80" class="rounded-circle">
+                    <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
                     <span class="username">{{ request.user }}</span>
                 </div>
                 <div class="input-group dropdown">

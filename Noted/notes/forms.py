@@ -1,6 +1,7 @@
 from django.forms import ModelForm
-from .models import Task
+from .models import Task, UserProfile
 from django import forms
+from django.contrib.auth.models import User
 
 
 # форма для добавления задачи
@@ -12,4 +13,23 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = ['task_title', 'task_time', 'task_priority']
+
+
+# форма для редактирования данных пользователя
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+# форма для редактирования аватара
+class UpdateProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+
+    class Meta:
+        model = UserProfile
+        fields = ['avatar', ]
 

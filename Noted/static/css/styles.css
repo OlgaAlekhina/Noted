@@ -377,8 +377,8 @@ td.not-current a {
 
 # стили страницы настроек
 
-.user-settings {
-
+input#id_username {
+    margin-bottom: 30px;
 }
 
 

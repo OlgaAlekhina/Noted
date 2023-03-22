@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Note, Task
-from .forms import TaskForm
+from .forms import TaskForm, UpdateUserForm, UpdateProfileForm
 import datetime
 import calendar
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
+@login_required
 def main_page(request):
     today = datetime.date.today()
     next_date = today + datetime.timedelta(days=1)
@@ -25,6 +28,7 @@ def main_page(request):
 
 
 # выводит главную страницу со всеми заметками и задачами на конкретную дату
+@login_required
 def main_page_date(request, date):
     next_date = date + datetime.timedelta(days=1)
     tasks_active = Task.objects.filter(task_time=date, task_deleted=False, task_priority=False, task_trash=False)
@@ -40,6 +44,7 @@ def main_page_date(request, date):
 
 
 # выводит страницу со всеми существующими заметками и формой добавления новой
+@login_required
 def all_notes(request):
     if request.method == "POST":
         note_title = request.POST['note_title']
@@ -54,6 +59,7 @@ def all_notes(request):
 
 
 # выводит страницу со всеми существующими заметками и одной конкретной заметкой в полноэкранном режиме
+@login_required
 def note_details(request, pk):
     notes = Note.objects.filter(note_trash=False).order_by('-note_time')
     note = Note.objects.get(id=pk)
@@ -61,6 +67,7 @@ def note_details(request, pk):
 
 
 # выводит страницу со всеми существующими заметками и формой редактирования одной конкретной заметки
+@login_required
 def note_edit(request, pk):
     if request.method == "POST":
         note_title = request.POST['note_title']
@@ -75,6 +82,7 @@ def note_edit(request, pk):
 
 
 # выводит страницу с задачами на текущую дату и формой добавления новой
+@login_required
 def all_tasks(request):
     if request.method == "POST":
         task_title = request.POST['task_title']
@@ -96,6 +104,7 @@ def all_tasks(request):
 
 
 # функция для зачеркивания задачи при нажатии на кружок
+@login_required
 def task_done(request, pk):
     Task.objects.filter(id=pk).update(task_deleted=True)
     next = request.GET.get('next', reverse('main'))
@@ -103,6 +112,7 @@ def task_done(request, pk):
 
 
 # выводит корзину с удаленными задачами и заметками
+@login_required
 def trash(request):
     task_trash = Task.objects.filter(task_trash=True)
     note_trash = Note.objects.filter(note_trash=True)
@@ -110,6 +120,7 @@ def trash(request):
 
 
 # функция для удаления задачи при нажатии на иконку мусорной корзины
+@login_required
 def task_delete(request, pk):
     Task.objects.filter(id=pk).update(task_trash=True)
     next = request.GET.get('next', reverse('main'))
@@ -117,15 +128,31 @@ def task_delete(request, pk):
 
 
 # функция для удаления заметки при нажатии на иконку мусорной корзины
+@login_required
 def note_delete(request, pk):
     Note.objects.filter(id=pk).update(note_trash=True)
     next = request.GET.get('next', reverse('notes'))
     return HttpResponseRedirect(next)
 
 
-# выводит страницу настроек
+# выводит страницу настроек данных пользователя
+@login_required
 def user_settings(request):
-    return render(request, 'settings.html', context={})
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Ваш профиль успешно обновлен')
+            return redirect(to='user_settings')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.userprofile)
+
+    return render(request, 'settings.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 
 
