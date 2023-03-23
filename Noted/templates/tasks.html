@@ -44,6 +44,9 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-11">
                                             <h6><b>{{ task.task_title }}</b></h6>
+                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                                <img src="/static/images/icons/pen_icon.svg" />
+                                            </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
                                                 <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
@@ -90,7 +93,7 @@
                     </div>
                     <div class="col-6 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить задачу</h3>
-                        <form method="post" action="{% url 'tasks' %}" class="form-area">
+                        <form method="post" action="{{ request.path }}" class="form-area">
                         {% csrf_token %}
                             <div class="mb-3">
                                 {{ form.as_p }}

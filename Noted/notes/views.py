@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import login
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
@@ -83,23 +84,36 @@ def note_edit(request, pk):
 
 # выводит страницу с задачами на текущую дату и формой добавления новой
 @login_required
-def all_tasks(request):
+def all_tasks(request, pk=None):
+    today = datetime.date.today()
+    tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False, task_trash=False)
+    tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True, task_trash=False)
+    tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True, task_trash=False)
+
+    try:
+        task = Task.objects.get(id=pk)
+        form = TaskForm(instance=task)
+    except:
+        form = TaskForm()
+
     if request.method == "POST":
         task_title = request.POST['task_title']
-        task_author = request.user
         task_time = request.POST['task_time']
         task_priority = request.POST.get('task_priority', False)
         if task_priority == 'on':
             task_priority = True
-        Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=task_author, task_time=task_time)
+        try:
+            print('start')
+            task = Task.objects.get(id=pk)
+            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_time=task_time)
+            print('end')
+        except:
+            print('start2')
+            Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=request.user, task_time=task_time)
+            print('end2')
         return redirect('tasks')
-    else:
-        today = datetime.date.today()
-        tasks_active = Task.objects.filter(task_time=today, task_deleted=False, task_priority=False, task_trash=False)
-        tasks_deleted = Task.objects.filter(task_time=today, task_deleted=True, task_trash=False)
-        tasks_important = Task.objects.filter(task_time=today, task_deleted=False, task_priority=True, task_trash=False)
-        form = TaskForm()
-        return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
+
+    return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                       'tasks_important': tasks_important, 'form': form})
 
 
@@ -146,12 +160,39 @@ def user_settings(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Ваш профиль успешно обновлен')
-            return redirect(to='user_settings')
+            return redirect('user_settings')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.userprofile)
 
     return render(request, 'settings.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+# выводит страницу настроек данных пользователя с формой смены пароля
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if user_form.is_valid() and profile_form.is_valid():
+            if password1 and password2 and password1 != password2:
+                messages.error(request, "Пароли не совпадают.")
+            else:
+                request.user.set_password(password1)
+                request.user.save()
+                user_form.save()
+                profile_form.save()
+                login(request, request.user)
+                messages.success(request, 'Ваш профиль успешно обновлен')
+                return redirect('user_settings')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.userprofile)
+
+    return render(request, 'change_password.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
 
