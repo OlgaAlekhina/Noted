@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login
+from django.db.models import Q
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
@@ -82,7 +83,7 @@ def note_edit(request, pk):
         return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
 
 
-# выводит страницу с задачами на текущую дату и формой добавления новой
+# выводит страницу с задачами на текущую дату и формой добавления новой либо формой редактирования старой
 @login_required
 def all_tasks(request, pk=None):
     today = datetime.date.today()
@@ -193,6 +194,15 @@ def change_password(request):
         profile_form = UpdateProfileForm(instance=request.user.userprofile)
 
     return render(request, 'change_password.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+# выводит страницу с результатами поиска
+@login_required
+def search(request):
+    q = request.GET.get("q")
+    note_search = Note.objects.filter(note_title__contains=q)
+    task_search = Task.objects.filter(task_title__contains=q)
+    return render(request, 'search.html', context={'note_search': note_search, 'task_search': task_search})
 
 
 
