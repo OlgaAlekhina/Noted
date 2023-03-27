@@ -1,4 +1,4 @@
-<!--шаблон для head, header и footer для страниц пользователя с формой поиска в header-->
+<!--шаблон для head, header и footer для страниц авторизации без формы поиска в header-->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,16 +24,10 @@
 </head>
 <body>
     <header>
-        <div class="container-xxl header-area" >
-            <div class="row align-items-center" style="height: 70px;">
-                <div class="col-6">
+        <div class="container-xxl text-center header-area" >
+            <div class="row align-items-center justify-content-between" style="height: 70px;">
+                <div class="col-auto me-auto">
                     <img src="/static/images/Noted_colour_full_RGB.png" alt="Logo" width="140" height="60">
-                </div>
-                <div class="col-5 search-wrapper">
-                    <form action="{% url 'search' %}" method="get">
-                        <input type="search" name="q" class="header-search form-control" placeholder="Поиск" />
-                        <span class="icon"><i class="fa fa-search"></i></span>
-                    </form>
                 </div>
                 <div class="col-auto">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">RU</a>

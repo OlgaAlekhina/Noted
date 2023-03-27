@@ -1,6 +1,7 @@
 from django.urls import path, register_converter
 from .views import main_page, NoteDetail, calendar, main_page_date, all_notes, note_details, note_edit, all_tasks, \
-    task_done, trash, task_delete, note_delete, user_settings, change_password, search, NoteDeleteView, NextList, PrevList
+    task_done, trash, task_delete, note_delete, user_settings, change_password, search, note_perm_delete, \
+    task_perm_delete, NoteDeleteView, NextList, PrevList
 from .path_converters import DateConverter
 
 
@@ -18,6 +19,8 @@ urlpatterns = [
     path('done/<int:pk>', task_done, name='task_done'),
     path('task_delete/<int:pk>', task_delete, name='task_delete'),
     path('note_delete/<int:pk>', note_delete, name='note_delete'),
+    path('note_perm_delete/<int:pk>', note_perm_delete, name='note_perm_delete'),
+    path('task_perm_delete/<int:pk>', task_perm_delete, name='task_perm_delete'),
     path('trash', trash, name='trash'),
     path('settings', user_settings, name='user_settings'),
     path('settings/change_password', change_password, name='change_password'),

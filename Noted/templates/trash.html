@@ -43,17 +43,14 @@
             <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-6 tasks">
-                        <a style="position: absolute; top: 40px; left: 40px;" href="">
-                            <img src="/static/images/icons/big_trash.png" width="40px" height="40px"/>
-                        </a>
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи</h3>
                         <div class="col-8 offset-2">
                             {% for task in task_trash %}
                                 <div class="row note-block">
                                     <div class="col-10">
                                         <h6><b>{{ task.task_title }}</b></h6>
-                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                            <i class="fa-regular fa-trash-can"></i>
+                                        <a href="{% url 'task_perm_delete' task.id %}">
+                                            <img src="/static/images/icons/trash_icon.svg"/>
                                         </a>
                                     </div>
                                 </div>
@@ -64,17 +61,26 @@
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Заметки</h3>
                         <div class="col-8 offset-2 main-notes">
                         {% for note in note_trash %}
-                            <a href="{% url 'note_details' note.id %}">
-                                <div class="row note-block">
-                                    <div class="col-9">
-                                        <h6><b>{{ note.note_title }}</b></h6>
-                                        {{ note.note_text | truncatewords:4 }}
+                            <div class="row note-block">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-3 ms-auto note_date">
+                                    <div class="col-2 ms-auto note_date">
                                         {{ note.note_time | date:"j.m.Y" }}
                                     </div>
                                 </div>
-                            </a>
+                                <div class="row align-items-start">
+                                    <div class="col-10">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatewords:3 }}</a>
+                                    </div>
+                                    <div class="col-1 ms-auto">
+                                        <a href="{% url 'note_perm_delete' note.id %}">
+                                            <img src="/static/images/icons/trash_icon.svg" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                         </div>
                     </div>

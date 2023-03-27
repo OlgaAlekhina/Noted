@@ -45,7 +45,7 @@
                     <div class="col-6 tasks">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи</h3>
                         <div class="col-10 offset-1">
-                            {% for task in tasks_search %}
+                            {% for task in task_search_imp %}
                                 <div class="row">
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
@@ -55,12 +55,50 @@
                                     <div class="col-10 row note-block">
                                         <div class="col-11">
                                             <h6><b>{{ task.task_title }}</b></h6>
+                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                                <img src="/static/images/icons/pen_icon.svg" />
+                                            </a>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-1 ms-auto">
+                                            <img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% for task in task_search %}
+                                <div class="row">
+                                    <div class="col-2 check-box">
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
+                                            <i class="fa-regular fa-circle"></i>
+                                        </a>
+                                    </div>
+                                    <div class="row col-10 note-block">
+                                        <div class="col-10">
+                                            <h6><b>{{ task.task_title }}</b></h6>
+                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                                <img src="/static/images/icons/pen_icon.svg" />
+                                            </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
                                                 <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
-                                        <div class="col-1 ms-auto">
-                                            <i class="fa-solid fa-flag"></i>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% for task in task_search_done %}
+                                <div class="row">
+                                    <div class="col-2 check-box">
+                                        <i class="fa-regular fa-circle-check"></i>
+                                    </div>
+                                    <div class="row col-10 note-block">
+                                        <div class="col-10"  style="color: grey;">
+                                            <h6><s>{{ task.task_title }}</s></h6>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                <img src="/static/images/icons/trash_icon.svg" />
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

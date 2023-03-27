@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-8 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
-                        <form method="post" action="{% url 'notes' %}" class="form-area">
+                        <form method="post" action="{% url 'notes' %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
                             <div class="mb-3">
                                 <input type="text" class="form-control note-title" name="note_title" placeholder="Название">

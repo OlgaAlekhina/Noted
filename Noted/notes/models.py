@@ -24,6 +24,7 @@ class Note(models.Model):
     note_time = models.DateField()
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_trash = models.BooleanField(default=False)
+    note_file = models.FileField(null=True, blank=True, upload_to='documents')
 
     def __str__(self):
         return f'{self.note_title}'
