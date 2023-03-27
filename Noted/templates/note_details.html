@@ -1,5 +1,7 @@
 {% extends "default.html" %}
 
+{% load custom_filters %}
+
 {% block title %}
 Детали заметки
 {% endblock title %}
@@ -68,6 +70,11 @@
                         <div class="notes-text">
                             {{ note.note_text|linebreaks}}
                         </div>
+                        {% if note.note_file %}
+                            <div>
+                                <a style="text-decoration: none; color: black;" href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

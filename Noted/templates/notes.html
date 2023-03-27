@@ -46,7 +46,6 @@
                                     {{ note.note_time | date:"j.m.Y" }}
                                 </div>
                             </div>
-
                         {% endfor %}
                         </div>
                     </div>
@@ -62,6 +61,9 @@
                             </div>
                             <div>
                                 <textarea class="form-control note-text" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
+                            </div>
+                            <div class="mb-3" style="margin-top: 40px;">
+                              <input class="form-control" type="file" name="note_file">
                             </div>
                         </form>
                     </div>

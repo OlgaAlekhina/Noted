@@ -55,7 +55,8 @@ def all_notes(request):
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
         note_time = datetime.date.today()
-        Note.objects.create(note_title=note_title, note_text=note_text, note_author=user, note_time=note_time)
+        note_file = request.FILES['note_file']
+        Note.objects.create(note_title=note_title, note_text=note_text, note_author=user, note_time=note_time, note_file=note_file)
         return redirect('notes')
     else:
         notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
