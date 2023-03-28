@@ -41,7 +41,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col" id="tasks-notes">
+            <div class="col note-details" id="tasks-notes">
                 <div class="row">
                     <div class="col-4 tasks">
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
@@ -71,8 +71,9 @@
                             {{ note.note_text|linebreaks}}
                         </div>
                         {% if note.note_file %}
-                            <div>
-                                <a style="text-decoration: none; color: black;" href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
+                            <div class="upload-file">
+                                <hr>
+                                <a href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
                             </div>
                         {% endif %}
                     </div>

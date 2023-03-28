@@ -79,8 +79,16 @@ def note_edit(request, pk):
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
+        file_delete = request.POST.get('file_delete', False)
         note_time = datetime.date.today()
-        Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time)
+        if file_delete == 'on':
+            Note.objects.filter(id=pk).update(note_file=None)
+        try:
+            note_file = request.FILES['note_file']
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time,
+                                              note_file=note_file)
+        except:
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time, )
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)

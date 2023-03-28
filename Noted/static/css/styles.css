@@ -138,15 +138,11 @@ input.header-search {
     text-decoration: none;
 }
 
-.notes {
-   /* background-image: rgba(255, 255, 255, 0.8);*/
-}
-
-.notes::-webkit-scrollbar, .tasks::-webkit-scrollbar {
+.notes::-webkit-scrollbar, .tasks::-webkit-scrollbar, .note-details::-webkit-scrollbar {
   width: 22px;
 }
 
-.notes::-webkit-scrollbar-thumb, .tasks::-webkit-scrollbar-thumb {
+.notes::-webkit-scrollbar-thumb, .tasks::-webkit-scrollbar-thumb, .note-details::-webkit-scrollbar-thumb {
   background-color: rgba(154, 154, 154, 0.5);
   border-radius: 100px;
   border: 5px solid transparent;
@@ -221,8 +217,38 @@ input.header-search {
 
 /* стили страницы с одной заметкой */
 
+.note-details {
+    height: 1000px;
+    overflow-y: scroll;
+}
+
 .notes-text {
     padding: 20px;
+}
+
+.upload-file {
+    margin-bottom:40px;
+    margin-top:40px;
+}
+
+.upload-file a {
+    text-decoration: none;
+    color: black;
+    border: 0.5px solid #b1b1b1;
+    border-radius: 5px;
+    background: white;
+    padding: 5px 10px;
+}
+
+#del-checkbox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+#delete-file {
+    margin-left: 10px;
+    vertical-align: -10%;
 }
 
 /* стили для виджета "календарь" */

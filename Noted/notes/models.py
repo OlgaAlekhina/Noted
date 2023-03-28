@@ -22,6 +22,7 @@ class Note(models.Model):
     note_title = models.CharField(max_length=250)
     note_text = models.TextField()
     note_time = models.DateField()
+    add_at = models.DateTimeField(blank=True)
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_trash = models.BooleanField(default=False)
     note_file = models.FileField(null=True, blank=True, upload_to='documents')

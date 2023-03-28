@@ -54,7 +54,7 @@
                         <form method="post" action="{% url 'notes' %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
                             <div class="mb-3">
-                                <input type="text" class="form-control note-title" name="note_title" placeholder="Название">
+                                <input required type="text" class="form-control note-title" name="note_title" placeholder="Название">
                                 <button type="submit" class="btn btn-secondary" style="float: right;">
                                     <i class="fa-solid fa-floppy-disk"></i>
                                 </button>

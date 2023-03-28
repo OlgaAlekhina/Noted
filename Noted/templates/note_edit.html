@@ -1,5 +1,7 @@
 {% extends "default.html" %}
 
+{% load custom_filters %}
+
 {% block title %}
 Все заметки
 {% endblock title %}
@@ -51,7 +53,7 @@
                     </div>
                     <div class="col-8 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Изменить заметку</h3>
-                        <form method="post" action="{% url 'note_edit' note.id %}" class="form-area">
+                        <form method="post" action="{% url 'note_edit' note.id %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
                             <div class="mb-3">
                                 <input type="text" class="form-control note-title" name="note_title" value="{{ note.note_title }}">
@@ -62,6 +64,18 @@
                             <div>
                                 <textarea class="form-control note-text" rows="25" name="note_text">{{ note.note_text }}</textarea>
                             </div>
+                            {% if note.note_file %}
+                                <div class="mb-3 upload-file">
+                                    <hr>
+                                    <a href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
+                                    <div id="del-checkbox">
+                                        <label for="delete-file">Удалить файл</label>
+                                        <input type="checkbox" id="delete-file" name="file_delete"/>
+                                    </div>
+                                    <label for="note_file" class="small mb-1">Изменить файл:</label>
+                            {% endif %}
+                                    <input class="form-control" type="file" name="note_file" id="note_file">
+                                </div>
                         </form>
                     </div>
                 </div>
