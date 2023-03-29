@@ -98,7 +98,13 @@
                         </div>
                     </div>
                     <div class="col-6 notes" style="background: rgba(255, 255, 255, 0.5);">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить задачу</h3>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">
+                            {% if task %}
+                                Изменить задачу
+                            {% else %}
+                                Добавить задачу
+                            {% endif %}
+                        </h3>
                         <form method="post" action="{{ request.path }}" class="form-area">
                         {% csrf_token %}
                             <div class="mb-3">

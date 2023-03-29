@@ -4,7 +4,7 @@ body {
 }
 
 /* убрать голубую обводку элементов форм */
-.form-control:focus, button:focus {
+.form-control:focus, .btn:focus, button:focus {
   border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;

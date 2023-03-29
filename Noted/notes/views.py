@@ -18,10 +18,12 @@ def main_page(request):
     user = request.user
     today = datetime.date.today()
     next_date = today + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False, task_trash=False)
-    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False)
-    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True, task_trash=False)
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
+    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False,
+                                       task_trash=False).order_by('-add_at')
+    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True,
+                                          task_trash=False).order_by('-add_at')
+    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     today = f'{today.day} {month_list[int(today.month) - 1]}'
@@ -35,10 +37,12 @@ def main_page(request):
 def main_page_date(request, date):
     user = request.user
     next_date = date + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=False, task_trash=False)
-    tasks_deleted = Task.objects.filter(task_time=date, task_author=user, task_deleted=True, task_trash=False)
-    tasks_important = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=True, task_trash=False)
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
+    tasks_active = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=False,
+                                       task_trash=False).order_by('-add_at')
+    tasks_deleted = Task.objects.filter(task_time=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=True,
+                                          task_trash=False).order_by('-add_at')
+    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
@@ -54,12 +58,17 @@ def all_notes(request):
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
-        note_time = datetime.date.today()
-        note_file = request.FILES['note_file']
-        Note.objects.create(note_title=note_title, note_text=note_text, note_author=user, note_time=note_time, note_file=note_file)
+        add_at = datetime.datetime.now()
+        try:
+            note_file = request.FILES['note_file']
+            Note.objects.create(note_title=note_title, note_text=note_text, note_author=user,
+                                note_file=note_file, add_at=add_at)
+        except:
+            Note.objects.create(note_title=note_title, note_text=note_text, note_author=user,
+                                add_at=add_at)
         return redirect('notes')
     else:
-        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
+        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
         return render(request, 'notes.html', context={'notes': notes})
 
 
@@ -67,7 +76,7 @@ def all_notes(request):
 @login_required
 def note_details(request, pk):
     user = request.user
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
+    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
     note = Note.objects.get(id=pk)
     return render(request, 'note_details.html', context={'notes': notes, 'note': note})
 
@@ -80,19 +89,19 @@ def note_edit(request, pk):
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
         file_delete = request.POST.get('file_delete', False)
-        note_time = datetime.date.today()
+        add_at = datetime.datetime.now()
         if file_delete == 'on':
             Note.objects.filter(id=pk).update(note_file=None)
         try:
             note_file = request.FILES['note_file']
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time,
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at,
                                               note_file=note_file)
         except:
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, note_time=note_time, )
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at, )
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
-        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-note_time')
+        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
         return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
 
 
@@ -101,10 +110,11 @@ def note_edit(request, pk):
 def all_tasks(request, pk=None):
     user = request.user
     today = datetime.date.today()
-    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False, task_trash=False)
-    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False)
-    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True, task_trash=False)
-
+    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False,
+                                       task_trash=False).order_by('-add_at')
+    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True,
+                                          task_trash=False).order_by('-add_at')
     try:
         task = Task.objects.get(id=pk)
         form = TaskForm(instance=task)
@@ -115,21 +125,20 @@ def all_tasks(request, pk=None):
         task_title = request.POST['task_title']
         task_time = request.POST['task_time']
         task_priority = request.POST.get('task_priority', False)
+        add_at = datetime.datetime.now()
         if task_priority == 'on':
             task_priority = True
         try:
-            print('start')
             task = Task.objects.get(id=pk)
-            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_time=task_time)
-            print('end')
+            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_time=task_time,
+                                              add_at=add_at)
         except:
-            print('start2')
-            Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user, task_time=task_time)
-            print('end2')
+            Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
+                                task_time=task_time, add_at=add_at)
         return redirect('tasks')
 
     return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
-                                                      'tasks_important': tasks_important, 'form': form})
+                                                      'tasks_important': tasks_important, 'form': form, 'task': pk})
 
 
 # функция для зачеркивания задачи при нажатии на кружок
@@ -230,10 +239,12 @@ def change_password(request):
 def search(request):
     user = request.user
     q = request.GET.get("q")
-    note_search = Note.objects.filter(note_author=user, note_title__contains=q)
-    task_search_imp = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False, task_priority=True, task_trash=False)
-    task_search = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False)
-    task_search_done = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=True, task_trash=False)
+    note_search = Note.objects.filter(note_author=user, note_title__contains=q).order_by('-add_at')
+    task_search_imp = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False,
+                                                                         task_priority=True, task_trash=False).order_by('-add_at')
+    task_search = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('-add_at')
+    task_search_done = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=True,
+                                                                          task_trash=False).order_by('add_at')
     return render(request, 'search.html', context={'note_search': note_search, 'task_search': task_search,
                                                    'task_search_imp': task_search_imp,
                                                    'task_search_done': task_search_done})
@@ -243,81 +254,81 @@ def search(request):
 
 
 # выводит главную страницу с задачами на текущую неделю
-class NotesList(ListView):
-    model = Note
-    template_name = 'main.html'
-
-    # получает 7 qs по дням недели с датами
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        date = datetime.date.today()
-        mon = date - datetime.timedelta(date.weekday())
-        week_notes = []
-        dates = []
-        for i in range(7):
-            date = mon + datetime.timedelta(i)
-            notes = Note.objects.filter(note_time=date)
-            week_notes.append(notes)
-            dates.append(date)
-        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
-        context['week_notes'] = zip(days, dates, week_notes)
-        context['next_mon'] = mon + datetime.timedelta(7)
-        context['prev_mon'] = mon - datetime.timedelta(7)
-        context['main'] = True
-        return context
+# class NotesList(ListView):
+#     model = Note
+#     template_name = 'main.html'
+#
+#     # получает 7 qs по дням недели с датами
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         date = datetime.date.today()
+#         mon = date - datetime.timedelta(date.weekday())
+#         week_notes = []
+#         dates = []
+#         for i in range(7):
+#             date = mon + datetime.timedelta(i)
+#             notes = Note.objects.filter(note_time=date)
+#             week_notes.append(notes)
+#             dates.append(date)
+#         days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+#         context['week_notes'] = zip(days, dates, week_notes)
+#         context['next_mon'] = mon + datetime.timedelta(7)
+#         context['prev_mon'] = mon - datetime.timedelta(7)
+#         context['main'] = True
+#         return context
 
 
 # выводит страницу с задачами на следующую неделю
-class NextList(ListView):
-    model = Note
-    template_name = 'main.html'
-
-    # получает 7 qs по дням недели с датами
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        mon = self.kwargs['next_mon']
-        week_notes = []
-        dates = []
-        for i in range(7):
-            date = mon + datetime.timedelta(i)
-            notes = Note.objects.filter(note_time=date)
-            week_notes.append(notes)
-            dates.append(date)
-        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
-        context['week_notes'] = zip(days, dates, week_notes)
-        context['next_mon'] = mon + datetime.timedelta(7)
-        context['prev_mon'] = mon - datetime.timedelta(7)
-        return context
+# class NextList(ListView):
+#     model = Note
+#     template_name = 'main.html'
+#
+#     # получает 7 qs по дням недели с датами
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         mon = self.kwargs['next_mon']
+#         week_notes = []
+#         dates = []
+#         for i in range(7):
+#             date = mon + datetime.timedelta(i)
+#             notes = Note.objects.filter(note_time=date)
+#             week_notes.append(notes)
+#             dates.append(date)
+#         days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+#         context['week_notes'] = zip(days, dates, week_notes)
+#         context['next_mon'] = mon + datetime.timedelta(7)
+#         context['prev_mon'] = mon - datetime.timedelta(7)
+#         return context
 
 
 # выводит страницу с задачами на предыдующую неделю
-class PrevList(ListView):
-    model = Note
-    template_name = 'main.html'
-
-    # получает 7 qs по дням недели с датами
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        mon = self.kwargs['prev_mon']
-        week_notes = []
-        dates = []
-        for i in range(7):
-            date = mon + datetime.timedelta(i)
-            notes = Note.objects.filter(note_time=date)
-            week_notes.append(notes)
-            dates.append(date)
-        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
-        context['week_notes'] = zip(days, dates, week_notes)
-        context['next_mon'] = mon + datetime.timedelta(7)
-        context['prev_mon'] = mon - datetime.timedelta(7)
-        return context
+# class PrevList(ListView):
+#     model = Note
+#     template_name = 'main.html'
+#
+#     # получает 7 qs по дням недели с датами
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         mon = self.kwargs['prev_mon']
+#         week_notes = []
+#         dates = []
+#         for i in range(7):
+#             date = mon + datetime.timedelta(i)
+#             notes = Note.objects.filter(note_time=date)
+#             week_notes.append(notes)
+#             dates.append(date)
+#         days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+#         context['week_notes'] = zip(days, dates, week_notes)
+#         context['next_mon'] = mon + datetime.timedelta(7)
+#         context['prev_mon'] = mon - datetime.timedelta(7)
+#         return context
 
 
 # выводит страницу с одной задачей
-class NoteDetail(DetailView):
-    model = Note
-    template_name = 'note.html'
-    context_object_name = 'note'
+# class NoteDetail(DetailView):
+#     model = Note
+#     template_name = 'note.html'
+#     context_object_name = 'note'
 
 
 # выводит страницу с формой для добавления новой задачи
@@ -343,25 +354,25 @@ class NoteDetail(DetailView):
 
 
 # выводит страницу подтверждение удаления задачи
-class NoteDeleteView(DeleteView):
-    template_name = 'note_delete_form.html'
-    queryset = Note.objects.all()
-    success_url = '/main/'
-
-
-# выводит страницу с задачами на конкретную дату
-class DateList(ListView):
-    model = Note
-    template_name = 'date_notes.html'
-
-    # выводит 3 отдельных qs для задач с разным приоритетом + достает текущую дату из урла
-    def get_context_data(self, **kwargs):
-        context = super(DateList, self).get_context_data(**kwargs)
-        context['notes_low'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=0)
-        context['notes_normal'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=1)
-        context['notes_high'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=2)
-        context['date'] = self.kwargs['date']
-        return context
+# class NoteDeleteView(DeleteView):
+#     template_name = 'note_delete_form.html'
+#     queryset = Note.objects.all()
+#     success_url = '/main/'
+#
+#
+# # выводит страницу с задачами на конкретную дату
+# class DateList(ListView):
+#     model = Note
+#     template_name = 'date_notes.html'
+#
+#     # выводит 3 отдельных qs для задач с разным приоритетом + достает текущую дату из урла
+#     def get_context_data(self, **kwargs):
+#         context = super(DateList, self).get_context_data(**kwargs)
+#         context['notes_low'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=0)
+#         context['notes_normal'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=1)
+#         context['notes_high'] = Note.objects.filter(note_time=self.kwargs['date']).filter(note_priority=2)
+#         context['date'] = self.kwargs['date']
+#         return context
 
 
 # вывод календаря на питоне, но он не может переключать месяцы без перезагрузки страницы, поэтому сделала другой вариант календаря на Javascript

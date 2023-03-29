@@ -7,6 +7,7 @@ class Task(models.Model):
     task_title = models.CharField(max_length=1000)
     task_author = models.ForeignKey(User, on_delete=models.CASCADE)
     task_time = models.DateField()
+    add_at = models.DateTimeField(blank=True)
     task_priority = models.BooleanField(default=False)
     task_deleted = models.BooleanField(default=False)
     task_trash = models.BooleanField(default=False)
@@ -21,7 +22,6 @@ class Task(models.Model):
 class Note(models.Model):
     note_title = models.CharField(max_length=250)
     note_text = models.TextField()
-    note_time = models.DateField()
     add_at = models.DateTimeField(blank=True)
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_trash = models.BooleanField(default=False)
