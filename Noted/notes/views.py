@@ -18,10 +18,10 @@ def main_page(request):
     user = request.user
     today = datetime.date.today()
     next_date = today + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False,
+    tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
-    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True,
+    tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
     notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
@@ -37,10 +37,10 @@ def main_page(request):
 def main_page_date(request, date):
     user = request.user
     next_date = date + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=False,
+    tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
-    tasks_deleted = Task.objects.filter(task_time=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    tasks_important = Task.objects.filter(task_time=date, task_author=user, task_deleted=False, task_priority=True,
+    tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
     notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
@@ -110,10 +110,10 @@ def note_edit(request, pk):
 def all_tasks(request, pk=None):
     user = request.user
     today = datetime.date.today()
-    tasks_active = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=False,
+    tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
-    tasks_deleted = Task.objects.filter(task_time=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    tasks_important = Task.objects.filter(task_time=today, task_author=user, task_deleted=False, task_priority=True,
+    tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
     try:
         task = Task.objects.get(id=pk)
@@ -123,18 +123,18 @@ def all_tasks(request, pk=None):
 
     if request.method == "POST":
         task_title = request.POST['task_title']
-        task_time = request.POST['task_time']
+        task_date = request.POST['task_date']
         task_priority = request.POST.get('task_priority', False)
         add_at = datetime.datetime.now()
         if task_priority == 'on':
             task_priority = True
         try:
             task = Task.objects.get(id=pk)
-            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_time=task_time,
+            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_date=task_date,
                                               add_at=add_at)
         except:
             Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
-                                task_time=task_time, add_at=add_at)
+                                task_date=task_date, add_at=add_at)
         return redirect('tasks')
 
     return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,

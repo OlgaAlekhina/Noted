@@ -6,7 +6,7 @@ from PIL import Image
 class Task(models.Model):
     task_title = models.CharField(max_length=1000)
     task_author = models.ForeignKey(User, on_delete=models.CASCADE)
-    task_time = models.DateField()
+    task_date = models.DateField()
     add_at = models.DateTimeField(blank=True)
     task_priority = models.BooleanField(default=False)
     task_deleted = models.BooleanField(default=False)
