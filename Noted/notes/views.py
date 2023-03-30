@@ -94,10 +94,14 @@ def note_edit(request, pk):
             Note.objects.filter(id=pk).update(note_file=None)
         try:
             note_file = request.FILES['note_file']
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at,
-                                              note_file=note_file)
+            note = Note.objects.get(id=pk)
+            note.note_file = note_file
+            note.note_title = note_title
+            note.note_text = note_text
+            note.add_at = add_at
+            note.save()
         except:
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at, )
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at)
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
