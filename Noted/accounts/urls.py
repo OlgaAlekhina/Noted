@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import register_request, login_user, reset_password_request, password_reset_confirm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [

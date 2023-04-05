@@ -26,7 +26,7 @@ def register_request(request):
 	return render(request, 'registration.html', {'form': f})
 
 
-# функция для авторизации юзера по email
+# функция для авторизации пользователя по email
 def authenticate_user(email, password):
 	try:
 		user = User.objects.get(email=email)

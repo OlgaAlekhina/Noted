@@ -2,7 +2,6 @@ from django.forms import ModelForm
 from .models import Task, UserProfile
 from django import forms
 from django.contrib.auth.models import User
-from .validators import validate_email
 
 
 # форма для добавления задачи
