@@ -1,3 +1,20 @@
+Для деплоя проекта на сервер необходимо добавить файл .env со следующими переменными окружения:
+(некоторые значения пришлю в частном порядке)
+
+SECRET_KEY (django secret key)
+DJANGO_DEBUG=   (пустая строка для продакшен или True для разработки)
+ALLOWED_HOSTS
+Настройки базы данных Postgres:
+DB_HOST
+DB_PORT
+DB_LOGIN
+DB_PASS
+DB_NAME
+Настройки почты:
+EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD
+
+
 Как запустить проект на своем локальном сервере через IDE PyCharm:
 
 Git -> clone -> https://github.com/OlgaAlekhina/Noted # скачать репозиторий с гитхаба на свой комп 

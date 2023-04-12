@@ -149,8 +149,8 @@ LOGOUT_REDIRECT_URL = '/login'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'olga-olechka-5'
-EMAIL_HOST_PASSWORD = 'sobasya'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 SERVER_EMAIL = 'olga-olechka-5'
 DEFAULT_FROM_EMAIL = 'olga-olechka-5@yandex.ru'
