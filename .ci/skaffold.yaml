@@ -1,0 +1,47 @@
+.app-release: &app-release
+  chartPath: .ci/charts/web-app
+  wait: true
+  upgradeOnChange: true
+
+.helm-flags: &helm-flags
+  install:
+    - "--timeout=7m"
+  upgrade:
+    - "--timeout=7m"
+
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: noted-django-app
+build:
+  artifacts:
+    - image: noted-django-app
+      context: .
+      docker:
+        dockerfile: ./Noted/Dockerfile
+deploy:
+  kubeContext: pnpl-tech
+profiles:
+  - name: prod
+    activation:
+      - env: CI_COMMIT_BRANCH=master|main
+    build:
+      tagPolicy:
+        envTemplate:
+          template: "prod-{{.CI_COMMIT_SHORT_SHA}}"
+    deploy:
+      helm:
+        flags: *helm-flags
+        releases:
+          - <<: *app-release
+            name: &app-release-name "noted-django-app"
+            namespace: default
+            setValueTemplates:
+              image.name: "{{.IMAGE_FULLY_QUALIFIED_noted_django_app}}"
+              hooks.jobs.migrations.image: "{{.IMAGE_FULLY_QUALIFIED_noted_django_app}}"
+              GIT_REPO: "{{.CI_PROJECT_NAME}}"
+              CI_FQDN: "{{.CI_FQDN}}"
+            valuesFiles:
+              - ".ci/env.values/app.yaml"
+              - ".ci/env.values/prod/hooks.yaml"
+              - ".ci/env.values/prod/app.yaml"
