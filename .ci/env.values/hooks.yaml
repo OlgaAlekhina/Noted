@@ -6,7 +6,7 @@ hooks:
       weight: 0
       backoffLimit: 0
       imagePullSecrets:
-        - gitlab-cr
+        - name: gitlab-cr
       command: ['bash']
       args:
         - -c 
