@@ -6,7 +6,7 @@ hooks:
         DB_HOST: noted-postgresql
         DB_LOGIN: noted-user
         DB_NAME: noted
-        DB_PASSWORD:
+        DB_PASS:
           valueFrom:
             secretKeyRef:
               name: noted-postgresql
