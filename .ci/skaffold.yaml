@@ -59,6 +59,6 @@ profiles:
               djangoSecretKey: "{{.CI_DJANGO_SECRET_KEY}}"
             valuesFiles:
               - ".ci/env.values/app.yaml"
-              - ".ci/env/values/hooks.yaml"
+              - ".ci/env.values/hooks.yaml"
               - ".ci/env.values/prod/hooks.yaml"
               - ".ci/env.values/prod/app.yaml"
