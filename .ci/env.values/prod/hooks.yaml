@@ -3,9 +3,12 @@ hooks:
     migrations:
       enabled: true
       env:
-        SECRET_KEY:
-        DB_HOST:
-        DB_LOGIN:
-        DB_PASS:
-        DB_NAME:
-        DB_PORT: 5321
+        DB_HOST: noted-postgresql
+        DB_LOGIN: noted-user
+        DB_NAME: noted
+        DB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: noted-postgresql
+              key: password
+        DB_PORT: 5432

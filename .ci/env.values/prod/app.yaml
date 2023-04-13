@@ -1,4 +1,14 @@
-env: {}
+env:
+  SECRET_KEY: "{{.Values.djangoSecretKey}}"
+  DB_HOST: noted-postgresql
+  DB_LOGIN: noted-user
+  DB_NAME: noted
+  DB_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: noted-postgresql
+        key: password
+  DB_PORT: 5432
 
 imagePullSecrets:
   - name: gitlab-cr
