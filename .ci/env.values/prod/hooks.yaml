@@ -12,3 +12,4 @@ hooks:
               name: noted-postgresql
               key: password
         DB_PORT: 5432
+        ALLOWED_HOSTS: "127.0.0.1"
