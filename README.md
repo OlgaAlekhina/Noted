@@ -1,62 +1,64 @@
-Для деплоя проекта на сервер необходимо добавить файл .env со следующими переменными окружения:
-(некоторые значения пришлю в частном порядке)
+# 1. Used environmental variables
 
-SECRET_KEY (django secret key)
-DJANGO_DEBUG=   (пустая строка для продакшен или True для разработки)
-ALLOWED_HOSTS
-Настройки базы данных Postgres:
-DB_HOST
-DB_PORT
-DB_LOGIN
-DB_PASS
-DB_NAME
-Настройки почты:
-EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD
+| Variable name       | Default value | Notes                                 |
+| ------------------- | ------------- | ------------------------------------- |
+| SECRET_KEY          | -             | Django secret key                     |
+| DJANGO_DEBUG        | -             | Empty string for prod or True for dev |
+| ALLOWED_HOSTS       | -             | List of allowed hosts (CORS)          |
+| DB_HOST             | -             | Database Host                         |
+| DB_PORT             | -             | Database Port                         |
+| DB_LOGIN            | -             | Database Username                     |
+| DB_PASS             | -             | Database user password                |
+| DB_NAME             | -             | Database name                         |
+| EMAIL_HOST_USER     | -             |                                       |
+| EMAIL_HOST_PASSWORD | -             |                                       |
 
+# 2. Как запустить проект на своем локальном сервере через IDE PyCharm:
+clone this repo
+```
+git clone git@gitlab.com:pineapple-practice/noted/Noted.git
+```
+create virtual env
+```
+python -m venv venv
+```
+activate created venv
+```
+venv\scripts\activate
+```
+install requirements
+```
+pip install -r requirements.txt
+```
+run server
+```
+python manage.py runserver
+```
 
-Как запустить проект на своем локальном сервере через IDE PyCharm:
+# 3. Available pages
 
-Git -> clone -> https://github.com/OlgaAlekhina/Noted # скачать репозиторий с гитхаба на свой комп 
+- signin (для регистрации пользователя)
 
-python -m venv venv # создать виртуальную среду 
+- login (для входа зарегистрированного пользователя)
 
-venv\scripts\activate # активировать виртуальную среду (нужно делать из той папки, где лежит папка venv) 
+- logout (для выхода пользователя)
 
-pip install -r requirements.txt # установить зависимости для проекта, которые указаны в файле requirements.txt
+- reset_password (для восстановления пароля по email)
 
-python manage.py runserver # запустить сервер
+- /main (главная страница)
 
-Страницы:
+- /main/date (главная страница с задачами на конкретную дату, где date - дата в формате dd-mm-yyyy)
 
-signin      # для регистрации пользователя
+- /main/notes (страница всех заметок с формой добавления новой)
 
-login       # для входа зарегистрированного пользователя
+- /main/tasks (страница всех задач с формой добавления новой)
 
-logout      # для выхода пользователя
+- /main/notes/id (страница конкретной заметки, где id - целое число)
 
-reset_password # для восстановления пароля по email
+- /main/notes/edit/id (страница для редактирования заметки, где id - целое число)
 
-/main             # главная страница
+- /main/settings (страница для редактирования персональных данных)
 
-/main/date      # главная страница с задачами на конкретную дату, где date - дата в формате dd-mm-yyyy
+- /main/trash (страница с удаленными заметками и задачами)
 
-/main/notes       # страница всех заметок с формой добавления новой
-
-/main/tasks       # страница всех задач с формой добавления новой
-
-/main/notes/id     # страница конкретной заметки, где id - целое число
-
-/main/notes/edit/id   # страница для редактирования заметки, где id - целое число
-
-/main/settings     # страница для редактирования персональных данных
-
-/main/trash       # страница с удаленными заметками и задачами
-
-/main/search?q=...      # страница с результатами поиска
-
-
-
-
-
-
+- /main/search?q=... (страница с результатами поиска)

@@ -1,0 +1,25 @@
+env:
+  SECRET_KEY: "{{.Values.djangoSecretKey}}"
+  DB_HOST: noted-postgresql
+  DB_LOGIN: noted-user
+  DB_NAME: noted
+  DB_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: noted-postgresql
+        key: password
+  DB_PORT: 5432
+
+imagePullSecrets:
+  - name: gitlab-cr
+
+replicaCount: 1
+
+ingress:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: 16m
+  hosts:
+    - host: "{{ .Values.CI_FQDN }}"
+      paths:
+        - "/"

@@ -1,0 +1,47 @@
+nameOverride: "{{ .Values.GIT_REPO }}"
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+ports:
+  - name: http
+    containerPort: 8080
+    protocol: TCP
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+  limits:
+    cpu: 200m
+    memory: 500Mi
+
+# securityContext:
+#   runAsUser: 1000
+#   runAsGroup: 1000
+#   capabilities:
+#     drop:
+#       - ALL
+#   readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+
+ingress:
+  enabled: true
+  tlsEnabled: true
+  servicePort: 8080
+  tlsSecretName: noted-django-app-tls
+  ingressClassName: nginx

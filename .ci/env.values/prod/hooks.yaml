@@ -1,0 +1,14 @@
+hooks:
+  jobs:
+    migrations:
+      enabled: true
+      env:
+        DB_HOST: noted-postgresql
+        DB_LOGIN: noted-user
+        DB_NAME: noted
+        DB_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: noted-postgresql
+              key: password
+        DB_PORT: 5432

@@ -1,0 +1,16 @@
+hooks:
+  jobs:
+    migrations:
+      enabled: false
+      type: "pre-install, pre-upgrade"
+      weight: 0
+      backoffLimit: 0
+      imagePullSecrets:
+        - gitlab-cr
+      command: ['bash']
+      args:
+        - -c 
+        - |
+          set -ex;
+          python manage.py makemigrations;
+          python manage.py migrate;
