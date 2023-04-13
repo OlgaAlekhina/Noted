@@ -2,12 +2,10 @@
 nameOverride: "noted-django-app"
 
 livenessProbe:
-  httpGet:
-    path: /
+  tcpSocket:
     port: http
 readinessProbe:
-  httpGet:
-    path: /
+  tcpSocket:
     port: http
 
 ports:

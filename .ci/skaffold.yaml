@@ -8,7 +8,7 @@
   remoteChart: postgresql
   version: "12.1.10"
   wait: true
-  upgradeOnChange: true
+  upgradeOnChange: false
 
 .helm-flags: &helm-flags
   install:
