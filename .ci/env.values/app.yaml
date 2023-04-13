@@ -1,4 +1,5 @@
-nameOverride: "{{ .Values.GIT_REPO }}"
+# nameOverride: "{{ .Values.GIT_REPO }}"
+nameOverride: "noted-django-app"
 
 livenessProbe:
   httpGet:
