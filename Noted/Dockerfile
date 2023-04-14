@@ -2,6 +2,9 @@ FROM python:3.9.12-slim
 
 WORKDIR /app
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 COPY ./Noted .
 RUN set -ex &&\
     python3 -m pip install --no-cache-dir --no-warn-script-location --upgrade pip &&\
