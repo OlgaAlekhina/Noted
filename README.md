@@ -37,7 +37,7 @@ python manage.py runserver
 
 # 3. Available pages
 
-- signin (для регистрации пользователя)
+- signup (для регистрации пользователя)
 
 - login (для входа зарегистрированного пользователя)
 

@@ -121,3 +121,7 @@ def password_reset_confirm(request, uidb64, token):
 
 	messages.error(request, 'Что-то пошло не так. Попоробуйте еще раз зайти на сайт.')
 	return redirect("login")
+
+
+def redirect_login(request):
+	return redirect("login")
