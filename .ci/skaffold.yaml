@@ -54,6 +54,7 @@ profiles:
             setValueTemplates:
               image.name: "{{.IMAGE_FULLY_QUALIFIED_noted_django_app}}"
               hooks.jobs.migrations.image: "{{.IMAGE_FULLY_QUALIFIED_noted_django_app}}"
+              initContainers[0].image: "{{.IMAGE_FULLY_QUALIFIED_noted_django_app}}"
               GIT_REPO: "{{.CI_PROJECT_NAME}}"
               CI_FQDN: "{{.CI_FQDN}}"
               djangoSecretKey: "{{.CI_DJANGO_SECRET_KEY}}"
@@ -62,3 +63,4 @@ profiles:
               - ".ci/env.values/hooks.yaml"
               - ".ci/env.values/prod/hooks.yaml"
               - ".ci/env.values/prod/app.yaml"
+              - ".ci/env.values/nginx_config.yaml"

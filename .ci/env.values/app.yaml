@@ -38,6 +38,47 @@ resources:
 #   readOnlyRootFilesystem: true
 #   runAsNonRoot: true
 
+volumeMounts:
+  - name: static-content
+    mountPath: /app/staticfiles
+
+volumes:
+  - name: nginx-config
+    configMap:
+      name: "noted-django-app-nginx-config"
+      items:
+        - key: default.conf
+          path: default.conf
+  - name: static-content
+    emptyDir: {}
+
+sidecars:
+  - name: nginx-static-sidecar
+    image: nginx:1.23.4
+    ports:
+      - name: static
+        containerPort: 8081
+        protocol: TCP
+    volumeMounts:
+      - name: static-content
+        mountPath: /app/staticfiles
+      - name: nginx-config
+        mountPath: /etc/nginx/conf.d/default.conf
+        subPath: default.conf
+
+initContainers:
+  - name: static-content-copy
+    volumeMounts:
+      - name: static-content
+        mountPath: /static
+    command: ['bash']
+    args:
+      - -c
+      - |
+        set -ex;
+        cp -r /app/staticfiles/* /static;
+        ls -la /static;
+
 ingress:
   enabled: true
   tlsEnabled: true
