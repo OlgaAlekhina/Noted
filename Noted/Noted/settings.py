@@ -152,4 +152,4 @@ EMAIL_USE_SSL = True
 SERVER_EMAIL = 'olga-olechka-5'
 DEFAULT_FROM_EMAIL = 'olga-olechka-5@yandex.ru'
 
-
+CSRF_TRUSTED_ORIGINS = ['https://noted.pnpl.tech/']
