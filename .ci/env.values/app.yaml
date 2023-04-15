@@ -44,6 +44,8 @@ resources:
 volumeMounts:
   - name: static-content
     mountPath: /app/staticfiles
+  - name: media-content
+    mountPath: /app/media
 
 volumes:
   - name: nginx-config
@@ -54,6 +56,9 @@ volumes:
           path: default.conf
   - name: static-content
     emptyDir: {}
+  - name: media-content
+    persistenVolumeClaim:
+      claimName: noted-media-content
 
 sidecars:
   - name: nginx-static-sidecar
@@ -68,6 +73,8 @@ sidecars:
       - name: nginx-config
         mountPath: /etc/nginx/conf.d/default.conf
         subPath: default.conf
+      - name: media-content
+        mountPath: /app/media
 
 initContainers:
   - name: static-content-copy
