@@ -33,14 +33,12 @@ resources:
     memory: 500Mi
 
 securityContext:
-  # runAsUser: 1000
-  # runAsGroup: 1000
-  privileged: false
-  # capabilities:
-  #   drop:
-  #     - ALL
-  # readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false
+  runAsUser: 1000
+  runAsGroup: 1000
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
   runAsNonRoot: true
 
 volumeMounts:
