@@ -57,7 +57,7 @@ volumes:
   - name: static-content
     emptyDir: {}
   - name: media-content
-    persistenVolumeClaim:
+    persistentVolumeClaim:
       claimName: noted-media-content
 
 sidecars:
