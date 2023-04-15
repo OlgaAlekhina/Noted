@@ -11,6 +11,7 @@ env:
   DB_PORT: 5432
   ALLOWED_HOSTS: "*"
   DJANGO_DEBUG: "True"
+  PYTHONUNBUFFERED: "1"
 
 imagePullSecrets:
   - name: gitlab-cr
