@@ -32,14 +32,14 @@ resources:
     cpu: 200m
     memory: 500Mi
 
-# securityContext:
-#   runAsUser: 1000
-#   runAsGroup: 1000
-#   capabilities:
-#     drop:
-#       - ALL
-#   readOnlyRootFilesystem: true
-#   runAsNonRoot: true
+securityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
 
 volumeMounts:
   - name: static-content
