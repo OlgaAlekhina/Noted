@@ -10,7 +10,7 @@ env:
         key: password
   DB_PORT: 5432
   ALLOWED_HOSTS: "*"
-  # DJANGO_DEBUG: "True"
+  DJANGO_DEBUG: "True"
   PYTHONUNBUFFERED: "1"
   EMAIL_HOST_USER: "{{.Values.emailHostUser}}"
   EMAIL_HOST_PASSWORD: "{{.Values.emailHostPassword}}"
