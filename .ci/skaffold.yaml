@@ -58,6 +58,8 @@ profiles:
               GIT_REPO: "{{.CI_PROJECT_NAME}}"
               CI_FQDN: "{{.CI_FQDN}}"
               djangoSecretKey: "{{.CI_DJANGO_SECRET_KEY}}"
+              emailHostUser: "{{.CI_EMAIL_HOST_USER}}"
+              emailHostPassword: "{{.CI_EMAIL_HOST_PASSWORD}}"
             valuesFiles:
               - ".ci/env.values/app.yaml"
               - ".ci/env.values/hooks.yaml"
