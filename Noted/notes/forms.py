@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from .models import Task, UserProfile
 from django import forms
 from django.contrib.auth.models import User
+from .validators import EmailValidator
 
 
 # форма для добавления задачи
@@ -19,6 +20,11 @@ class TaskForm(ModelForm):
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateUserForm, self).__init__(*args, **kwargs)
+        user = kwargs.pop('instance')
+        self.fields['email'].validators.append(EmailValidator(user))
 
     class Meta:
         model = User

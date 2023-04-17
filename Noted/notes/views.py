@@ -240,11 +240,11 @@ def change_password(request):
 def search(request):
     user = request.user
     q = request.GET.get("q")
-    note_search = Note.objects.filter(note_author=user, note_title__contains=q).order_by('-add_at')
-    task_search_imp = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False,
+    note_search = Note.objects.filter(note_author=user, note_title__icontains=q).order_by('-add_at')
+    task_search_imp = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False,
                                                                          task_priority=True, task_trash=False).order_by('-add_at')
-    task_search = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('-add_at')
-    task_search_done = Task.objects.filter(task_title__contains=q).filter(task_author=user, task_deleted=True,
+    task_search = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('-add_at')
+    task_search_done = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=True,
                                                                           task_trash=False).order_by('add_at')
     return render(request, 'search.html', context={'note_search': note_search, 'task_search': task_search,
                                                    'task_search_imp': task_search_imp,
