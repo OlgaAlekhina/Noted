@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
-# проверка email на уникальность
+# проверка email на уникальность в настройках пользователя
 class EmailValidator:
     def __init__(self, user):
         self.user = user
