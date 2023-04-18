@@ -53,8 +53,6 @@ input.header-search {
 .main-area {
     height: 1000px;
     border: 0.5px solid #b1b1b1;
-    background: url(/static/images/bg-1.jpg) no-repeat center fixed;
-    background-size: contain;
 }
 
 .sm-but:hover {
@@ -369,7 +367,6 @@ td.not-current a {
 .nav-list {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 20px;
-    /*background: #ECF7FB;*/
     background: #E2FFFF;
     margin-left: 0px;
     margin-right: 0px;
@@ -401,7 +398,20 @@ td.not-current a {
                 0px 8px 16px rgba(0,0,0,0.1);
 }
 
+/* медиа запросы */
 
+@media (max-width: 1600px) {
+    .main-area {
+        background: url(/static/images/bg-1_mobile.jpg) no-repeat fixed;
+        background-size: cover;
+    }
+}
 
+@media screen and (min-width: 1601px){
+    .main-area {
+        background: url(/static/images/bg_sm-1.jpg) no-repeat fixed;
+        background-size: contain;
+    }
+}
 
 
