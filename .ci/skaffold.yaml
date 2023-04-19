@@ -23,9 +23,9 @@ metadata:
 build:
   artifacts:
     - image: noted-django-app
-      context: .
+      context: ./Noted
       docker:
-        dockerfile: ./Noted/Dockerfile
+        dockerfile: ./Dockerfile
 deploy:
   kubeContext: pnpl-tech
 profiles:
