@@ -190,6 +190,11 @@ input.header-search {
     align-items:center;
 }
 
+.collapse-button {
+    float: left;
+    padding-top: 10px;
+}
+
 /* стили страницы заметок */
 
 .note_date2 {
@@ -343,7 +348,6 @@ td.not-current a {
 }
 
 .ava {
-    margin-top: 20px;
     margin-bottom: 20px;
     padding: 0px 10px;
 }
@@ -414,4 +418,8 @@ td.not-current a {
     }
 }
 
-
+@media screen and (min-width: 992px){
+    .collapse-button {
+        display: none;
+    }
+}
