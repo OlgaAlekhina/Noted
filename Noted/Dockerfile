@@ -9,7 +9,7 @@ RUN addgroup --gid 1000 app &&\
 
 WORKDIR /app
 
-COPY ./Noted .
+COPY . .
 
 RUN chown -R app:app /app
 
