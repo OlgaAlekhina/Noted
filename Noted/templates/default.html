@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a5853bef6b.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <title>
         {% block title %}
@@ -55,5 +56,17 @@
             Данное приложение разработано в рамках проекта <a href="" style="color: grey;">Pineapple Practice</a>
         </div>
     </footer>
+    <script type="text/javascript">
+    window.onload = function() {
+        if (window.innerWidth < 992) {
+            document.getElementById("offcanvasResponsive").classList.add('offcanvas-end');
+        }
+    }
+    window.onresize = function() {
+        if (window.innerWidth < 992) {
+            document.getElementById("offcanvasResponsive").classList.add('offcanvas-end');
+        }
+    }
+    </script>
 </body>
 </html>

@@ -7,43 +7,51 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-auto col-2 sidebar" style="width: 280px;">
-                <div class="ava">
-                    <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
-                    <span class="username">{{ request.user }}</span>
+            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.8) !important;">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
-                <div class="input-group dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
-                        <i class="fas fa-plus" aria-hidden="true"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                        <li><a class="dropdown-item" href="{% url 'notes' %}">Задачу</a></li>
-                        <li><a class="dropdown-item" href="{% url 'tasks' %}">Заметку</a></li>
-                    </ul>
-                    <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 80%; text-align: left;">Создать</button>
-                </div>
-                <div class="calendar-wrapper">
-                    <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
-                    <h6 id="headCal"></h6>
-                    <button id="btnNext" type="button"></button>
-                    <div id="divCal"></div>
-                </div>
-                <div class="nav-list">
-                    <ul style="list-style-type: none;">
-                        <li class="current_page"><a href="{% url 'main' %}">Главная</a></li>
-                        <li><a href="{% url 'notes' %}">Заметки</a></li>
-                        <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                        <li><a href="{% url 'trash' %}">Корзина</a></li>
-                        <li><a href="{% url 'user_settings' %}">Настройки</a></li>
-                        <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
-                    </ul>
-                    </ul>
+                <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
+                    <div class="ava">
+                        <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
+                        <span class="username">{{ request.user }}</span>
+                    </div>
+                    <div class="input-group dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
+                            <li><a class="dropdown-item" href="{% url 'notes' %}">Задачу</a></li>
+                            <li><a class="dropdown-item" href="{% url 'tasks' %}">Заметку</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 80%; text-align: left;">Создать</button>
+                    </div>
+                    <div class="calendar-wrapper">
+                        <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
+                        <h6 id="headCal"></h6>
+                        <button id="btnNext" type="button"></button>
+                        <div id="divCal"></div>
+                    </div>
+                    <div class="nav-list">
+                        <ul style="list-style-type: none;">
+                            <li class="current_page"><a href="{% url 'main' %}">Главная</a></li>
+                            <li><a href="{% url 'notes' %}">Заметки</a></li>
+                            <li><a href="{% url 'tasks' %}">Задачи</a></li>
+                            <li><a href="{% url 'trash' %}">Корзина</a></li>
+                            <li><a href="{% url 'user_settings' %}">Настройки</a></li>
+                            <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
+                        </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-6 tasks">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Задачи</h3>
+                    <div class="col-12 col-lg-6 tasks">
+                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
+                            <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
+                        </button>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи</h3>
                         <div class="col-10 offset-1">
                             {% for task in task_search_imp %}
                                 <div class="row">
@@ -105,7 +113,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-6 notes" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Заметки</h3>
                         <div class="col-8 offset-2 main-notes">
                         {% for note in note_search %}

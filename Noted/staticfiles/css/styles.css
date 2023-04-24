@@ -343,8 +343,8 @@ td.not-current a {
 /* стили боковой колонки */
 
 .sidebar {
-    background: rgba(126, 159, 164, 0.8);
-    padding: 0px;
+    background-color: rgba(126, 159, 164, 0.8) !important;
+    padding: 0px !important;
 }
 
 .ava {
@@ -421,5 +421,13 @@ td.not-current a {
 @media screen and (min-width: 992px){
     .collapse-button {
         display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .icon {
+        position: absolute;
+        right: 20%;
+        top: 19%;
     }
 }

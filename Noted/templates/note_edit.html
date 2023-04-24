@@ -9,31 +9,39 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="col-auto col-2 sidebar" style="width: 280px;">
-                <div class="ava">
-                    <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
-                    <span class="username">{{ request.user }}</span>
+            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.8) !important;">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
-                <div class="calendar-wrapper">
-                    <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
-                    <h6 id="headCal"></h6>
-                    <button id="btnNext" type="button"></button>
-                    <div id="divCal"></div>
-                </div>
-                <div class="nav-list">
-                    <ul style="list-style-type: none;">
-                        <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
-                        <li class="current_page"><a href="{% url 'notes' %}">Заметки</a></li>
-                        <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                        <li><a href="{% url 'trash' %}">Корзина</a></li>
-                        <li><a href="{% url 'user_settings' %}">Настройки</a></li>
-                        <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
-                    </ul>
+                <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
+                    <div class="ava">
+                        <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
+                        <span class="username">{{ request.user }}</span>
+                    </div>
+                    <div class="calendar-wrapper" style="margin-top: 170px;">
+                        <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
+                        <h6 id="headCal"></h6>
+                        <button id="btnNext" type="button"></button>
+                        <div id="divCal"></div>
+                    </div>
+                    <div class="nav-list">
+                        <ul style="list-style-type: none;">
+                            <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
+                            <li class="current_page"><a href="{% url 'notes' %}">Заметки</a></li>
+                            <li><a href="{% url 'tasks' %}">Задачи</a></li>
+                            <li><a href="{% url 'trash' %}">Корзина</a></li>
+                            <li><a href="{% url 'user_settings' %}">Настройки</a></li>
+                            <li style="background: rgba(108, 100, 81, 0.8);"><a href="{% url 'logout' %}">Выйти</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-4 tasks">
+                    <div class="col-12 col-lg-4 order-last order-lg-first tasks">
+                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
+                            <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
+                        </button>
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
                         <div class="col-10 offset-1">
                         {% for note in notes %}
@@ -51,7 +59,7 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-8 notes" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-8 order-first order-lg-last notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Изменить заметку</h3>
                         <form method="post" action="{% url 'note_edit' note.id %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
