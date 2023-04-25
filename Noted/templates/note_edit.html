@@ -64,7 +64,7 @@
                         <form method="post" action="{% url 'note_edit' note.id %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
                             <div class="mb-3">
-                                <input type="text" class="form-control note-title" name="note_title" value="{{ note.note_title }}">
+                                <input type="text" class="form-control note-title" required name="note_title" value="{{ note.note_title }}">
                                 <button type="submit" class="btn btn-secondary" style="float: right;">
                                     <i class="fa-solid fa-floppy-disk"></i>
                                 </button>
