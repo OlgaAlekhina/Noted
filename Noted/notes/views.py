@@ -150,6 +150,16 @@ def task_done(request, pk):
     return HttpResponseRedirect(next)
 
 
+# функция для восстановления задачи при нажатии на отмеченный кружок
+@login_required
+def task_undone(request, pk):
+    Task.objects.filter(id=pk).update(task_deleted=False)
+    next = request.GET.get('next', reverse('main'))
+    if next == reverse('search'):
+        next = reverse('main')
+    return HttpResponseRedirect(next)
+
+
 # выводит корзину с удаленными задачами и заметками
 @login_required
 def trash(request):
