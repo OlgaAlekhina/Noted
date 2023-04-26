@@ -54,7 +54,7 @@
                         <div class="col-8 offset-2">
                             {% for task in task_trash %}
                                 <div class="row note-block">
-                                    <div class="col-10">
+                                    <div class="col-10 text-break">
                                         <h6><b>{{ task.task_title }}</b></h6>
                                         <a href="{% url 'task_perm_delete' task.id %}">
                                             <img src="/static/images/icons/trash_icon.svg"/>
@@ -70,7 +70,7 @@
                         {% for note in note_trash %}
                             <div class="row note-block">
                                 <div class="row">
-                                    <div class="col-10">
+                                    <div class="col-10 text-break">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
@@ -78,8 +78,8 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-start">
-                                    <div class="col-10">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatewords:3 }}</a>
+                                    <div class="col-10 text-break">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-1 ms-auto">
                                         <a href="{% url 'note_perm_delete' note.id %}">

@@ -129,7 +129,6 @@ input.header-search {
     border: 0.5px solid #b1b1b1;
     height: 1000px;
     overflow-y: scroll;
-    position: relative;
 }
 
 .tasks a, .main-notes a {
@@ -166,36 +165,25 @@ input.header-search {
 }
 
 .next-button {
-    /*margin-left: -12px;
-    margin-right: -12px;*/
-    position: absolute;
-    bottom: 0;
-    left: 30%;
-
-
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    bottom: 50px;
 }
 
 .next-button button {
-   /* width: 111px;
-    height: 18px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-
-display: flex;
-align-items: center;
-text-align: center;*/
-
-    /*width: 60%;
-    font-size: 12px;
-    font-weight: 600;*/
+    font-weight: 600;
     background: rgba(236, 247, 251, 1);
     border: 1px solid #ced4da;
     border-radius: 8px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 50%
+
 }
 
 .next-button button:hover {
@@ -205,7 +193,10 @@ text-align: center;*/
 
 .check-box {
     display: flex;
-    align-items:center;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+
 }
 
 /* стили страницы заметок */

@@ -61,7 +61,7 @@
                                         </a>
                                     </div>
                                     <div class="col-10 row note-block">
-                                        <div class="col-11">
+                                        <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
                                                 <img src="/static/images/icons/pen_icon.svg" />
@@ -84,7 +84,7 @@
                                         </a>
                                     </div>
                                     <div class="row col-10 note-block">
-                                        <div class="col-10">
+                                        <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
                                                 <img src="/static/images/icons/pen_icon.svg" />
@@ -102,7 +102,7 @@
                                         <a href="{% url 'task_undone' task.id %}?next={{ request.path }}"><i class="fa-regular fa-circle-check"></i></a>
                                     </div>
                                     <div class="row col-10 note-block">
-                                        <div class="col-10"  style="color: grey;">
+                                        <div class="col-10 text-break"  style="color: grey;">
                                             <h6><s>{{ task.task_title }}</s></h6>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
                                                 <img src="/static/images/icons/trash_icon.svg" />
@@ -119,7 +119,7 @@
                         {% for note in note_search %}
                             <div class="row note-block">
                                 <div class="row">
-                                    <div class="col-10">
+                                    <div class="col-10 text-break">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
@@ -127,8 +127,8 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-start">
-                                    <div class="col-10">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatewords:3 }}</a>
+                                    <div class="col-10 text-break">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-1 ms-auto">
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">

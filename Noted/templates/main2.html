@@ -51,7 +51,7 @@
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
-                        <div class="col-10 offset-1">
+                        <div class="col-11">
                             {% for task in tasks_important %}
                                 <div class="row">
                                     <div class="col-2 check-box">
@@ -60,7 +60,7 @@
                                         </a>
                                     </div>
                                     <div class="col-10 row note-block">
-                                        <div class="col-11">
+                                        <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
                                                 <img src="/static/images/icons/pen_icon.svg" />
@@ -83,7 +83,7 @@
                                         </a>
                                     </div>
                                     <div class="row col-10 note-block">
-                                        <div class="col-10">
+                                        <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
                                                 <img src="/static/images/icons/pen_icon.svg" />
@@ -101,7 +101,7 @@
                                         <a href="{% url 'task_undone' task.id %}?next={{ request.path }}"><i class="fa-regular fa-circle-check"></i></a>
                                     </div>
                                     <div class="row col-10 note-block">
-                                        <div class="col-10"  style="color: grey;">
+                                        <div class="col-10 text-break"  style="color: grey;">
                                             <h6><s>{{ task.task_title }}</s></h6>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
                                                 <img src="/static/images/icons/trash_icon.svg" />
@@ -111,7 +111,7 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="next-button sticky-bottom">
+                        <div class="next-button">
                             <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="{% url 'tasks' %}">Создать задачу</a></button>
                         </div>
                     </div>
@@ -141,8 +141,8 @@
                             </div>
                         {% endfor %}
                         </div>
-                        <div class="next-button sticky-bottom">
-                            <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="{% url 'notes' %}">Создать заметку</a></button>
+                        <div class="next-button">
+                            <button type="button" class="btn btn-primary"><a class="text-decoration-none" style="color: black" href="{% url 'notes' %}">Создать заметку</a></button>
                         </div>
                     </div>
                 </div>
