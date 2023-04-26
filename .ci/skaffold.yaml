@@ -63,7 +63,7 @@ profiles:
             valuesFiles:
               - ".ci/env.values/app.yaml"
               - ".ci/env.values/hooks.yaml"
-              - ".ci/env/values/cronjobs.yaml"
+              - ".ci/env.values/cronjobs.yaml"
               - ".ci/env.values/nginx_config.yaml"
               - ".ci/env.values/prod/hooks.yaml"
               - ".ci/env.values/prod/app.yaml"
