@@ -117,9 +117,7 @@
                         {% csrf_token %}
                             <div class="mb-3">
                                 {{ form.as_p }}
-                                <button onclick="this.disabled = true" type="submit" class="btn btn-secondary" style="float: right;">
-                                    <i class="fa-solid fa-floppy-disk"></i>
-                                </button>
+                                <input type="submit" class="btn btn-secondary" id="task_submit" onclick="submitbtn()"></input>
                             </div>
                         </form>
                     </div>
@@ -138,5 +136,11 @@
 </script>
 
 <script src="/static/js/calendarWidget.js"></script>
+
+<script>
+    function submitbtn() {
+        document.getElementById("task_submit").style.display= "none";
+    }
+</script>
 
 {% endblock content %}

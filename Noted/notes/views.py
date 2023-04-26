@@ -88,7 +88,7 @@ def note_edit(request, pk):
         file_delete = request.POST.get('file_delete', False)
         add_at = datetime.datetime.now()
         if file_delete == 'on':
-            Note.objects.filter(id=pk).update(note_file=None)
+            Note.objects.filter(id=pk).update(note_file=None, note_trash=False)
         try:
             note_file = request.FILES['note_file']
             note = Note.objects.get(id=pk)
@@ -98,7 +98,7 @@ def note_edit(request, pk):
             note.add_at = add_at
             note.save()
         except:
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at)
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at, note_trash=False)
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
