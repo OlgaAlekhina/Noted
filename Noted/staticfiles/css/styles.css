@@ -129,6 +129,7 @@ input.header-search {
     border: 0.5px solid #b1b1b1;
     height: 1000px;
     overflow-y: scroll;
+    position: relative;
 }
 
 .tasks a, .main-notes a {
@@ -165,19 +166,36 @@ input.header-search {
 }
 
 .next-button {
-    margin-left: -12px;
-    margin-right: -12px;
+    /*margin-left: -12px;
+    margin-right: -12px;*/
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+
+
 }
 
 .next-button button {
-    width: 100%;
+   /* width: 111px;
+    height: 18px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+
+display: flex;
+align-items: center;
+text-align: center;*/
+
+    /*width: 60%;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 600;*/
     background: rgba(236, 247, 251, 1);
     border: 1px solid #ced4da;
     border-radius: 8px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .next-button button:hover {
@@ -190,16 +208,10 @@ input.header-search {
     align-items:center;
 }
 
-.collapse-button {
-    float: left;
-    padding-top: 10px;
-}
-
 /* стили страницы заметок */
 
 .note_date2 {
     font-size: 12px;
-    margin-right: 15px;
 }
 
 .note-title {

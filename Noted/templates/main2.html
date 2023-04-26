@@ -110,9 +110,9 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                            <div class="next-button">
-                            <button type="button" class="btn btn-primary"><a href="{% url 'date_notes' next_date %}">На следующий день</a></button>
-                            </div>
+                        </div>
+                        <div class="next-button sticky-bottom">
+                            <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="{% url 'tasks' %}">Создать задачу</a></button>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
@@ -121,7 +121,7 @@
                         {% for note in notes %}
                             <div class="row note-block">
                                 <div class="row">
-                                    <div class="col-10">
+                                    <div class="col-10 text-break">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
@@ -129,8 +129,8 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-start">
-                                    <div class="col-10">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatewords:3 }}</a>
+                                    <div class="col-10 text-break">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-1 ms-auto">
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
@@ -140,6 +140,9 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        </div>
+                        <div class="next-button sticky-bottom">
+                            <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="{% url 'notes' %}">Создать заметку</a></button>
                         </div>
                     </div>
                 </div>

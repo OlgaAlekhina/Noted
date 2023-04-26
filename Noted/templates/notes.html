@@ -45,9 +45,9 @@
                         {% for note in notes %}
                             <div class="row note-block">
                                 <a href="{% url 'note_details' note.id %}">
-                                    <div class="col-9">
+                                    <div class="col-9 text-break">
                                         <h6><b>{{ note.note_title }}</b></h6>
-                                        {{ note.note_text | truncatewords:10 }}
+                                        {{ note.note_text | truncatechars:25 }}
                                     </div>
                                 </a>
                                 <div class="col-3 ms-auto note_date2">
