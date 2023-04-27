@@ -7,6 +7,7 @@ class Task(models.Model):
     task_author = models.ForeignKey(User, on_delete=models.CASCADE)
     task_date = models.DateField()
     add_at = models.DateTimeField(blank=True)
+    task_time = models.TimeField(blank=True, null=True)
     task_priority = models.BooleanField(default=False)
     task_deleted = models.BooleanField(default=False)
     task_trash = models.BooleanField(default=False)
@@ -25,6 +26,7 @@ class Note(models.Model):
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_trash = models.BooleanField(default=False)
     note_file = models.FileField(null=True, blank=True, upload_to='documents')
+    note_pin = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.note_title}'
@@ -35,8 +37,8 @@ class Note(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='/avatars/user_male_circle_icon.png',
-                               upload_to='avatars')
+    avatar = models.ImageField(default='/avatars/user_male_circle_icon.png', upload_to='avatars')
+    name = models.CharField(max_length=20, default='Username')
 
     def __str__(self):
         return self.user.username
