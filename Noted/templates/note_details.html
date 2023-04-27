@@ -16,7 +16,7 @@
                 <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
                     <div class="ava">
                         <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
-                        <span class="username">{{ request.user }}</span>
+                        <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
                     <div class="input-group dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">

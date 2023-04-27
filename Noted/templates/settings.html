@@ -14,7 +14,7 @@
                 <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
                     <div class="ava">
                         <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
-                        <span class="username">{{ request.user }}</span>
+                        <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
                     <div class="input-group dropdown">
                         <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
@@ -63,7 +63,7 @@
                         {% csrf_token %}
                         <div>
                             <label class="small mb-1">Ваше имя:</label>
-                                {{ user_form.username }}
+                                {{ profile_form.name }}
                         </div>
                         <div class="mail-field" style="margin-top: 20px;">
                             <label class="small mb-1">Ваш Email:</label>
@@ -72,9 +72,6 @@
                         <div style="margin-top: 40px;">
                             <p style="margin-bottom: 3px;"><label class="small">Сменить аватарку:</label></p>
                             {{ profile_form.avatar }}
-                        </div>
-                        <div style="margin-top: 40px;">
-                            <button class="btn btn-light"><a style="text-decoration: none; color: black;" href="{% url 'change_password' %}">Если хотите сменить пароль, нажмите здесь</a></button>
                         </div>
                         <div style="margin-top: 40px;">
                             <button type="submit" class="btn btn-dark btn-lg" style="font-family: 'Didact Gothic', sans-serif;">Сохранить изменения</button>

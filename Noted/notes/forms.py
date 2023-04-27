@@ -18,7 +18,6 @@ class TaskForm(ModelForm):
 
 # форма для редактирования данных пользователя
 class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
@@ -28,14 +27,15 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email', ]
 
 
 # форма для редактирования аватара
 class UpdateProfileForm(forms.ModelForm):
+    name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
         model = UserProfile
-        fields = ['avatar', ]
+        fields = ['avatar', 'name']
 

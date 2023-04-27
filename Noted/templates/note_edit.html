@@ -16,7 +16,7 @@
                 <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
                     <div class="ava">
                         <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
-                        <span class="username">{{ request.user }}</span>
+                        <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
                     <div class="calendar-wrapper" style="margin-top: 170px;">
                         <button id="btnPrev" type="button" style="margin-top: 15px;"></button>

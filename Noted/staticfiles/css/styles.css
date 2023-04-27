@@ -1,6 +1,6 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background: #E0E0E0;
+    font-family: 'Roboto', sans-serif !important;
+    background: #E0E0E0 !important;
 }
 
 /* убрать голубую обводку элементов форм */
@@ -352,6 +352,8 @@ td.not-current a {
 
 .ava {
     margin-bottom: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
     padding: 0px 10px;
 }
 
