@@ -5,14 +5,14 @@ body {
 
 /* убрать голубую обводку элементов форм */
 .form-control:focus, .btn:focus, button:focus {
-  border-color: inherit;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  border-color: inherit !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 /* Убрать уголок растяжения текстового поля */
 textarea {
-    resize: none;
+    resize: none !important;
 }
 
 /* стили верхней панели */
@@ -206,19 +206,23 @@ input.header-search {
 }
 
 .note-title {
-    border: 0;
-    background: none;
-    font-size: 27px;
-    font-weight: 600;
-    width: 70%;
-    margin-left: 25px;
+    border: 0 !important;
+    background: none !important;
+    font-size: 27px !important;
+    font-weight: 600 !important;
+    width: 95% !important;
+    margin-left: 25px !important;
+}
+
+.note-title:focus, .note-text:focus {
+    background: #fff !important;
 }
 
 .note-text {
-    border: 0;
-    background: none;
-    width: 80%;
-    margin-left: 25px;
+    border: 0  !important;
+    background:  none !important;
+    width: 95%  !important;
+    margin-left:  25px !important;
 }
 
 /* стили страницы с одной заметкой */

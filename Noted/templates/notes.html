@@ -12,7 +12,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body sidebar" style="display: block; padding: 0px;">
-                    <div class="ava">
+                    <div class="ava text-break">
                         <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
                         <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
@@ -63,16 +63,14 @@
                         {% csrf_token %}
                             <div class="mb-3">
                                 <input required type="text" class="form-control note-title" name="note_title" placeholder="Название">
-                                <button type="submit" class="btn btn-secondary" style="float: right;">
-                                    <i class="fa-solid fa-floppy-disk"></i>
-                                </button>
                             </div>
                             <div>
                                 <textarea class="form-control note-text" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
-                            <div class="mb-3" style="margin-top: 40px;">
+                            <div class="mb-3 mt-4 w-50">
                               <input class="form-control" type="file" name="note_file">
                             </div>
+                            <input type="submit" class="btn btn-secondary" id="task_submit" onclick="submitbtn()"></input>
                         </form>
                     </div>
                 </div>
