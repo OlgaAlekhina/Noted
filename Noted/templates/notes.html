@@ -67,10 +67,12 @@
                             <div>
                                 <textarea class="form-control note-text" rows="25" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
-                            <div class="mb-3 mt-4 w-50">
-                              <input class="form-control" type="file" name="note_file">
+                            <div class="mb-3 mt-4">
+                              <input class="form-control note-file" type="file" name="note_file">
                             </div>
-                            <input type="submit" class="btn btn-secondary" id="task_submit" onclick="submitbtn()"></input>
+                            <div class="save-but">
+                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить заметку</button>
+                            </div>
                         </form>
                     </div>
                 </div>
