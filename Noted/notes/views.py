@@ -7,13 +7,14 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login
+from django.utils import timezone
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 @login_required
 def main_page(request):
     user = request.user
-    today = datetime.date.today()
+    today = datetime.datetime.today().astimezone()
     next_date = today + datetime.timedelta(days=1)
     tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
@@ -55,7 +56,7 @@ def all_notes(request):
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
-        add_at = datetime.datetime.now()
+        add_at = timezone.now()
         try:
             note_file = request.FILES['note_file']
             Note.objects.create(note_title=note_title, note_text=note_text, note_author=user,
@@ -86,7 +87,7 @@ def note_edit(request, pk):
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
         file_delete = request.POST.get('file_delete', False)
-        add_at = datetime.datetime.now()
+        add_at = timezone.now()
         if file_delete == 'on':
             Note.objects.filter(id=pk).update(note_file=None, note_trash=False)
         try:
@@ -110,7 +111,7 @@ def note_edit(request, pk):
 @login_required
 def all_tasks(request, pk=None):
     user = request.user
-    today = datetime.date.today()
+    today = datetime.datetime.today().astimezone()
     tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
     tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
@@ -126,7 +127,7 @@ def all_tasks(request, pk=None):
         task_title = request.POST['task_title']
         task_date = request.POST['task_date']
         task_priority = request.POST.get('task_priority', False)
-        add_at = datetime.datetime.now()
+        add_at = timezone.now()
         if task_priority == 'on':
             task_priority = True
         try:

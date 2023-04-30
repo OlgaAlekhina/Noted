@@ -186,9 +186,10 @@ input.header-search {
 
 }
 
-.next-button button:hover {
+.next-button button:hover, .save-but button:hover {
     background: rgba(236, 247, 251, 1);
     border: 1px solid #ced4da;
+    color: #0277bd;
 }
 
 .check-box {
@@ -223,6 +224,27 @@ input.header-search {
     background:  none !important;
     width: 95%  !important;
     margin-left:  25px !important;
+}
+
+.note-file {
+    width: 60%  !important;
+    margin-left:  25px !important;
+}
+
+.save-but{
+    margin-left: 25px;
+}
+
+.save-but button{
+    font-weight: 600;
+    color: black;
+    background: rgba(236, 247, 251, 1);
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
+                0px 2px 4px rgba(0,0,0,0.1),
+                0px 4px 8px rgba(0,0,0,0.1),
+                0px 8px 16px rgba(0,0,0,0.1);
 }
 
 /* стили страницы с одной заметкой */

@@ -5,9 +5,8 @@ from django.core.exceptions import ValidationError
 import random
 
 
-# форма для регистрации пользователя
 class NewUserForm(UserCreationForm):
-	username = forms.CharField(label='', widget=forms.HiddenInput(attrs={'value': '12345'}))
+	username = forms.CharField(label='', widget=forms.HiddenInput (attrs={'value': '123455'}))
 	email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': 'form-control my-inp', 'placeholder': 'E-Mail'}))
 	password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control my-inp', 'placeholder': 'Пароль'}))
 	password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control my-inp', 'placeholder': 'Повторите пароль'}))
@@ -15,10 +14,6 @@ class NewUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ('username', 'email', 'password1', 'password2')
-
-	def clean_username(self):
-		username = f'{random.randrange(10000000)}'
-		return username
 
 	def clean_email(self):
 		email = self.cleaned_data['email'].lower()
@@ -37,11 +32,16 @@ class NewUserForm(UserCreationForm):
 		return password2
 
 	def save(self, commit=True):
+		username = f'{random.randrange(10000000000)}'
 		user = User.objects.create_user(
-			self.cleaned_data['username'],
+			username,
 			self.cleaned_data['email'],
 			self.cleaned_data['password1']
 		)
 		return user
+
+
+
+
 
 

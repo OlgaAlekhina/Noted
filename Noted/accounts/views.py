@@ -9,7 +9,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import user_token
-import random
 
 
 # выводит форму для регистрации нового пользователя
@@ -19,7 +18,7 @@ def register_request(request):
 		if f.is_valid():
 			user = f.save()
 			login(request, user)
-		return redirect('main')
+			return redirect('main')
 
 	else:
 		f = NewUserForm()
