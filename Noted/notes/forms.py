@@ -7,9 +7,10 @@ from .validators import EmailValidator
 
 # форма для добавления задачи
 class TaskForm(ModelForm):
-    task_title = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите текст'}))
-    task_date = forms.DateField(label='Когда сделать:', widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'date-widget'}))
-    task_priority = forms.BooleanField(label='Сделать приоритетной', required=False, widget=forms.widgets.CheckboxInput(attrs={'class': 'check-priority'}))
+    task_title = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Добавьте название...'}))
+    task_date = forms.DateField(label='', widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'date-widget',
+                                                'style': 'border: 1px solid #ced4da; border-radius: 0.375rem; padding: 3px 8px; text-transform: uppercase;'}))
+    task_priority = forms.BooleanField(label='Приоритет', required=False, widget=forms.widgets.CheckboxInput(attrs={'class': 'check-priority'}))
 
     class Meta:
         model = Task
