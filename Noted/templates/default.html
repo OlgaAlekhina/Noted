@@ -63,11 +63,19 @@ window.onload = function() {
         document.getElementById("offcanvasResponsive").classList.add('offcanvas-end');
     }
 }
-window.onresize = function() {
-    if (window.innerWidth < 992) {
-        document.getElementById("offcanvasResponsive").classList.add('offcanvas-end');
-    }
-}
+</script>
+
+<script type="text/javascript">
+    window.addEventListener('resize', function(event) {
+        if (window.innerWidth < 992) {
+            document.getElementById("offcanvasResponsive").classList.add('offcanvas-end');
+            }
+        else {
+            document.getElementById("offcanvasResponsive").classList.remove('offcanvas-end');
+            document.getElementById("offcanvasResponsive").style.visibility= "visible";
+            }
+}, true);
+
 </script>
 <script>
 function submitbtn() {
