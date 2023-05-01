@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+
+{% block content %}
+<script>
+	var today = new Date();
+    var day = today.getDate();
+	var d = (day<10 ? '0' : '') + day
+	var month = today.getMonth();
+	var mon = month+1
+	var m = (mon<10 ? '0' : '') + mon
+	var year = today.getFullYear();
+	var url = '/main/' + d + '-' + m + '-' + year
+	window.location.replace(url)
+</script>
+
+{% endblock content %}

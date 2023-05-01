@@ -50,6 +50,7 @@
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
+
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
                         <div class="col-11">
                             {% for task in tasks_important %}
@@ -62,7 +63,7 @@
                                     <div class="col-10 row note-block">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
@@ -85,7 +86,7 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
@@ -158,6 +159,9 @@
     document.getElementById('tasks-notes').style.backgroundPosition = "center";
     document.getElementById('tasks-notes').style.backgroundSize = "cover";
 </script>
+
+
+
 
 <script src="/static/js/calendarWidget.js"></script>
 

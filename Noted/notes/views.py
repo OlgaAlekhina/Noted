@@ -13,21 +13,19 @@ from django.utils import timezone
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 @login_required
 def main_page(request):
-    user = request.user
-    today = datetime.datetime.today().astimezone()
-    next_date = today + datetime.timedelta(days=1)
-    tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
-                                       task_trash=False).order_by('-add_at')
-    tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
-                                          task_trash=False).order_by('-add_at')
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
-    month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-                  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-    today = f'{today.day} {month_list[int(today.month) - 1]}'
-    return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
-                                                  'tasks_important': tasks_important, 'notes': notes, 'date': today,
-                                                  'next_date': next_date})
+    # user = request.user
+    # today = datetime.datetime.today()
+    # next_date = today + datetime.timedelta(days=1)
+    # tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
+    #                                    task_trash=False).order_by('-add_at')
+    # tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    # tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
+    #                                       task_trash=False).order_by('-add_at')
+    # notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
+    # month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    #               'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+    # today = f'{today.day} {month_list[int(today.month) - 1]}'
+    return render(request, 'main.html', context={})
 
 
 # выводит главную страницу со всеми заметками и задачами на конкретную дату
@@ -107,15 +105,18 @@ def note_edit(request, pk):
         return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
 
 
+@login_required
+def tasks(request):
+    return render(request, 'tasks_base.html', context={})
+
 # выводит страницу с задачами на текущую дату и формой добавления новой либо формой редактирования старой
 @login_required
-def all_tasks(request, pk=None):
+def all_tasks(request, date, pk=None):
     user = request.user
-    today = datetime.datetime.today().astimezone()
-    tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
+    tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
-    tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
+    tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
+    tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
     try:
         task = Task.objects.get(id=pk)

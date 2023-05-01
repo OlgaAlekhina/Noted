@@ -52,7 +52,7 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
@@ -75,7 +75,7 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
+                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
@@ -93,8 +93,8 @@
                                         <div class="row col-10 note-block">
                                             <div class="col-11 text-break" style="color: grey;">
                                                 <h6><s>{{ task.task_title }}</s></h6>
-                                                <a style="padding-right: 10px;" href="{% url 'task_edit' task.id %}">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
+                                                    <img src="/static/images/icons/pen_icon.svg" />
                                                 </a>
                                                 <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
                                                     <img src="/static/images/icons/trash_icon.svg" />
