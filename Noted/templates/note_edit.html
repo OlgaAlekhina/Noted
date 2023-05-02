@@ -39,9 +39,6 @@
             <div class="col" id="tasks-notes">
                 <div class="row">
                     <div class="col-12 col-lg-4 order-last order-lg-first tasks">
-                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
-                            <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
-                        </button>
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
                         <div class="col-10 offset-1">
                         {% for note in notes %}
@@ -60,6 +57,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-8 order-first order-lg-last notes" style="background: rgba(255, 255, 255, 0.5);">
+                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
+                            <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
+                        </button>
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Изменить заметку</h3>
                         <form method="post" action="{% url 'note_edit' note.id %}" class="form-area" enctype='multipart/form-data'>
                         {% csrf_token %}
