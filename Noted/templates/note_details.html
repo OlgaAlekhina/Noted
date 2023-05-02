@@ -79,7 +79,7 @@
                             {{ note.note_text|linebreaks}}
                         </div>
                         {% if note.note_file %}
-                            <div class="upload-file">
+                            <div class="upload-file" style="margin-left: 25px;">
                                 <hr>
                                 <a href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
                             </div>

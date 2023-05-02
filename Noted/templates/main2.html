@@ -129,11 +129,14 @@
                                         {{ note.add_at | date:"j.m.Y" }}
                                     </div>
                                 </div>
-                                <div class="row align-items-start">
+                                <div class="row">
                                     <div class="col-10 text-break">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
-                                    <div class="col-1 ms-auto">
+                                    <div class="col-2 text-end" style="display: flex;">
+                                        <a  style="padding-right: 15px;" href="#">
+                                            <img width="17px" height="17px" src="/static/images/icons/pin.png" />
+                                        </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
                                             <img src="/static/images/icons/trash_icon.svg" />
                                         </a>

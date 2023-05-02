@@ -48,6 +48,9 @@ def login_user(request):
 		if user is not None:
 			login(request, user)
 			messages.success(request, "Вы авторизовались в приложении Noted.")
+			if not request.POST.get('remember_me', None):
+				request.session.set_expiry(0)
+				print("session should be expired after closing browser")
 			return redirect('main')
 		else:
 			messages.error(request, "В процессе авторизации произошла ошибка. Попробуйте еще раз.")

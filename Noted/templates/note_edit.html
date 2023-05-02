@@ -65,15 +65,12 @@
                         {% csrf_token %}
                             <div class="mb-3">
                                 <input type="text" class="form-control note-title" required name="note_title" value="{{ note.note_title }}">
-                                <button type="submit" class="btn btn-secondary" style="float: right;">
-                                    <i class="fa-solid fa-floppy-disk"></i>
-                                </button>
                             </div>
                             <div>
                                 <textarea class="form-control note-text" rows="25" name="note_text">{{ note.note_text }}</textarea>
                             </div>
-                            {% if note.note_file %}
-                                <div class="mb-3 upload-file">
+                            <div class="mb-3 upload-file" style="margin-left: 25px;">
+                                {% if note.note_file %}
                                     <hr>
                                     <a href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
                                     <div id="del-checkbox">
@@ -81,9 +78,12 @@
                                         <input type="checkbox" id="delete-file" name="file_delete"/>
                                     </div>
                                     <label for="note_file" class="small mb-1">Изменить файл:</label>
-                            {% endif %}
-                                    <input class="form-control" type="file" name="note_file" id="note_file">
-                                </div>
+                                {% endif %}
+                                <input class="form-control" type="file" name="note_file" id="note_file" style="width: 60%;">
+                            </div>
+                            <div class="save-but mb-3">
+                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить заметку</button>
+                            </div>
                         </form>
                     </div>
                 </div>
