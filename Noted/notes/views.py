@@ -33,6 +33,7 @@ def main_page(request):
 def main_page_date(request, date):
     user = request.user
     next_date = date + datetime.timedelta(days=1)
+    prev_date = date - datetime.timedelta(days=1)
     tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
                                        task_trash=False).order_by('-add_at')
     tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
@@ -44,7 +45,7 @@ def main_page_date(request, date):
     date = f'{date.day} {month_list[int(date.month) - 1]}'
     return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                   'tasks_important': tasks_important, 'notes': notes, 'date': date,
-                                                  'next_date': next_date})
+                                                  'next_date': next_date, 'prev_date': prev_date})
 
 
 # выводит страницу со всеми существующими заметками и формой добавления новой

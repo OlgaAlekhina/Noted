@@ -50,8 +50,9 @@
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
-
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи на {{ date }}</h3>
+                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">
+                            <a href="{% url 'date_notes' prev_date %}"><span style="padding-right: 30px;"><i class="fa-solid fa-arrow-left"></i></span></a>Задачи на {{ date }}<a href="{% url 'date_notes' next_date %}"><span style="padding-left: 30px;"><i class="fa-sharp fa-solid fa-arrow-right"></i></span></a>
+                        </h3>
                         <div class="col-11">
                             {% for task in tasks_important %}
                                 <div class="row">
