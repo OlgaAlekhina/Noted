@@ -113,9 +113,6 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="next-button">
-                            <button type="button" id="task-but"><a href="{% url 'tasks' %}">Создать задачу</a></button>
-                        </div>
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
@@ -146,7 +143,14 @@
                             </div>
                         {% endfor %}
                         </div>
-                        <div class="next-button">
+                    </div>
+                    <div class="col-6 but-div d-flex align-items-center">
+                        <div class="next-button m-auto"style="width: 60%;">
+                            <button type="button" id="task-but"><a href="{% url 'tasks' %}">Создать задачу</a></button>
+                        </div>
+                    </div>
+                    <div class="col-6 but-div d-flex align-items-center" style="background: rgba(255, 255, 255, 0.5);">
+                        <div class="next-button m-auto">
                             <button type="button" id="note-but"><a href="{% url 'notes' %}">Создать заметку</a></button>
                         </div>
                     </div>
@@ -163,9 +167,6 @@
     document.getElementById('tasks-notes').style.backgroundPosition = "center";
     document.getElementById('tasks-notes').style.backgroundSize = "cover";
 </script>
-
-
-
 
 <script src="/static/js/calendarWidget.js"></script>
 
