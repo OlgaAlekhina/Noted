@@ -12,3 +12,10 @@ class EmailValidator:
             user_mail = User.objects.filter(email=email).first()
             if user_mail != self.user:
                 raise ValidationError("Пользователь с таким email уже зарегистрирован")
+
+
+# проверка размера закачанной аватарки
+def avatar_validator(file):
+    limit = 512000
+    if file.size > limit:
+        raise ValidationError('Размер файла не должен превышать 500 Кб.')
