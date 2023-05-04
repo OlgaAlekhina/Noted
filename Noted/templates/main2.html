@@ -117,6 +117,31 @@
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
                         <div class="col-10 offset-1 main-notes">
+                        {% for note in notes_pin %}
+                            <div class="row note-block">
+                                <div class="row">
+                                    <div class="col-10 text-break">
+                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
+                                    </div>
+                                    <div class="col-2 ms-auto note_date">
+                                        {{ note.add_at | date:"j.m.Y" }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10 text-break">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                    </div>
+                                    <div class="col-2 text-end" style="display: flex;">
+                                        <a style="padding-right: 15px;" href="{% url 'note_unpin' note.id %}?next={{ request.path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pin_red.svg" />
+                                        </a>
+                                        <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
+                                            <img src="/static/images/icons/trash_icon.svg" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                         {% for note in notes %}
                             <div class="row note-block">
                                 <div class="row">
@@ -132,8 +157,8 @@
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-2 text-end" style="display: flex;">
-                                        <a  style="padding-right: 15px;" href="#">
-                                            <img width="17px" height="17px" src="/static/images/icons/pin.png" />
+                                        <a  style="padding-right: 15px;" href="{% url 'note_pin' note.id %}?next={{ request.path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pin_black.svg" />
                                         </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
                                             <img src="/static/images/icons/trash_icon.svg" />

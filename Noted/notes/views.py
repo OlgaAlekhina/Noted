@@ -39,13 +39,14 @@ def main_page_date(request, date):
     tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
     tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
+    notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
+    notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
     date = f'{date.day} {month_list[int(date.month) - 1]}'
     return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                   'tasks_important': tasks_important, 'notes': notes, 'date': date,
-                                                  'next_date': next_date, 'prev_date': prev_date})
+                                                  'next_date': next_date, 'prev_date': prev_date, 'notes_pin': notes_pin})
 
 
 # выводит страницу со всеми существующими заметками и формой добавления новой
@@ -264,6 +265,22 @@ def search(request):
                                                    'task_search_done': task_search_done})
 
 
+# функция для запинивания задачи
+@login_required
+def note_pin(request, pk):
+    add_at = datetime.datetime.now()
+    Note.objects.filter(id=pk).update(note_pin=True, add_at=add_at)
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
+
+
+# функция для распинивания задачи
+@login_required
+def note_unpin(request, pk):
+    add_at = datetime.datetime.now()
+    Note.objects.filter(id=pk).update(note_pin=False, add_at=add_at)
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
 
 
 
