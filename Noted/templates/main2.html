@@ -26,7 +26,7 @@
                         </ul>
                         <button type="button" class="btn btn-primary" style="background: #f0f8ff; color: black; border: 1px solid #ced4da; width: 80%; text-align: left;">Создать</button>
                     </div>
-                    <div class="calendar-wrapper" style="margin-top: 170px;">
+                    <div class="calendar-wrapper" style="margin-top: 140px;">
                         <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
                         <h6 id="headCal"></h6>
                         <button id="btnNext" type="button"></button>
@@ -46,7 +46,7 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-12 col-lg-6 tasks">
+                    <div class="col-12 col-lg-6 tasks" style="height: 732px;">
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
@@ -114,7 +114,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5); height: 732px;">
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
                         <div class="col-10 offset-1 main-notes">
                         {% for note in notes_pin %}

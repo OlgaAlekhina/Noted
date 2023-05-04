@@ -36,7 +36,7 @@
                     </div>
                     <div class="nav-list">
                         <ul style="list-style-type: none;">
-                            <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
+                            <li><a href="{% url 'main' %}">Главная</a></li>
                             <li class="current_page"><a href="{% url 'notes' %}">Заметки</a></li>
                             <li><a href="{% url 'tasks' %}">Задачи</a></li>
                             <li><a href="{% url 'trash' %}">Корзина</a></li>
@@ -48,7 +48,7 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-12 col-lg-4 order-last order-lg-first tasks">
+                    <div class="col-12 col-lg-5 order-last order-lg-first tasks">
                         <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
                         <div class="col-10 offset-1">
                         {% for note in notes %}
@@ -66,7 +66,7 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-8 order-first order-lg-last note-details text-break" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-7 order-first order-lg-last note-details text-break" style="background: rgba(255, 255, 255, 0.5);">
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>

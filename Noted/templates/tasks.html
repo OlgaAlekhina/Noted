@@ -16,7 +16,7 @@
                         <img src="{{ request.user.userprofile.avatar.url }}" alt="Avatar" width="80" height="80" class="rounded-circle">
                         <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
-                    <div class="calendar-wrapper" style="margin-top: 170px;">
+                    <div class="calendar-wrapper" style="margin-top: 140px;">
                         <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
                         <h6 id="headCal"></h6>
                         <button id="btnNext" type="button"></button>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="nav-list">
                         <ul style="list-style-type: none;">
-                            <li style="padding-top: 0px;"><a href="{% url 'main' %}">Главная</a></li>
+                            <li><a href="{% url 'main' %}">Главная</a></li>
                             <li><a href="{% url 'notes' %}">Заметки</a></li>
                             <li class="current_page"><a href="{% url 'tasks' %}">Задачи</a></li>
                             <li><a href="{% url 'trash' %}">Корзина</a></li>
