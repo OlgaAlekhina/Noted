@@ -49,7 +49,7 @@ input.header-search {
 /* стили страниц авторизации и регистрации */
 
 .main-area {
-    height: 1000px;
+    height: 832px;
     border: 0.5px solid #b1b1b1;
 }
 
@@ -126,7 +126,7 @@ input.header-search {
 .tasks, .notes {
     border: 0.5px solid #b1b1b1;
     border-bottom: none;
-    height: 1000px;
+    height: 832px;
     overflow-y: scroll;
 }
 
@@ -271,7 +271,7 @@ input.header-search {
 /* стили страницы с одной заметкой */
 
 .note-details {
-    height: 1000px;
+    height: 832px;
     overflow-y: scroll;
 }
 
@@ -466,13 +466,18 @@ td.not-current a {
 @media screen and (min-width: 1601px){
     .main-area {
         background: url(/static/images/bg_sm-1.jpg) no-repeat fixed;
-        background-size: contain;
+        background-size: cover;
     }
 }
 
 @media screen and (max-width: 992px){
     .tasks, .notes {
         height: auto;
+    }
+
+    .search-wrapper {
+        padding-left: 100px !important;
+        padding-right: 0 !important;
     }
 
     .but-div {
