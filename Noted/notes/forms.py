@@ -34,7 +34,7 @@ class UpdateUserForm(forms.ModelForm):
 # форма для редактирования аватара
 class UpdateProfileForm(forms.ModelForm):
     name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    avatar = forms.ImageField(validators=[avatar_validator], widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
         model = UserProfile
