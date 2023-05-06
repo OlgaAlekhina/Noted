@@ -19,12 +19,9 @@ textarea {
 
 .header-area {
     height: 70px;
-    border: 0.5px solid #b1b1b1;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
-                0px 2px 4px rgba(0,0,0,0.1),
-                0px 4px 8px rgba(0,0,0,0.1),
-                0px 8px 16px rgba(0,0,0,0.1);
+    /*border: 0.5px solid #b1b1b1;*/
     background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     font-family: 'Didact Gothic', sans-serif;
 }
 
@@ -50,7 +47,7 @@ input.header-search {
 
 .main-area {
     height: 832px;
-    border: 0.5px solid #b1b1b1;
+    /*border: 0.5px solid #b1b1b1;*/
 }
 
 .sm-but:hover {
@@ -114,17 +111,14 @@ input.header-search {
 /* стили главной страницы */
 
 .main-main {
-    border: 0.5px solid #b1b1b1;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
-                0px 2px 4px rgba(0,0,0,0.1),
-                0px 4px 8px rgba(0,0,0,0.1),
-                0px 8px 16px rgba(0,0,0,0.1);
+    /*border: 0.5px solid #b1b1b1;*/
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     background: url(/static/images/bg-2.jpg) no-repeat center fixed;
     background-size: cover;
 }
 
 .tasks, .notes {
-    border: 0.5px solid #b1b1b1;
+    /*border: 0.5px solid #b1b1b1;*/
     border-bottom: none;
     height: 832px;
     overflow-y: scroll;
@@ -217,8 +211,8 @@ input.header-search {
 
 .but-div {
      height: 100px;
-     border: 0.5px solid #b1b1b1;
-     border-top: none;
+     /*border: 0.5px solid #b1b1b1;
+     border-top: none;*/
 }
 
 /* стили страницы заметок */
@@ -399,6 +393,7 @@ td.not-current a {
 .sidebar {
     background-color: rgba(126, 159, 164, 0.8) !important;
     padding: 0px !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
 .ava {
