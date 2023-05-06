@@ -68,6 +68,9 @@
                             <div>
                                 <textarea class="form-control note-text" rows="20" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
+                            <div>
+                                <input type="hidden" id="note_add" name="add_at" value="CurrentTimedate">
+                            </div>
                             <div class="mb-3 mt-4">
                               <input class="form-control note-file" type="file" name="note_file" id="note-file">
                             </div>
@@ -92,6 +95,12 @@ function validateSize(form) {
         return false;
     }
 }
+</script>
+
+<script>
+    var d = new Date();
+    js_timestamp = Date.parse(d) / 1000;
+    document.getElementById("note_add").value = js_timestamp
 </script>
 
 <script src="/static/js/calendarWidget.js"></script>

@@ -47,6 +47,8 @@ input.header-search {
 
 .main-area {
     height: 832px;
+    background-image: url(/static/images/2023.jpg);
+    background-size: cover;
     /*border: 0.5px solid #b1b1b1;*/
 }
 
@@ -455,7 +457,7 @@ td.not-current a {
 
 /* медиа запросы */
 
-@media (max-width: 1600px) {
+/*@media (max-width: 1600px) {
     .main-area {
         background: url(/static/images/bg-1_mobile.jpg) no-repeat fixed;
         background-size: cover;
@@ -464,10 +466,10 @@ td.not-current a {
 
 @media screen and (min-width: 1601px){
     .main-area {
-        background: url(/static/images/bg_sm-1.jpg) no-repeat fixed;
+        background: url(/static/images/2023.jpg) no-repeat fixed;
         background-size: cover;
     }
-}
+}*/
 
 @media screen and (max-width: 992px){
     .tasks, .notes {
@@ -483,6 +485,11 @@ td.not-current a {
         position: absolute;
         visibility: hidden;
         display: none;
+    }
+
+    .main-area {
+        background: url(/static/images/bg-1_mobile.jpg) no-repeat fixed;
+        background-size: cover;
     }
 }
 
