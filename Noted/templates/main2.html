@@ -1,5 +1,5 @@
 {% extends "default.html" %}
-
+{% load tz %}
 {% block title %}
 Главная страница
 {% endblock title %}
@@ -124,7 +124,7 @@
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
-                                        {{ note.add_at | date:"j.m.Y" }}
+                                        {{ note.add_at | localtime | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row">
