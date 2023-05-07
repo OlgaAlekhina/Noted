@@ -56,15 +56,15 @@ def all_notes(request):
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
-        add_at = int(request.POST['add_at'])
-        add_at = datetime.datetime.fromtimestamp(add_at)
+        note_date = request.POST['note_date']
+        add_at = datetime.datetime.now()
         try:
             note_file = request.FILES['note_file']
             Note.objects.create(note_title=note_title, note_text=note_text, note_author=user,
-                                note_file=note_file, add_at=add_at)
+                                note_file=note_file, add_at=add_at, note_date=note_date)
         except:
             Note.objects.create(note_title=note_title, note_text=note_text, note_author=user,
-                                add_at=add_at)
+                                add_at=add_at, note_date=note_date)
         return redirect('notes')
     else:
         notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')

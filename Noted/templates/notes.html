@@ -69,7 +69,7 @@
                                 <textarea class="form-control note-text" rows="20" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
                             <div>
-                                <input type="hidden" id="note_add" name="add_at" value="CurrentTimedate">
+                                <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
                             </div>
                             <div class="mb-3 mt-4">
                               <input class="form-control note-file" type="file" name="note_file" id="note-file">
@@ -98,9 +98,15 @@ function validateSize(form) {
 </script>
 
 <script>
-    var d = new Date();
-    js_timestamp = Date.parse(d) / 1000;
-    document.getElementById("note_add").value = js_timestamp
+    var today = new Date();
+    var day = today.getDate();
+	var d = (day<10 ? '0' : '') + day
+	var month = today.getMonth();
+	var mon = month+1
+	var m = (mon<10 ? '0' : '') + mon
+	var y = today.getFullYear();
+	var date = y + '-' + m + '-' + d
+    document.getElementById("note_date").value = date;
 </script>
 
 <script src="/static/js/calendarWidget.js"></script>

@@ -22,6 +22,7 @@ class Task(models.Model):
 class Note(models.Model):
     note_title = models.CharField(max_length=250)
     note_text = models.TextField()
+    note_date = models.DateField(blank=True, null=True)
     add_at = models.DateTimeField(blank=True)
     note_author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_trash = models.BooleanField(default=False)
