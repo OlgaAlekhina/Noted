@@ -122,5 +122,5 @@ def password_reset_confirm(request, uidb64, token):
 	return redirect("login")
 
 
-def redirect_login(request):
-	return redirect("login")
+def enter_page(request):
+	return render(request, 'enter_page.html', {})

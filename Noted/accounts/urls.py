@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import register_request, login_user, reset_password_request, password_reset_confirm, redirect_login
+from .views import register_request, login_user, reset_password_request, password_reset_confirm, enter_page
 from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-    path('', redirect_login),
+    path('', enter_page),
     path('signup/', register_request, name='signup'),
     path('login/', login_user, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

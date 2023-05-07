@@ -15,6 +15,44 @@ textarea {
     resize: none !important;
 }
 
+/* стили страницы входа */
+
+.enter-main {
+    height: 902px;
+    background-image: url(/static/images/Welcome_screen.jpg);
+    background-size: cover;
+}
+
+.enter-head {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 35px;
+    line-height: 46px;
+    text-align: center;
+}
+
+.enter-desc {
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.plan-but {
+    margin-top: 30px;
+    font-size: 20px;
+    line-height: 22.44px;
+    display: flex;
+    justify-content: center;
+}
+
+.plan-but button {
+    background: rgba(126, 159, 164, 0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 13px 23px;
+    border: none;
+}
+
 /* стили верхней панели */
 
 .header-area {
@@ -85,7 +123,8 @@ input.header-search {
 
 .sm-but {
     text-align: center;
-    background-color: #282A25;
+    background-color: rgba(40, 42, 37, 0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     width: 100px;
     height: 40px;
     color: white;

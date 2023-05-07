@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/Noted_favicon.png' %}" type="image/pgn">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a5853bef6b.js" crossorigin="anonymous"></script>
+
+    <title>
+        Добро пожаловать в приложение Noted
+    </title>
+
+</head>
+<body>
+      <div class="container-xxl" style="padding-right: 0; padding-left: 0px;">
+          <div class="enter-main">
+              <div class="row align-items-center justify-content-between" style="height: 100px;">
+                  <div class="col-auto me-auto" style="margin-left: 20px;">
+                      <a href="{% url 'login' %}"><img src="/static/images/Noted_colour_full_RGB.png" alt="Logo" width="140" height="60"></a>
+                  </div>
+                  <div class="col-auto" style="margin-right: 30px;">
+                      <a href="{% url 'login' %}"><button class="btn sm-but">Войти</button></a>
+                  </div>
+              </div>
+              <div class="col-8 offset-2 col-lg-6 offset-lg-3" style="width: 49%;">
+                  <div class="enter-head">
+                      Начни планировать в Noted прямо сейчас и забудь о нехватке времени
+                  </div>
+                  <div class="enter-desc">
+                      Noted - это место, где ты можешь собирать информацию, записывать свои идеи и организовать любой контент в одной записной книжке.
+                  </div>
+                  <div class="plan-but">
+                      <a href="{% url 'login' %}"><button>Приступить к планированию</button></a>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+    <footer>
+        <div class="container-xxl" style="background: rgba(255, 255, 255, 0.8);
+                box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25); font-size: 15px; color: #282a25;">
+            <div style=" display: flex; flex-direction: column; align-items: center;">
+                <p class="text-center mb-0" style="line-height:32px;">Данное приложение разработано в рамках проекта <a href="#" style="color: #282a25;">Pineapple Practice</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
