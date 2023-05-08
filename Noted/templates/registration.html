@@ -15,16 +15,13 @@
                 {{ form.as_p }}
                 <div class="row">
                     <div class="col button-wrapper" style="margin: 10px 0px 10px; ">
-                        <button type="submit" class="btn lg-but" style="margin-right: auto; margin-left: auto;">Зарегистрироваться</button>
+                        <button type="submit" class="btn lg-but" style="margin-right: auto; margin-left: auto;" id="task_submit" onclick="submitbtn()">Зарегистрироваться</button>
                     </div>
                 </div>
              </form>
-            <div class="row" id="reg-res">
-                <div class="col-auto me-auto">
-                    <a href="{% url 'login' %}">Войти</a>
-                </div>
-                <div class="col-auto">
-                    <a href="{% url 'reset_password' %}">Забыли пароль?</a>
+            <div class="row" id="reg">
+                <div style=" display: flex; flex-direction: column; align-items: center;">
+                    <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></p>
                 </div>
             </div>
         </div>

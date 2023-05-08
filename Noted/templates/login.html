@@ -9,29 +9,25 @@
 <main>
     <div class="container-xxl main-area">
         <div class="col-8 offset-2 col-lg-4 offset-lg-4 form-block">
-
             <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif;">Авторизация</h2>
-
             <form method="post" action="{% url 'login' %}" class="form-area">
             {% csrf_token %}
-
                 <div class="mb-3">
                     <input type="email" class="form-control my-inp" name="email" placeholder="E-mail">
                 </div>
                 <div>
                     <input type="password" class="form-control my-inp" name="password" placeholder="Пароль">
                 </div>
-                <div class="row justify-content-evenly rem-but">
-                    <div class="col-4 mb-3 form-check" style="margin-top: 16px;">
+                <div class="row gx-0 rem-but">
+                    <div class="col-auto me-auto mb-3 form-check" style="margin-top: 16px;">
                         <input type="checkbox" name="remember_me" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Запомнить</label>
                     </div>
-                    <div class="col-4 button-wrapper" style="margin: 10px 0px 10px; ">
+                    <div class="col-auto button-wrapper" style="margin: 10px 0px 10px; ">
                     <button type="submit" class="btn sm-but">Войти</button>
                     </div>
                 </div>
             </form>
-
             <div class="row" id="reg-res">
                 <div class="col-auto me-auto">
                     <a href="{% url 'signup' %}">Регистрация</a>

@@ -103,6 +103,17 @@ input.header-search {
     justify-content: right;
 }
 
+#reg {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 17.58px;
+}
+
+#reg a {
+    color: #000000;
+}
+
 #reg-res {
     margin-top: 20px;
 }
@@ -128,12 +139,20 @@ input.header-search {
     width: 100px;
     height: 40px;
     color: white;
-    font-family: 'Didact Gothic', sans-serif;
+}
+
+.sm-but:focus, .lg-but:focus {
+    border: none;
 }
 
 .my-inp {
     height: 60px;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.my-inp:focus {
+    border: none;
 }
 
 .rem-but {
@@ -142,11 +161,11 @@ input.header-search {
 
 .lg-but {
     text-align: center;
-    background-color: #282A25;
-    width: 180px;
+    background-color: rgba(40, 42, 37, 0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    width: 220px;
     height: 40px;
     color: white;
-    font-family: 'Didact Gothic', sans-serif;
 }
 
 /* стили главной страницы */
