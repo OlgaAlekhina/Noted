@@ -74,7 +74,7 @@
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
-                                        {{ note.note_time | date:"j.m.Y" }}
+                                        {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row align-items-start">

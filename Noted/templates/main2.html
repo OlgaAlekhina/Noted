@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.8) !important;">
+            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.5) !important;">
                 <div class="offcanvas-header">
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
@@ -124,7 +124,7 @@
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
-                                        {{ note.add_at | localtime | date:"j.m.Y" }}
+                                        {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -132,7 +132,7 @@
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-2 text-end" style="display: flex;">
-                                        <a style="padding-right: 15px;" href="{% url 'note_unpin' note.id %}?next={{ request.path }}">
+                                        <a style="padding-right: 15px;" href="#" onclick="DateUnpin({{ note.id }})">
                                             <img width="17px" height="17px" src="/static/images/icons/pin_red.svg" />
                                         </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
@@ -149,7 +149,7 @@
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-2 ms-auto note_date">
-                                        {{ note.add_at | date:"j.m.Y" }}
+                                        {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -157,7 +157,7 @@
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-2 text-end" style="display: flex;">
-                                        <a  style="padding-right: 15px;" href="{% url 'note_pin' note.id %}?next={{ request.path }}">
+                                        <a  style="padding-right: 15px;" href="#" onclick="DatePin({{ note.id }})">
                                             <img width="17px" height="17px" src="/static/images/icons/pin_black.svg" />
                                         </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">

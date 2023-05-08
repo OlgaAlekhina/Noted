@@ -87,6 +87,7 @@ def note_edit(request, pk):
     if request.method == "POST":
         note_title = request.POST['note_title']
         note_text = request.POST['note_text']
+        note_date = request.POST['note_date']
         file_delete = request.POST.get('file_delete', False)
         add_at = datetime.datetime.now()
         if file_delete == 'on':
@@ -97,10 +98,11 @@ def note_edit(request, pk):
             note.note_file = note_file
             note.note_title = note_title
             note.note_text = note_text
+            note.note_date = note_date
             note.add_at = add_at
             note.save()
         except:
-            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at, note_trash=False)
+            Note.objects.filter(id=pk).update(note_title=note_title, note_text=note_text, add_at=add_at, note_date=note_date, note_trash=False)
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
@@ -268,20 +270,22 @@ def search(request):
 
 # функция для запинивания задачи
 @login_required
-def note_pin(request, pk):
+def note_pin(request, date, pk):
     add_at = datetime.datetime.now()
-    Note.objects.filter(id=pk).update(note_pin=True, add_at=add_at)
+    Note.objects.filter(id=pk).update(note_pin=True, add_at=add_at, note_date=date)
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
 
 
 # функция для распинивания задачи
 @login_required
-def note_unpin(request, pk):
+def note_unpin(request, date, pk):
     add_at = datetime.datetime.now()
-    Note.objects.filter(id=pk).update(note_pin=False, add_at=add_at)
+    Note.objects.filter(id=pk).update(note_pin=False, add_at=add_at, note_date=date)
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
+
+
 
 
 

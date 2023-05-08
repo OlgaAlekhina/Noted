@@ -10,6 +10,7 @@
     {% bootstrap_messages %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/myscripts.js' %}"></script>
     <link rel="icon" href="{% static 'images/Noted_favicon.png' %}" type="image/pgn">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,19 +22,7 @@
         {% block title %}
         {% endblock title %}
     </title>
-<script>
-    function DateInsert(task_id) {
-        var today = new Date();
-        var day = today.getDate();
-        var d = (day<10 ? '0' : '') + day;
-        var mon = today.getMonth() + 1;
-        var m = (mon<10 ? '0' : '') + mon;
-        var year = today.getFullYear();
-        var date = d + '-' + m + '-' + year;
-        var url = "/main/tasks/" + date + "/edit/" + task_id;
-        window.location.replace(url);
-    }
-</script>
+
 </head>
 <body>
     <header>

@@ -69,6 +69,9 @@
                             <div>
                                 <textarea class="form-control note-text" rows="20" name="note_text">{{ note.note_text }}</textarea>
                             </div>
+                            <div>
+                                <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
+                            </div>
                             <div class="mb-3 upload-file" style="margin-left: 25px;">
                                 {% if note.note_file %}
                                     <hr>
@@ -92,6 +95,18 @@
             </div>
         </div>
     </div>
+
+<script>
+    var today = new Date();
+    var day = today.getDate();
+	var d = (day<10 ? '0' : '') + day
+	var month = today.getMonth();
+	var mon = month+1
+	var m = (mon<10 ? '0' : '') + mon
+	var y = today.getFullYear();
+	var date = y + '-' + m + '-' + d
+    document.getElementById("note_date").value = date;
+</script>
 
 <script>
 function validateSize(form) {
