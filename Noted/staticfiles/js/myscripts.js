@@ -28,3 +28,8 @@ function DatePin(note_id) {
     var url = "/main/" + date + "/pin/" + note_id +'?next=' + path;
     window.location.replace(url);
     }
+
+function submitbtn() {
+    document.getElementById("task_submit").style.display= "none";
+    setTimeout(function(){document.getElementById("task_submit").style.display= "block";},3000);
+}
