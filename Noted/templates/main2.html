@@ -118,50 +118,62 @@
                         <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
                         <div class="col-10 offset-1 main-notes">
                         {% for note in notes_pin %}
-                            <div class="row note-block">
+                            <div class="note-block">
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-9 text-break">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-2 ms-auto note_date">
+                                    <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-8 text-break">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
-                                    <div class="col-2 text-end" style="display: flex;">
-                                        <a style="padding-right: 15px;" href="#" onclick="DateUnpin({{ note.id }})">
-                                            <img width="17px" height="17px" src="/static/images/icons/pin_red.svg" />
+                                    <div class="col-4" style="display: flex; justify-content: right;">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="#" onclick="DateUnpin({{ note.id }})">
+                                            <img width="15px" height="15px" src="/static/images/icons/pin_red.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="{% url 'send_note' note.id %}?next={{ request.path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" />
                                         </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                            <img src="/static/images/icons/trash_icon.svg" />
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
                         {% for note in notes %}
-                            <div class="row note-block">
+                            <div class="note-block">
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-9 text-break">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-2 ms-auto note_date">
+                                    <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-8 text-break">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
-                                    <div class="col-2 text-end" style="display: flex;">
-                                        <a  style="padding-right: 15px;" href="#" onclick="DatePin({{ note.id }})">
-                                            <img width="17px" height="17px" src="/static/images/icons/pin_black.svg" />
+                                    <div class="col-4" style="display: flex; justify-content: right;">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="#" onclick="DatePin({{ note.id }})">
+                                            <img width="15px" height="15px" src="/static/images/icons/pin_black.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="{% url 'send_note' note.id %}?next={{ request.path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" />
                                         </a>
                                         <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                            <img src="/static/images/icons/trash_icon.svg" />
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                         </a>
                                     </div>
                                 </div>

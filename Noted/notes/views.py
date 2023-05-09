@@ -8,23 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login
 from django.utils import timezone
+from django.core.mail import EmailMessage
 
 
 # выводит главную страницу со всеми заметками и задачами на текущую дату
 @login_required
 def main_page(request):
-    # user = request.user
-    # today = datetime.datetime.today()
-    # next_date = today + datetime.timedelta(days=1)
-    # tasks_active = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=False,
-    #                                    task_trash=False).order_by('-add_at')
-    # tasks_deleted = Task.objects.filter(task_date=today, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
-    # tasks_important = Task.objects.filter(task_date=today, task_author=user, task_deleted=False, task_priority=True,
-    #                                       task_trash=False).order_by('-add_at')
-    # notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
-    # month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-    #               'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-    # today = f'{today.day} {month_list[int(today.month) - 1]}'
     return render(request, 'main.html', context={})
 
 
@@ -285,6 +274,24 @@ def note_unpin(request, date, pk):
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
 
+
+# функция для отсылки заметки на email пользователя при нажатии на иконку бумажного самолетика
+@login_required
+def send_note(request, pk):
+    user = request.user
+    note = Note.objects.get(id=pk)
+    subject = note.note_title
+    message = note.note_text
+    from_email = None
+    recipient_list = [user.email]
+    note_file = note.note_file
+    msg = EmailMessage(subject, message, from_email, recipient_list)
+    if note_file:
+        msg.attach_file(note_file.path)
+    msg.send()
+    messages.success(request, f'Заметка отправлена по адресу: {user.email}')
+    next = request.GET.get('next', reverse('main'))
+    return HttpResponseRedirect(next)
 
 
 

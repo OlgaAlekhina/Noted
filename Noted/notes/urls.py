@@ -1,7 +1,7 @@
 from django.urls import path, register_converter
 from .views import main_page, main_page_date, all_notes, note_details, note_edit, all_tasks, \
     task_done, trash, task_delete, note_delete, user_settings, change_password, search, note_perm_delete, \
-    task_perm_delete, task_undone, tasks, note_pin, note_unpin
+    task_perm_delete, task_undone, tasks, note_pin, note_unpin, send_note
 from .path_converters import DateConverter
 
 
@@ -29,4 +29,5 @@ urlpatterns = [
     path('settings', user_settings, name='user_settings'),
     path('settings/change_password', change_password, name='change_password'),
     path('search', search, name='search'),
+    path('send/<int:pk>', send_note, name='send_note'),
     ]
