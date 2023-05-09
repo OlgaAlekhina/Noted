@@ -33,8 +33,10 @@
                 </div>
                 <div class="col-8 col-lg-5 search-wrapper">
                     <form action="{% url 'search' %}" method="get">
-                        <input type="search" name="q" class="header-search form-control" placeholder="Поиск" />
-                        <span class="icon"><img src="/static/images/icons/search_icon.svg" /></i></span>
+                        <div class="input-search">
+                            <input type="search" name="q" class="header-search form-control" placeholder="Поиск" />
+                            <span class="icon"><img width="20" height="20" src="/static/images/icons/search_icon.svg" /></i></span>
+                        </div>
                     </form>
                 </div>
                 <div class="col-2 col-lg-1">

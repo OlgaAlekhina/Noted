@@ -65,20 +65,31 @@ textarea {
 
 .search-wrapper {
     position: relative;
-    padding-left: 200px !important;
+    padding-left: 160px !important;
+}
+
+.input-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 input.header-search {
-    border: 1px solid #e1e1e1;
+    border: none;
     border-radius: 5px;
-    height: 34px;
-    width: 80%;
+    height: 30px;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.8);
+    color: #9a9a9a;
+    font-weight: 300;
+    font-size: 15px;
+    padding-top: 3px;
 }
 
 .icon {
     position: absolute;
-    right: 15%;
-    top: 19%;
+    right: 13%;
+    top: 5%;
 }
 
 /* стили страниц авторизации и регистрации */
