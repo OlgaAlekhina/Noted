@@ -59,7 +59,7 @@
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="col-10 row note-block">
+                                    <div class="col-10 row note-block" style="padding-right: 20px;">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
@@ -69,8 +69,8 @@
                                                 <img src="/static/images/icons/trash_icon.svg"/>
                                             </a>
                                         </div>
-                                        <div class="col-1 ms-auto">
-                                            <img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/>
+                                        <div class="col-1" style="display: flex; align-items: center;">
+                                            <img src="/static/images/icons/flag_icon.svg" width="28px" height="28px"/>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                         {% for note in notes_pin %}
                             <div class="note-block">
                                 <div class="row">
-                                    <div class="col-9 text-break">
+                                    <div class="col-9 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-3 text-end note_date">
@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8 text-break">
+                                    <div class="col-8 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
@@ -148,7 +148,7 @@
                         {% for note in notes %}
                             <div class="note-block">
                                 <div class="row">
-                                    <div class="col-9 text-break">
+                                    <div class="col-9 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-3 text-end note_date">
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8 text-break">
+                                    <div class="col-8 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
@@ -194,8 +194,9 @@
     </div>
 
 <script>
-    var today=new Date();
-    var day=today.getDate();
+    var url = window.location.pathname;
+    var date = url.split('/')[2];
+    var day = date.split('-')[0];
     document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
     document.getElementById('tasks-notes').style.backgroundRepeat = "no-repeat";
     document.getElementById('tasks-notes').style.backgroundPosition = "center";

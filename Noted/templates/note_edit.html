@@ -44,7 +44,7 @@
                         {% for note in notes_pin %}
                             <div class="note-block">
                                 <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2">
+                                    <div class="col-10 text-break note-title2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-9 text-break note-text2">
+                                    <div class="col-9 text-break note-text2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">
@@ -74,7 +74,7 @@
                         {% for note in notes %}
                             <div class="note-block">
                                 <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2">
+                                    <div class="col-10 text-break note-title2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-9 text-break note-text2">
+                                    <div class="col-9 text-break note-text2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">
@@ -114,7 +114,7 @@
                                 <input type="text" class="form-control note-title3" required name="note_title" value="{{ note.note_title }}">
                             </div>
                             <div>
-                                <textarea class="form-control note-text3" rows="30" name="note_text">{{ note.note_text }}</textarea>
+                                <textarea class="form-control note-text3" rows="23" name="note_text">{{ note.note_text }}</textarea>
                             </div>
                             <div>
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">

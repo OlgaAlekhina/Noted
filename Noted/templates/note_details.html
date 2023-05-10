@@ -54,7 +54,7 @@
                         {% for note in notes_pin %}
                             <div class="note-block">
                                 <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2">
+                                    <div class="col-10 text-break note-title2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-9 text-break note-text2">
+                                    <div class="col-9 text-break note-text2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">
@@ -84,7 +84,7 @@
                         {% for note in notes %}
                             <div class="note-block">
                                 <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2">
+                                    <div class="col-10 text-break note-title2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-9 text-break note-text2">
+                                    <div class="col-9 text-break note-text2 note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">

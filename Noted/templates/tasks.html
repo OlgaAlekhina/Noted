@@ -47,7 +47,7 @@
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="row col-10 note-block">
+                                    <div class="row col-10 note-block" style="padding-right: 20px;">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
@@ -57,7 +57,7 @@
                                                 <img src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
-                                        <div class="col-1 ms-auto">
+                                        <div class="col-1 ms-auto" style="display: flex; align-items: center;">
                                             <img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/>
                                         </div>
                                     </div>
@@ -137,7 +137,8 @@
 <script>
     var today=new Date();
     var day=today.getDate();
-    document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+day+'.jpg'+')';
+    var d = (day<10 ? '0' : '') + day;
+    document.getElementById('tasks-notes').style.backgroundImage = 'url('+'/static/images/'+d+'.jpg'+')';
     document.getElementById('tasks-notes').style.backgroundRepeat = "no-repeat";
     document.getElementById('tasks-notes').style.backgroundPosition = "center";
     document.getElementById('tasks-notes').style.backgroundSize = "cover";

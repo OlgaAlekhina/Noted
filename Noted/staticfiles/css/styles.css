@@ -205,6 +205,10 @@ input.header-search {
     text-decoration: none;
 }
 
+.note-link a:hover {
+    color: black;
+}
+
 textarea::-webkit-scrollbar, .notes::-webkit-scrollbar, .tasks::-webkit-scrollbar, .note-details::-webkit-scrollbar {
   width: 22px;
 }
