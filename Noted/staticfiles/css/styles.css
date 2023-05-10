@@ -382,6 +382,7 @@ input.header-search {
 
 #divCal {
     margin-top: 10px;
+    padding: 0 15px 15px 15px;
 }
 
 table {
@@ -414,7 +415,8 @@ td.not-current a {
 
 .today {
     border-radius: 50%;
-    background: #C4A27F;
+    background: rgba(196, 162, 127, 0.8);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -438,6 +440,10 @@ td.not-current a {
   content: '\f105';
   font-family: FontAwesome;
   padding-left: 4px;
+}
+
+#btnPrev {
+    padding-left: 20px;
 }
 
 #btnPrev,
@@ -513,6 +519,10 @@ td.not-current a {
     test-align: center;
 }
 
+.nav-list a:hover {
+    color: black;
+}
+
 .current_page {
     background: rgba(236, 247, 251, 0.5);
     border: 0.5px solid #b1b1b1;
@@ -520,6 +530,14 @@ td.not-current a {
                 0px 2px 4px rgba(0,0,0,0.1),
                 0px 4px 8px rgba(0,0,0,0.1),
                 0px 8px 16px rgba(0,0,0,0.1);
+}
+
+.logout-menu {
+    background: rgba(108, 100, 81, 0.8);
+}
+
+.logout-menu a {
+    color: #FFFFFF;
 }
 
 /* медиа запросы */
