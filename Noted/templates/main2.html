@@ -50,16 +50,14 @@
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">
+                        <p class="main-header">
                             <a href="{% url 'date_notes' prev_date %}"><span style="padding-right: 30px;"><img src="/static/images/icons/arrow_left.svg"></span></a>Задачи на {{ date }}<a href="{% url 'date_notes' next_date %}"><span style="padding-left: 30px;"><img src="/static/images/icons/arrow_right.svg"></span></a>
-                        </h3>
+                        </p>
                         <div class="col-11">
                             {% for task in tasks_important %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                            <i class="fa-regular fa-circle"></i>
-                                        </a>
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
                                     <div class="col-10 row note-block">
                                         <div class="col-11 text-break">
@@ -80,9 +78,7 @@
                             {% for task in today_tasks %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}">
-                                            <i class="fa-regular fa-circle"></i>
-                                        </a>
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break">
@@ -100,7 +96,8 @@
                             {% for task in tasks_deleted %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_undone' task.id %}?next={{ request.path }}"><i class="fa-regular fa-circle-check"></i></a>
+                                        <a href="{% url 'task_undone' task.id %}?next={{ request.path }}">
+                                            <div class="circle"><img style="padding-bottom: 8px;" src="/static/images/icons/check_icon.svg" /></div></a>
                                     </div>
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break"  style="color: grey;">
@@ -115,7 +112,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5); height: 732px;">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Последние заметки</h3>
+                        <p class="main-header">Последние заметки</p>
                         <div class="col-10 offset-1 main-notes">
                         {% for note in notes_pin %}
                             <div class="note-block">

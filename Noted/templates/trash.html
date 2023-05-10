@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.8) !important;">
+            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.5) !important;">
                 <div class="offcanvas-header">
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
@@ -50,7 +50,7 @@
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Задачи</h3>
+                        <p class="main-header">Задачи</p>
                         <div class="col-8 offset-2">
                             {% for task in task_trash %}
                                 <div class="row note-block">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 40px;">Заметки</h3>
+                        <p class="main-header">Заметки</p>
                         <div class="col-8 offset-2 main-notes">
                         {% for note in note_trash %}
                             <div class="row note-block">

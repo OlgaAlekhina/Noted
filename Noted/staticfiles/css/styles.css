@@ -134,10 +134,6 @@ input.header-search {
     text-decoration: none;
 }
 
-.form-area {
-    margin-top: 40px;
-}
-
 .form-block {
     padding-top: 40px;
     height: 360px;
@@ -181,6 +177,15 @@ input.header-search {
 
 /* стили главной страницы */
 
+.main-header {
+    font-size: 25px;
+    font-family: 'Didact Gothic', sans-serif;
+    line-height: 33px;
+    text-align: center;
+    margin-top: 27px;
+    margin-bottom: 20px;
+}
+
 .main-main {
     /*border: 0.5px solid #b1b1b1;*/
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -200,11 +205,11 @@ input.header-search {
     text-decoration: none;
 }
 
-.notes::-webkit-scrollbar, .tasks::-webkit-scrollbar, .note-details::-webkit-scrollbar {
+textarea::-webkit-scrollbar, .notes::-webkit-scrollbar, .tasks::-webkit-scrollbar, .note-details::-webkit-scrollbar {
   width: 22px;
 }
 
-.notes::-webkit-scrollbar-thumb, .tasks::-webkit-scrollbar-thumb, .note-details::-webkit-scrollbar-thumb {
+textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-webkit-scrollbar-thumb, .note-details::-webkit-scrollbar-thumb {
   background-color: rgba(154, 154, 154, 0.5);
   border-radius: 100px;
   border: 5px solid transparent;
@@ -278,6 +283,14 @@ input.header-search {
 
 }
 
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
 .but-div {
      height: 100px;
      /*border: 0.5px solid #b1b1b1;
@@ -287,16 +300,39 @@ input.header-search {
 /* стили страницы заметок */
 
 .note_date2 {
-    font-size: 12px;
+    font-size: 10px;
+    padding-right: 0 !important;
+}
+
+.black-li {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.red-li {
+    font-size: 15px;
+    line-height: 18px;
+    color: #D65E51 !important;
 }
 
 .note-title {
     border: 0 !important;
     background: none !important;
-    font-size: 27px !important;
-    font-weight: 600 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
+    font-weight: 700 !important;
     width: 95% !important;
     margin-left: 25px !important;
+    color: #7F7F7F !important;
+}
+
+.note-title3 {
+    border: 0 !important;
+    background: none !important;
+    font-size: 20px !important;
+    width: 95% !important;
+    margin-left: 25px !important;
+    color: #000000 !important;
 }
 
 .note-title:focus, .note-text:focus {
@@ -308,27 +344,48 @@ input.header-search {
     background:  none !important;
     width: 95%  !important;
     margin-left:  25px !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    color: #7F7F7F !important;
+}
+
+.note-text3 {
+    border: 0  !important;
+    background:  none !important;
+    width: 95%  !important;
+    margin-left:  25px !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    color: #000000 !important;
+}
+
+.note-text2 {
+    font-size: 10px;
+}
+
+.note-title2 {
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .note-file {
     width: 60%  !important;
-    margin-left:  25px !important;
+    margin-left:  37px !important;
 }
 
 .save-but {
-    margin-left: 25px;
+    margin-left: 37px;
 }
 
 .save-but button{
-    font-weight: 600;
-    color: black;
-    background: rgba(236, 247, 251, 1);
+    color: #000000;
+    background: #ECF7FB;
     border: 1px solid #ced4da;
     border-radius: 8px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
-                0px 2px 4px rgba(0,0,0,0.1),
-                0px 4px 8px rgba(0,0,0,0.1),
-                0px 8px 16px rgba(0,0,0,0.1);
+    padding: 6px 37px;
+    font-size: 15px;
+    line-height: 18px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* стили страницы с одной заметкой */
@@ -339,12 +396,13 @@ input.header-search {
 }
 
 .notes-text {
-    padding: 20px;
+    padding: 0px 40px;
 }
 
 .upload-file {
-    margin-bottom:40px;
-    margin-top:40px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left: 37px;
 }
 
 .upload-file a {
@@ -377,7 +435,7 @@ input.header-search {
     margin: 70px 25px 0px 25px;
     border: 0.5px solid #b1b1b1;
     border-radius: 5px;
-    background: #f0f8ff;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 #divCal {
@@ -466,7 +524,7 @@ td.not-current a {
 /* стили боковой колонки */
 
 .sidebar {
-    background-color: rgba(126, 159, 164, 0.8) !important;
+    background-color: rgba(126, 159, 164, 0.5) !important;
     padding: 0px !important;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
@@ -490,14 +548,14 @@ td.not-current a {
 }
 
 /* убрать стрелку вниз в кнопке добавления заметки или задачи */
-#dropdownMenuButton1::after {
+#dropdownMenuButton1::after, #dropdownMenuButton2::after, #dropdownMenuButton3::after {
     content: none;
 }
 
 .nav-list {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 20px;
-    background: #E2FFFF;
+    background: rgba(236, 247, 251, 0.8);
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 50px;
@@ -524,12 +582,9 @@ td.not-current a {
 }
 
 .current_page {
-    background: rgba(236, 247, 251, 0.5);
-    border: 0.5px solid #b1b1b1;
-    box-shadow: 0px 1px 2px rgba(0,0,0,0.1),
-                0px 2px 4px rgba(0,0,0,0.1),
-                0px 4px 8px rgba(0,0,0,0.1),
-                0px 8px 16px rgba(0,0,0,0.1);
+    background: #ECF7FB;
+    /*border: 0.5px solid #b1b1b1;*/
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .logout-menu {

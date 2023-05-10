@@ -56,17 +56,19 @@ def all_notes(request):
                                 add_at=add_at, note_date=note_date)
         return redirect('notes')
     else:
-        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
-        return render(request, 'notes.html', context={'notes': notes})
+        notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
+        notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
+        return render(request, 'notes.html', context={'notes': notes, 'notes_pin': notes_pin})
 
 
 # выводит страницу со всеми существующими заметками и одной конкретной заметкой в полноэкранном режиме
 @login_required
 def note_details(request, pk):
     user = request.user
-    notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
+    notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
+    notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
     note = Note.objects.get(id=pk)
-    return render(request, 'note_details.html', context={'notes': notes, 'note': note})
+    return render(request, 'note_details.html', context={'notes': notes, 'note': note, 'notes_pin': notes_pin})
 
 
 # выводит страницу со всеми существующими заметками и формой редактирования одной конкретной заметки
@@ -95,8 +97,9 @@ def note_edit(request, pk):
         return redirect('notes')
     else:
         note = Note.objects.get(id=pk)
-        notes = Note.objects.filter(note_author=user, note_trash=False).order_by('-add_at')
-        return render(request, 'note_edit.html', context={'notes': notes, 'note': note})
+        notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
+        notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
+        return render(request, 'note_edit.html', context={'notes': notes, 'note': note, 'notes_pin': notes_pin})
 
 
 @login_required

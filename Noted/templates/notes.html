@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container-xxl main-main">
         <div class="row">
-            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.8) !important;">
+            <div class="offcanvas-lg sidebar" tabindex="-1" id="offcanvasResponsive"  data-bs-keyboard="false"  data-bs-backdrop="false" data-bs-scroll="true" aria-labelledby="offcanvasResponsiveLabel" style="width: 280px; padding: 0px; background-color: rgba(126, 159, 164, 0.5) !important;">
                 <div class="offcanvas-header">
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
@@ -36,48 +36,94 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-12 col-lg-5 tasks">
+                    <div class="col-12 col-lg-4 tasks">
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
-                        <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 50px;">Заметки</h2>
+                        <p class="main-header">Заметки</p>
                         <div class="col-10 offset-1">
-                        {% for note in notes %}
-                            <a href="{% url 'note_details' note.id %}">
-                            <div class="row note-block">
-
-                                    <div class="col-9 text-break">
-                                        <h6><b>{{ note.note_title }}</b></h6>
-                                        {{ note.note_text | truncatechars:25 }}
+                        {% for note in notes_pin %}
+                            <div class="note-block">
+                                <div class="row mb-2">
+                                    <div class="col-10 text-break note-title2">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
                                     </div>
-
-                                <div class="col-3 note_date2">
-                                    {{ note.note_date | date:"j.m.Y" }}
+                                    <div class="col-2 dropdown">
+                                        <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                            <li><a class="dropdown-item black-li" href="#" onclick="DateUnpin({{ note.id }})">
+                                                Открепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_red.svg" /></a></li>
+                                            <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
+                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                            <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
+                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div></a>
+                                <div class="row">
+                                    <div class="col-9 text-break note-text2">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                    </div>
+                                    <div class="col-3 note_date2" style="display: flex; justify-content: right;">
+                                        {{ note.note_date | date:"j.m.Y" }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for note in notes %}
+                            <div class="note-block">
+                                <div class="row mb-2">
+                                    <div class="col-10 text-break note-title2">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
+                                    </div>
+                                    <div class="col-2 dropdown">
+                                        <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                            <li><a class="dropdown-item black-li" href="#" onclick="DatePin({{ note.id }})">
+                                                Закрепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_black.svg" /></a></li>
+                                            <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
+                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                            <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
+                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-9 text-break note-text2">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                    </div>
+                                    <div class="col-3 note_date2" style="display: flex; justify-content: right;">
+                                        {{ note.note_date | date:"j.m.Y" }}
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-7 notes" style="background: rgba(255, 255, 255, 0.5);">
-                        <h3 style="text-align: center; font-family: 'Didact Gothic', sans-serif; margin-top: 20px; margin-bottom: 20px;">Добавить заметку</h3>
-                        <form method="post" action="{% url 'notes' %}" class="form-area" enctype='multipart/form-data' onsubmit="return validateSize(this)">
+                    <div class="col-12 col-lg-8 notes" style="background: rgba(255, 255, 255, 0.5);">
+                        <p class="main-header" >Создать заметку</p>
+                        <form method="post" action="{% url 'notes' %}" enctype='multipart/form-data' onsubmit="return validateSize(this)">
                         {% csrf_token %}
-                            <div class="mb-3">
-                                <input required type="text" class="form-control note-title" name="note_title" placeholder="Название">
+                            <div class="mb-1">
+                                <input required type="text" class="form-control note-title" name="note_title" placeholder="Заголовок">
                             </div>
                             <div>
-                                <textarea class="form-control note-text" rows="20" name="note_text" placeholder="Наберите текст..."></textarea>
+                                <textarea class="form-control note-text" rows="30" name="note_text" placeholder="Наберите текст..."></textarea>
                             </div>
                             <div>
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
                             </div>
-                            <div class="mb-3 mt-4">
+                            <div class="mb-4 mt-4">
                               <input class="form-control note-file" type="file" name="note_file" id="note-file">
                             </div>
                             <div id ="file_error">
                             </div>
                             <div class="save-but mb-3">
-                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить заметку</button>
+                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить</button>
                             </div>
                         </form>
                     </div>
