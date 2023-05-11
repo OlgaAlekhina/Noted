@@ -115,18 +115,19 @@ def all_tasks(request, date, pk=None):
     tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
     tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
                                           task_trash=False).order_by('-add_at')
+    task2 = None
     try:
-        task = Task.objects.get(id=pk)
-        form = TaskForm(instance=task)
+        task2 = Task.objects.get(id=pk)
+        form = TaskForm(instance=task2)
     except:
         form = TaskForm()
 
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_date = request.POST['task_date']
-        task_priority = request.POST.get('task_priority', False)
+        task_priority = request.POST.get('priority', False)
         add_at = timezone.now()
-        if task_priority == 'on':
+        if task_priority:
             task_priority = True
         try:
             task = Task.objects.get(id=pk)
@@ -138,7 +139,7 @@ def all_tasks(request, date, pk=None):
         return redirect('tasks')
 
     return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
-                                                      'tasks_important': tasks_important, 'form': form, 'task': pk})
+                                                      'tasks_important': tasks_important, 'form': form, 'task': pk,  'task2': task2})
 
 
 # функция для зачеркивания задачи при нажатии на кружок
@@ -154,8 +155,6 @@ def task_done(request, pk):
 def task_undone(request, pk):
     Task.objects.filter(id=pk).update(task_deleted=False)
     next = request.GET.get('next', reverse('main'))
-    if next == reverse('search'):
-        next = reverse('main')
     return HttpResponseRedirect(next)
 
 
@@ -249,7 +248,8 @@ def change_password(request):
 def search(request):
     user = request.user
     q = request.GET.get("q")
-    note_search = Note.objects.filter(note_author=user, note_title__icontains=q).order_by('-add_at')
+    note_search = Note.objects.filter(note_author=user, note_title__icontains=q, note_pin=False, note_trash=False).order_by('-add_at')
+    notepin_search = Note.objects.filter(note_author=user, note_title__icontains=q, note_pin=True, note_trash=False).order_by('-add_at')
     task_search_imp = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False,
                                                                          task_priority=True, task_trash=False).order_by('-add_at')
     task_search = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('-add_at')
@@ -257,7 +257,7 @@ def search(request):
                                                                           task_trash=False).order_by('add_at')
     return render(request, 'search.html', context={'note_search': note_search, 'task_search': task_search,
                                                    'task_search_imp': task_search_imp,
-                                                   'task_search_done': task_search_done})
+                                                   'task_search_done': task_search_done, 'notepin_search': notepin_search})
 
 
 # функция для запинивания задачи

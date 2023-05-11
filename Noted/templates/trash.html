@@ -57,7 +57,7 @@
                                     <div class="col-10 text-break">
                                         <h6><b>{{ task.task_title }}</b></h6>
                                         <a href="{% url 'task_perm_delete' task.id %}">
-                                            <img src="/static/images/icons/trash_icon.svg"/>
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
                                         </a>
                                     </div>
                                 </div>
@@ -68,22 +68,22 @@
                         <p class="main-header">Заметки</p>
                         <div class="col-8 offset-2 main-notes">
                         {% for note in note_trash %}
-                            <div class="row note-block">
+                            <div class="note-block" style="margin-right: -12px; margin-left: -12px;">
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-9 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-2 ms-auto note_date">
+                                    <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
-                                <div class="row align-items-start">
-                                    <div class="col-10 text-break">
+                                <div class="row">
+                                    <div class="col-8 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
-                                    <div class="col-1 ms-auto">
+                                    <div class="col-4" style="display: flex; justify-content: right;">
                                         <a href="{% url 'note_perm_delete' note.id %}">
-                                            <img src="/static/images/icons/trash_icon.svg" />
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                         </a>
                                     </div>
                                 </div>

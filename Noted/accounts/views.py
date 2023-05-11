@@ -47,7 +47,6 @@ def login_user(request):
 		user = authenticate_user(email, password)
 		if user is not None:
 			login(request, user)
-			messages.success(request, "Вы авторизовались в приложении Noted.")
 			return redirect('main')
 		else:
 			messages.error(request, "В процессе авторизации произошла ошибка. Попробуйте еще раз.")

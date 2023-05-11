@@ -63,10 +63,10 @@
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg"/>
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
                                             </a>
                                         </div>
                                         <div class="col-1" style="display: flex; align-items: center;">
@@ -84,10 +84,10 @@
                                         <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                                         <div class="col-10 text-break"  style="color: grey;">
                                             <h6><s>{{ task.task_title }}</s></h6>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>

@@ -158,8 +158,9 @@ input.header-search {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.my-inp:focus {
+.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date {
     border: none;
+    outline: none;
 }
 
 .rem-but {
@@ -429,9 +430,33 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     vertical-align: -10%;
 }
 
-/* стили страницы настроек */
+/* стили страницы задач */
 
+#id_task_title {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    font-size: 15px;
+    line-height: 18px;
+    color: #7F7F7F;
+}
 
+.prior-check {
+    margin-left: 25px;
+    font-size: 15px;
+    line-height: 18px;
+    color: #282A25;
+}
+/* стили для страницы настроек*/
+
+.alert {
+    margin: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.alert button {
+    padding: 2px 2px !important;
+}
 
 /* стили для виджета "календарь" */
 

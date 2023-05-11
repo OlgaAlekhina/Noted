@@ -51,10 +51,10 @@
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                         <div class="col-1 ms-auto" style="display: flex; align-items: center;">
@@ -72,10 +72,10 @@
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
                                             <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -91,10 +91,10 @@
                                             <div class="col-11 text-break" style="color: grey;">
                                                 <h6><s>{{ task.task_title }}</s></h6>
                                                 <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                    <img src="/static/images/icons/pen_icon.svg" />
+                                                    <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                                 </a>
                                                 <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                    <img src="/static/images/icons/trash_icon.svg" />
+                                                    <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                                 </a>
                                             </div>
                                         </div>
@@ -116,14 +116,19 @@
                                 <div class="task-name" style="margin-left: 25px;">
                                     {{ form.task_title }}
                                 </div>
-                                <div class="mt-3" style="margin-left: 25px;">
+                                <div class="mt-4" style="margin-left: 25px;">
                                     {{ form.task_date }}
                                 </div>
-                                <div class="mt-3" style="margin-left: 25px;">
-                                    {{ form.task_priority.label }}
-                                    <span style="padding-left: 5px; vertical-align: -8%;">{{ form.task_priority }}</span>
-                                </div>
-                                <div class="save-but mb-3 mt-3">
+                                    <div class="mt-4 prior-check" id="prior_choice">
+                                        {% if task and task2.task_priority is True %}
+                                            <a onclick="uncheckBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/></a>
+                                            <span style="padding-left: 4px;">Приоритет</span>
+                                        {% else %}
+                                            <a onclick="checkBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_white.svg" width="25px" height="25px"/></a>
+                                            <span style="padding-left: 4px;">Приоритет</span>
+                                        {% endif %}
+                                    </div>
+                                <div class="save-but mb-3 mt-3" style="margin-left: 25px;">
                                     <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить</button>
                                 </div>
                             </div>

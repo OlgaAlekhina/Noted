@@ -56,20 +56,20 @@
                             {% for task in task_search_imp %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.get_full_path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="col-10 row note-block">
+                                    <div class="col-10 row note-block" style="padding-right: 20px;">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg"/>
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.get_full_path }}">
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
                                             </a>
                                         </div>
-                                        <div class="col-1 ms-auto">
-                                            <img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/>
+                                        <div class="col-1" style="display: flex; align-items: center;">
+                                            <img src="/static/images/icons/flag_icon.svg" width="28px" height="28px"/>
                                         </div>
                                     </div>
                                 </div>
@@ -77,16 +77,16 @@
                             {% for task in task_search %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
+                                        <a href="{% url 'task_done' task.id %}?next={{ request.get_full_path }}"><div class="circle"></div></a>
                                     </div>
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img src="/static/images/icons/pen_icon.svg" />
+                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.get_full_path }}">
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -95,14 +95,14 @@
                             {% for task in task_search_done %}
                                 <div class="row">
                                     <div class="col-2 check-box">
-                                        <a href="{% url 'task_undone' task.id %}?next={{ request.path }}">
-                                            <div class="circle"><img style="padding-bottom: 8px;" src="/static/images/icons/check_icon.svg" /></i></div></a>
+                                        <a href="{% url 'task_undone' task.id %}?next={{ request.get_full_path }}">
+                                            <div class="circle"><img style="padding-bottom: 8px;" src="/static/images/icons/check_icon.svg" /></div></a>
                                     </div>
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break"  style="color: grey;">
                                             <h6><s>{{ task.task_title }}</s></h6>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img src="/static/images/icons/trash_icon.svg" />
+                                            <a href="{% url 'task_delete' task.id %}?next={{ request.get_full_path }}">
+                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                             </a>
                                         </div>
                                     </div>
@@ -112,24 +112,64 @@
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <p class="main-header">Заметки</p>
-                        <div class="col-8 offset-2 main-notes">
-                        {% for note in note_search %}
-                            <div class="row note-block">
+                        <div class="col-10 offset-1 main-notes">
+                        {% for note in notepin_search %}
+                            <div class="note-block">
                                 <div class="row">
-                                    <div class="col-10 text-break">
+                                    <div class="col-9 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
-                                    <div class="col-2 ms-auto note_date">
+                                    <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
                                     </div>
                                 </div>
-                                <div class="row align-items-start">
-                                    <div class="col-10 text-break">
+                                <div class="row">
+                                    <div class="col-8 text-break note-link">
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
-                                    <div class="col-1 ms-auto">
-                                        <a href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                            <img src="/static/images/icons/trash_icon.svg" />
+                                    <div class="col-4" style="display: flex; justify-content: right;">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="#" onclick="DateUnpin({{ note.id }})">
+                                            <img width="15px" height="15px" src="/static/images/icons/pin_red.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="{% url 'send_note' note.id %}?next={{ request.get_full_path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" />
+                                        </a>
+                                        <a href="{% url 'note_delete' note.id %}?next={{ request.get_full_path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for note in note_search %}
+                            <div class="note-block">
+                                <div class="row">
+                                    <div class="col-9 text-break note-link">
+                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
+                                    </div>
+                                    <div class="col-3 text-end note_date">
+                                        {{ note.note_date | date:"j.m.Y" }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8 text-break note-link">
+                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                    </div>
+                                    <div class="col-4" style="display: flex; justify-content: right;">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                            <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="#" onclick="DatePin({{ note.id }})">
+                                            <img width="15px" height="15px" src="/static/images/icons/pin_black.svg" />
+                                        </a>
+                                        <a style="padding-right: 10px;" href="{% url 'send_note' note.id %}?next={{ request.get_full_path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" />
+                                        </a>
+                                        <a href="{% url 'note_delete' note.id %}?next={{ request.get_full_path }}">
+                                            <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                         </a>
                                     </div>
                                 </div>
