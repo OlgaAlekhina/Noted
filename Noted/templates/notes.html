@@ -46,7 +46,7 @@
                             <div class="note-block">
                                 <div class="row mb-2">
                                     <div class="col-10 text-break note-title2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
                                         <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-9 text-break note-text2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">
                                         {{ note.note_date | date:"j.m.Y" }}
@@ -76,7 +76,7 @@
                             <div class="note-block">
                                 <div class="row mb-2">
                                     <div class="col-10 text-break note-title2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_title }}</a>
                                     </div>
                                     <div class="col-2 dropdown">
                                         <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-9 text-break note-text2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-3 note_date2" style="display: flex; justify-content: right;">
                                         {{ note.note_date | date:"j.m.Y" }}

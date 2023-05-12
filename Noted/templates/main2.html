@@ -118,7 +118,7 @@
                             <div class="note-block">
                                 <div class="row">
                                     <div class="col-9 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
@@ -126,10 +126,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
-                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}#note{{ note.id }}">
                                             <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                         </a>
                                         <a style="padding-right: 10px;" href="#" onclick="DateUnpin({{ note.id }})">
@@ -149,7 +149,7 @@
                             <div class="note-block">
                                 <div class="row">
                                     <div class="col-9 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}"><h6><b>{{ note.note_title }}</b></h6></a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}"><h6><b>{{ note.note_title }}</b></h6></a>
                                     </div>
                                     <div class="col-3 text-end note_date">
                                         {{ note.note_date | date:"j.m.Y" }}
@@ -157,10 +157,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
-                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}">
+                                        <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}#note{{ note.id }}">
                                             <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                         </a>
                                         <a style="padding-right: 10px;" href="#" onclick="DatePin({{ note.id }})">

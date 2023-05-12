@@ -41,65 +41,75 @@
                     <div class="col-12 col-lg-4 order-last order-lg-first tasks">
                         <p class="main-header">Заметки</p>
                         <div class="col-10 offset-1">
-                        {% for note in notes_pin %}
-                            <div class="note-block">
-                                <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
+                        {% for not in notes_pin %}
+                            <a name="note{{ not.id }}"></a>
+                            {% if not.id == note.id %}
+                                <div class="note-block current-note">
+                            {% else %}
+                                <div class="note-block">
+                            {% endif %}
+                                    <div class="row mb-2">
+                                        <div class="col-10 text-break note-title2 note-link">
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ not.note_title }}</a>
+                                        </div>
+                                        <div class="col-2 dropdown">
+                                            <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                <li><a class="dropdown-item black-li" href="#" onclick="DateUnpin({{ not.id }})">
+                                                    Открепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_red.svg" /></a></li>
+                                                <li><a class="dropdown-item black-li" href="{% url 'send_note' not.id %}?next={{ request.path }}">
+                                                    Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                                <li><a class="dropdown-item red-li" href="{% url 'note_delete' not.id %}?next={{ request.path }}">
+                                                    Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="col-2 dropdown">
-                                        <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                            <li><a class="dropdown-item black-li" href="#" onclick="DateUnpin({{ note.id }})">
-                                                Открепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_red.svg" /></a></li>
-                                            <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
-                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
-                                            <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-9 text-break note-text2 note-link">
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ not.note_text | truncatechars:25 }}</a>
+                                        </div>
+                                        <div class="col-3 note_date2" style="display: flex; justify-content: right;">
+                                            {{ not.note_date | date:"j.m.Y" }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-9 text-break note-text2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
-                                    </div>
-                                    <div class="col-3 note_date2" style="display: flex; justify-content: right;">
-                                        {{ note.note_date | date:"j.m.Y" }}
-                                    </div>
-                                </div>
-                            </div>
                         {% endfor %}
-                        {% for note in notes %}
-                            <div class="note-block">
-                                <div class="row mb-2">
-                                    <div class="col-10 text-break note-title2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_title }}</a>
+                        {% for not in notes %}
+                            <a name="note{{ not.id }}"></a>
+                            {% if not.id == note.id %}
+                                <div class="note-block current-note">
+                            {% else %}
+                                <div class="note-block">
+                            {% endif %}
+                                    <div class="row mb-2">
+                                        <div class="col-10 text-break note-title2 note-link">
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ not.note_title }}</a>
+                                        </div>
+                                        <div class="col-2 dropdown">
+                                            <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                                <li><a class="dropdown-item black-li" href="#" onclick="DatePin({{ not.id }})">
+                                                    Закрепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_black.svg" /></a></li>
+                                                <li><a class="dropdown-item black-li" href="{% url 'send_note' not.id %}?next={{ request.path }}">
+                                                    Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                                <li><a class="dropdown-item red-li" href="{% url 'note_delete' not.id %}?next={{ request.path }}">
+                                                    Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="col-2 dropdown">
-                                        <a role="button" href="#" class="dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img width="20px" height="20px" src="/static/images/icons/menu_hor.svg" />
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                            <li><a class="dropdown-item black-li" href="#" onclick="DatePin({{ note.id }})">
-                                                Закрепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_black.svg" /></a></li>
-                                            <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
-                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
-                                            <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-9 text-break note-text2 note-link">
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ note.note_text | truncatechars:25 }}</a>
+                                        </div>
+                                        <div class="col-3 note_date2" style="display: flex; justify-content: right;">
+                                            {{ not.note_date | date:"j.m.Y" }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-9 text-break note-text2 note-link">
-                                        <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
-                                    </div>
-                                    <div class="col-3 note_date2" style="display: flex; justify-content: right;">
-                                        {{ note.note_date | date:"j.m.Y" }}
-                                    </div>
-                                </div>
-                            </div>
                         {% endfor %}
                         </div>
                     </div>
