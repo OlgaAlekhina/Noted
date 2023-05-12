@@ -53,6 +53,27 @@ textarea {
     border: none;
 }
 
+.acc-login {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 10px;
+    color: #000000;
+    text-align: center;
+}
+
+.acc-login a {
+    color: #000000;
+}
+
+.digits-block {
+    margin-top: 100px;
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
 /* стили верхней панели */
 
 .header-area {
@@ -148,7 +169,7 @@ input.header-search {
     color: white;
 }
 
-.sm-but:focus, .lg-but:focus {
+.sm-but:focus, .lg-but:focus, #id_name:focus, #id_email:focus {
     border: none;
 }
 
@@ -456,6 +477,13 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 
 .alert button {
     padding: 2px 2px !important;
+}
+
+.set-label {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #282A25;
 }
 
 /* стили для виджета "календарь" */
