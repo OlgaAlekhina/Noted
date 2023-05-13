@@ -36,49 +36,63 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-12 col-lg-6 tasks">
+                    <div class="col-12 col-lg-5 tasks">
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
                         <p class="main-header">Задачи</p>
                         <div class="col-11">
                             {% for task in tasks_important %}
+                                <a name="task{{ task.id }}"></a>
                                 <div class="row">
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="row col-10 note-block" style="padding-right: 20px;">
-                                        <div class="col-11 text-break">
-                                            <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
-                                            </a>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
-                                            </a>
+                                    {% if task2 and task2.id == task.id %}
+                                        <div class="col-10 note-block current-note">
+                                    {% else %}
+                                        <div class="col-10 note-block">
+                                    {% endif %}
+                                            <div class="row" style="padding-right: 20px;">
+                                                <div class="col-11 text-break" style="padding-left: 18px;">
+                                                    <h6><b>{{ task.task_title }}</b></h6>
+                                                    <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
+                                                        <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                                    </a>
+                                                    <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                        <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
+                                                    </a>
+                                                </div>
+                                                <div class="col-1" style="display: flex; align-items: center;">
+                                                    <img src="/static/images/icons/flag_icon.svg" width="28px" height="28px"/>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-1 ms-auto" style="display: flex; align-items: center;">
-                                            <img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/>
-                                        </div>
-                                    </div>
                                 </div>
                             {% endfor %}
                             {% for task in today_tasks %}
+                                <a name="task{{ task.id }}"></a>
                                 <div class="row">
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="row col-10 note-block">
-                                        <div class="col-11 text-break">
-                                            <h6><b>{{ task.task_title }}</b></h6>
-                                            <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
-                                            </a>
-                                            <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
-                                            </a>
+                                    {% if task2 and task2.id == task.id %}
+                                        <div class="col-10 note-block current-note">
+                                    {% else %}
+                                        <div class="col-10 note-block">
+                                    {% endif %}
+                                            <div class="row" style="padding-right: 20px;">
+                                                <div class="col-11 text-break" style="padding-left: 18px;">
+                                                    <h6><b>{{ task.task_title }}</b></h6>
+                                                    <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
+                                                        <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
+                                                    </a>
+                                                    <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                        <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                                 {% endfor %}
                                 {% for task in tasks_deleted %}
@@ -87,22 +101,21 @@
                                         <a href="{% url 'task_undone' task.id %}?next={{ request.path }}">
                                             <div class="circle"><img style="padding-bottom: 8px;" src="/static/images/icons/check_icon.svg" /></div></a>
                                         </div>
-                                        <div class="row col-10 note-block">
-                                            <div class="col-11 text-break" style="color: grey;">
-                                                <h6><s>{{ task.task_title }}</s></h6>
-                                                <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
-                                                    <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
-                                                </a>
-                                                <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
-                                                    <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
-                                                </a>
+                                        <div class="col-10 note-block">
+                                            <div class="row" style="padding-right: 20px;">
+                                                <div class="col-11 text-break" style="color: grey; padding-left: 18px;">
+                                                    <h6><s>{{ task.task_title }}</s></h6>
+                                                    <a href="{% url 'task_delete' task.id %}?next={{ request.path }}">
+                                                        <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 {% endfor %}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-7 notes" style="background: rgba(255, 255, 255, 0.5);">
                         <p class="main-header">
                             {% if task %}
                                 Изменить задачу
@@ -122,7 +135,7 @@
                                     <div class="mt-4 prior-check" id="prior_choice">
                                         {% if task and task2.task_priority is True %}
                                             <a onclick="uncheckBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/></a>
-                                            <span style="padding-left: 4px;">Приоритет</span>
+                                            <span style="padding-left: 4px;">Приоритет</span><input type="hidden" id="priority" name="priority" value="priority">
                                         {% else %}
                                             <a onclick="checkBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_white.svg" width="25px" height="25px"/></a>
                                             <span style="padding-left: 4px;">Приоритет</span>

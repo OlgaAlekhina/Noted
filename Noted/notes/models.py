@@ -38,7 +38,7 @@ class Note(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='/avatars/user_male_circle_icon.png', upload_to='avatars')
+    avatar = models.ImageField(default='/avatars/Noted_avatar.png', upload_to='avatars')
     name = models.CharField(max_length=20, default='Username')
 
     def __str__(self):
