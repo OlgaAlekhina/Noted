@@ -122,6 +122,14 @@ input.header-search {
     /*border: 0.5px solid #b1b1b1;*/
 }
 
+.auth-header {
+    font-size: 30px;
+    line-height: 39px;
+    font-family: 'Didact Gothic';
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .sm-but:hover {
     color: white;
 }
@@ -169,7 +177,7 @@ input.header-search {
     color: white;
 }
 
-.sm-but:focus, .lg-but:focus, #id_name:focus, #id_email:focus, #id_avatar:focus, .no-focus:focus {
+.sm-but:focus, .lg-but:focus, #id_name:focus, #id_email:focus, .no-focus:focus, #note-file:focus, #dropdownMenuButton1 {
     border: none;
 }
 
@@ -179,9 +187,17 @@ input.header-search {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date, .no-focus {
+.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date, #id_avatar:focus, #id_avatar:active, #note-file:focus, .no-focus, #dropdownMenuButton2:focus {
     border: none;
     outline: none;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(236, 247, 251, 1) !important;
+}
+
+.dropdown-menu {
+    border-radius: 5px !important;
 }
 
 .rem-but {
@@ -231,6 +247,19 @@ input.header-search {
 
 .note-link a:hover {
     color: black;
+}
+
+.drop-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(126, 159, 164);
+    border: none;
+    padding: 0;
+}
+
+.drop-head {
+    padding-left: 15px;
+    font-size: 15px;
 }
 
 textarea::-webkit-scrollbar, .notes::-webkit-scrollbar, .tasks::-webkit-scrollbar, .note-details::-webkit-scrollbar {
@@ -297,7 +326,7 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     color: black;
 }
 
-.save-but button:active, .save-but2 button:active {
+.save-but button:active, .save-but2 button:active, .dropdown-item:active {
     background-color: rgba(236, 247, 251, 1) !important;
     border: 1px solid #ced4da !important;
     color: black !important;
@@ -409,6 +438,7 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 .note-file {
     width: 60%  !important;
     margin-left:  37px !important;
+    background: rgba(236, 247, 251, 0.8) !important;
 }
 
 .save-but {

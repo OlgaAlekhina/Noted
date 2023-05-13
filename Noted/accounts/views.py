@@ -110,7 +110,6 @@ def password_reset_confirm(request, uidb64, token):
 				user.set_password(password1)
 				user.save()
 				login(request, user)
-				messages.success(request, "Пароль успешно изменен.")
 				return redirect('main')
 
 		return render(request, 'password_reset_confirm.html', {})

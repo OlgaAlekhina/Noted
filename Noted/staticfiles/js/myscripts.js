@@ -11,7 +11,7 @@ function GetDatestring() {
 
 function DateInsert(task_id) {
     date = GetDatestring();
-    var url = "/main/tasks/" + date + "/edit/" + task_id;
+    var url = "/main/tasks/" + date + "/edit/" + task_id + '#task' + task_id;
     window.location.replace(url);
     }
 

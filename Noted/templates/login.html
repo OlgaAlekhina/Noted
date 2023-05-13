@@ -9,7 +9,7 @@
 <main>
     <div class="container-xxl main-area">
         <div class="col-8 offset-2 col-lg-4 offset-lg-4 form-block">
-            <h2 style="text-align: center; font-family: 'Didact Gothic', sans-serif;">Авторизация</h2>
+            <p class="auth-header">Авторизация</p>
             <form method="post" action="{% url 'login' %}" class="form-area">
             {% csrf_token %}
                 <div class="mb-3">
