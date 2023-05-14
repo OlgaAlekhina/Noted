@@ -34,6 +34,11 @@ function submitbtn() {
     setTimeout(function(){document.getElementById("task_submit").style.display= "block";},3000);
 }
 
+function subformbtn() {
+    document.getElementById("form_submit").style.display= "none";
+    setTimeout(function(){document.getElementById("form_submit").style.display= "block";},3000);
+}
+
 function checkBox() {
     var check_on = '<a onclick="uncheckBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/></a><span style="padding-left: 4px;">Приоритет</span><input type="hidden" id="priority" name="priority" value="priority">';
     document.getElementById('prior_choice').innerHTML = check_on;

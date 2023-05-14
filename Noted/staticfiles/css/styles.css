@@ -142,6 +142,11 @@ input.header-search {
     top: 5%;
 }
 
+/* убрать крестик в форме поиска */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
 /* стили страниц авторизации и регистрации */
 
 .main-area {
@@ -160,10 +165,6 @@ input.header-search {
 }
 
 .sm-but:hover {
-    color: white;
-}
-
-.lg-but:hover {
     color: white;
 }
 
@@ -369,6 +370,10 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     background: #f3fafc;
     border: 1px solid #ced4da;
     color: black;
+}
+
+.lg-but:hover {
+    color: white;
 }
 
 .check-box {
@@ -776,6 +781,10 @@ td.not-current a {
 
     .slogan-1, .slogan-2, .slogan-3 {
         margin: 30px auto;
+    }
+
+    .task-row {
+        padding-right: 0;
     }
 
 }
