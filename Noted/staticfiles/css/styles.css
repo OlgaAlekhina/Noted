@@ -21,6 +21,7 @@ textarea {
     height: 902px;
     background-image: url(/static/images/Welcome_screen.jpg);
     background-size: cover;
+    position: relative;
 }
 
 .enter-head {
@@ -72,6 +73,34 @@ textarea {
     line-height: 18px;
     text-transform: uppercase;
     color: #000000;
+}
+
+.pc-pic {
+    width: 600px;
+    height: 500px;
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+}
+
+.slogan-1 {
+    margin: 30px 60px 40px 60px;
+    width: 65%;
+}
+
+.slogan-2 {
+    margin: 100px 110px 40px 0px;
+    width: 65%;
+}
+
+.slogan-3 {
+    margin: 90px 50px 40px 80px;
+    width: 65%;
+}
+
+.ent-block {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* стили верхней панели */
@@ -730,16 +759,25 @@ td.not-current a {
         padding-right: 0 !important;
     }
 
-    .but-div {
+    .but-div, .pc-pic {
         position: absolute;
         visibility: hidden;
         display: none;
     }
 
-    .main-area {
+    .main-area, .enter-main {
         background: url(/static/images/bg-1_mobile.jpg) no-repeat fixed;
         background-size: cover;
     }
+
+    .digits-block {
+        margin-top: 50px;
+    }
+
+    .slogan-1, .slogan-2, .slogan-3 {
+        margin: 30px auto;
+    }
+
 }
 
 /*@media (max-width: 700px) {
