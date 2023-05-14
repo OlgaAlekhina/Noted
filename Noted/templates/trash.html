@@ -17,15 +17,11 @@
                         <span class="username">{{ request.user.userprofile.name }}</span>
                     </div>
                     <div class="input-group dropdown">
-                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: #282A25; border-color: #282A25; width: 17%;">
+                        <button type="button" class="btn btn-primary" id="side-but" style="background: #282A25; border-color: #282A25; width: 17%;">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="{% url 'tasks' %}">Задачу</a></li>
-                            <li><a class="dropdown-item" href="{% url 'notes' %}">Заметку</a></li>
-                        </ul>
-                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">Создать</button>
-                        <ul style="padding: 0;" class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">Создать</button>
+                        <ul style="padding: 0;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">Задача</span></a></li>
                             <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">Заметка</span></a></li>
                         </ul>
@@ -60,6 +56,9 @@
                                 <div class="row note-block">
                                     <div class="col-10 text-break">
                                         <h6><b>{{ task.task_title }}</b></h6>
+                                        <a style="padding-right: 10px;" href="#" onclick="restoreTask({{ task.id }})">
+                                            <img width="17px" height="17px" src="/static/images/icons/reset_icon.svg"/>
+                                        </a>
                                         <a href="{% url 'task_perm_delete' task.id %}">
                                             <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
                                         </a>
@@ -86,6 +85,9 @@
                                         <a href="{% url 'note_details' note.id %}">{{ note.note_text | truncatechars:25 }}</a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
+                                        <a style="padding-right: 10px;" href="{% url 'note_restore' note.id %}">
+                                            <img width="17px" height="17px" src="/static/images/icons/reset_icon.svg"/>
+                                        </a>
                                         <a href="{% url 'note_perm_delete' note.id %}">
                                             <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg" />
                                         </a>

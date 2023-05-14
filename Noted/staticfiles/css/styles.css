@@ -177,7 +177,7 @@ input.header-search {
     color: white;
 }
 
-.sm-but:focus, .lg-but:focus, #id_name:focus, #id_email:focus, .no-focus:focus, #note-file:focus, #dropdownMenuButton1 {
+.sm-but:focus, .lg-but:focus, #id_name:focus, #id_email:focus, .no-focus:focus, #note-file:focus, #side-but {
     border: none;
 }
 
@@ -187,7 +187,7 @@ input.header-search {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date, #id_avatar:focus, #id_avatar:active, #note-file:focus, .no-focus, #dropdownMenuButton2:focus {
+.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date, #id_avatar:focus, #id_avatar:active, #note-file:focus, .no-focus, #dropdownMenuButton1:focus {
     border: none;
     outline: none;
 }

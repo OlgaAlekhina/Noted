@@ -102,9 +102,11 @@ def note_edit(request, pk):
         return render(request, 'note_edit.html', context={'notes': notes, 'note': note, 'notes_pin': notes_pin})
 
 
+# страница, где определяется текущая дата и происходит редирект на страницу задач на эту дату
 @login_required
 def tasks(request):
     return render(request, 'tasks_base.html', context={})
+
 
 # выводит страницу с задачами на текущую дату и формой добавления новой либо формой редактирования старой
 @login_required
@@ -295,6 +297,21 @@ def send_note(request, pk):
     messages.success(request, f'Заметка отправлена по адресу: {user.email}')
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
+
+
+# функция для восстановления задачи из корзины при нажатии на иконку
+@login_required
+def task_restore(request, date, pk):
+    add_at = timezone.now()
+    Task.objects.filter(id=pk).update(task_trash=False, task_date=date, add_at=add_at, task_priority=False)
+    return redirect('trash')
+
+
+# функция для восстановления заметки из корзины при нажатии на иконку
+@login_required
+def note_restore(request, pk):
+    Note.objects.filter(id=pk).update(note_trash=False, note_pin=False)
+    return redirect('trash')
 
 
 

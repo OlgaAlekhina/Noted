@@ -43,3 +43,9 @@ function uncheckBox() {
     var check_on = '<a onclick="checkBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_white.svg" width="25px" height="25px"/></a><span style="padding-left: 4px;">Приоритет</span>';
     document.getElementById('prior_choice').innerHTML = check_on;
 }
+
+function restoreTask(task_id) {
+    date = GetDatestring();
+    var url = "/main/task_restore/" + date + '/' + task_id;
+    window.location.replace(url);
+}
