@@ -738,6 +738,10 @@ td.not-current a {
     color: #FFFFFF;
 }
 
+#side-but {
+    cursor: default;
+}
+
 /* медиа запросы */
 
 /*@media (max-width: 1600px) {
