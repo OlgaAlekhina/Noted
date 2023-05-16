@@ -304,7 +304,6 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 }
 
 .note-block {
-    /*border: 0.5px solid #b1b1b1;*/
     font-size: 13px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -543,6 +542,11 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     line-height: 18px;
     color: #282A25;
 }
+
+.task-row {
+    padding-right: 20px;
+    }
+
 /* стили для страницы настроек*/
 
 .alert {
@@ -761,6 +765,7 @@ td.not-current a {
 @media screen and (max-width: 992px){
     .tasks, .notes {
         height: auto;
+        padding-right: 0 !important;
     }
 
     .search-wrapper {
@@ -791,12 +796,13 @@ td.not-current a {
         padding-right: 0;
     }
 
+    .notes-text {
+        padding: 0 10px;
+    }
+
+    .note-text3, .note-title3 {
+        margin: 0 !important;
+    }
+
 }
 
-/*@media (max-width: 700px) {
-    .icon {
-        position: absolute;
-        right: 14%;
-        top: 19%;
-    }
-}*/

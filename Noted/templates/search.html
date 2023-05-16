@@ -58,7 +58,7 @@
                                     <div class="col-2 check-box">
                                         <a href="{% url 'task_done' task.id %}?next={{ request.get_full_path }}"><div class="circle"></div></a>
                                     </div>
-                                    <div class="col-10 row note-block" style="padding-right: 20px;">
+                                    <div class="col-10 row note-block">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
@@ -68,7 +68,7 @@
                                                 <img width="17px" height="17px" src="/static/images/icons/trash_icon.svg"/>
                                             </a>
                                         </div>
-                                        <div class="col-1" style="display: flex; align-items: center;">
+                                        <div class="col-1" style="display: flex; align-items: center; padding-left: 0;">
                                             <img src="/static/images/icons/flag_icon.svg" width="28px" height="28px"/>
                                         </div>
                                     </div>

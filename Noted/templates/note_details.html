@@ -52,7 +52,7 @@
             </div>
             <div class="col" id="tasks-notes">
                 <div class="row">
-                    <div class="col-12 col-lg-4 order-last order-lg-first tasks">
+                    <div class="col-12 col-lg-4 d-none d-lg-block tasks">
                         <p class="main-header">Заметки</p>
                         <div class="col-10 offset-1">
                         {% for not in notes_pin %}
@@ -127,7 +127,7 @@
                         {% endfor %}
                         </div>
                     </div>
-                    <div class="col-12 col-lg-8 order-first order-lg-last note-details text-break" style="background: rgba(255, 255, 255, 0.5);">
+                    <div class="col-12 col-lg-8 note-details text-break" style="background: rgba(255, 255, 255, 0.5);">
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
