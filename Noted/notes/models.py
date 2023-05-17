@@ -8,6 +8,7 @@ class Task(models.Model):
     task_date = models.DateField()
     add_at = models.DateTimeField(blank=True)
     task_time = models.TimeField(blank=True, null=True)
+    task_timestamp = models.TimeField(blank=True, null=True)
     task_priority = models.BooleanField(default=False)
     task_deleted = models.BooleanField(default=False)
     task_trash = models.BooleanField(default=False)
@@ -17,6 +18,11 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return f'/main/{self.id}'
+
+
+class TaskNotification(models.Model):
+    task = models.OneToOneField(Task, on_delete=models.CASCADE)
+    send_time = models.TimeField(blank=True, null=True)
 
 
 class Note(models.Model):

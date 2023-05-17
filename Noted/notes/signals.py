@@ -1,8 +1,7 @@
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-
-from .models import UserProfile
+from .models import UserProfile, Task, TaskNotification
 
 
 @receiver(post_save, sender=User)
@@ -17,3 +16,11 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+
+@receiver(post_save, sender=Task)
+def create_notification(sender, instance, **kwargs):
+    email = instance.email
+    dog_spot = email.find('@')
+    name = email[:dog_spot]
+    TaskNotification.objects.create(user=instance, name=name)

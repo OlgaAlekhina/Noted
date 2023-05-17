@@ -127,6 +127,7 @@ def all_tasks(request, date, pk=None):
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_date = request.POST['task_date']
+        task_time = request.POST['task_time']
         task_priority = request.POST.get('priority', False)
         add_at = timezone.now()
         if task_priority:
@@ -134,10 +135,10 @@ def all_tasks(request, date, pk=None):
         try:
             task = Task.objects.get(id=pk)
             Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_date=task_date,
-                                              add_at=add_at)
+                                              add_at=add_at, task_time=task_time)
         except:
             Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
-                                task_date=task_date, add_at=add_at)
+                                task_date=task_date, add_at=add_at, task_time=task_time)
         return redirect('tasks')
 
     return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,

@@ -142,6 +142,9 @@
                                 <div class="mt-4" style="margin-left: 25px;">
                                     {{ form.task_date }}
                                 </div>
+                                <div class="mt-4" style="margin-left: 25px;">
+                                    {{ form.task_time }}
+                                </div>
                                     <div class="mt-4 prior-check" id="prior_choice">
                                         {% if task and task2.task_priority is True %}
                                             <a onclick="uncheckBox()" style="cursor: pointer;"><img src="/static/images/icons/flag_icon.svg" width="25px" height="25px"/></a>
