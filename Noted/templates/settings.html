@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 {% endif %}
-                <div class="col-5">
-                    <form method="post" enctype="multipart/form-data" onsubmit="return validateSize(this)" style="margin-left: 40px;">
+                <div class="col-12 col-lg-5">
+                    <form method="post" enctype="multipart/form-data" class="set-form" onsubmit="return validateSize(this)">
                         {% csrf_token %}
                         <div>
                             <label class="mb-2 set-label">Имя:</label>
@@ -90,7 +90,7 @@
                                 <button class="btn btn-light"><a style="text-decoration: none; color: black;" href="{% url 'change_password' %}">Сменить пароль</a></button>
                             </div>
                         </div>
-                        <div style="margin-top: 313px;">
+                        <div class="mt-313">
                             <button type="submit" class="lg-but" style="width: 240px;">Сохранить изменения</button>
                         </div>
                     </form>

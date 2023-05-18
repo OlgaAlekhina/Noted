@@ -576,6 +576,18 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     padding: 10px 60px;
 }
 
+.set-form {
+    margin-left: 40px;
+}
+
+.mt-313 {
+    margin-top: 313px;
+}
+
+.mt-260 {
+    margin-top: 260px;
+}
+
 /* стили для виджета "календарь" */
 
 .calendar-wrapper {
@@ -763,7 +775,7 @@ td.not-current a {
 }*/
 
 @media screen and (max-width: 992px){
-    .tasks, .notes {
+    .tasks, .notes, .user-settings {
         height: auto;
         padding-right: 0 !important;
     }
@@ -802,6 +814,19 @@ td.not-current a {
 
     .note-text3, .note-title3 {
         margin: 0 !important;
+    }
+
+    .set-form {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .mt-313, .mt-260 {
+        margin-top: 30px;
+    }
+
+    .note-file {
+        width: 100% !important;
     }
 
 }
