@@ -54,3 +54,13 @@ function restoreTask(task_id) {
     var url = "/main/task_restore/" + date + '/' + task_id;
     window.location.replace(url);
 }
+
+function togglePassword() {
+    const password = document.getElementById("password");
+    const type = password.getAttribute('type') === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+    const img = document.getElementById("togglePassword");
+    const src = img.getAttribute('src') === "/static/images/icons/eye_closed.svg" ? "/static/images/icons/eye.svg" : "/static/images/icons/eye_closed.svg";
+    img.setAttribute("src", src);
+}
+

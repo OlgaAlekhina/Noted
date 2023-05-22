@@ -49,7 +49,7 @@ def login_user(request):
 			login(request, user)
 			return redirect('main')
 		else:
-			messages.error(request, "В процессе авторизации произошла ошибка. Попробуйте еще раз.")
+			messages.error(request, "Неправильно введены учетные данные.")
 			return redirect('login')
 	else:
 		return render(request, "login.html", {})
