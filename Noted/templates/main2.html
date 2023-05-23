@@ -1,5 +1,5 @@
 {% extends "default.html" %}
-{% load tz %}
+{% load i18n %}
 {% block title %}
 Главная страница
 {% endblock title %}
@@ -20,10 +20,10 @@
                         <button type="button" class="btn btn-primary" id="side-but" style="background: #282A25; border-color: #282A25; width: 17%;">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">Создать</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">{% trans "Создать" %}</button>
                         <ul style="padding: 0;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">Задача</span></a></li>
-                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">Заметка</span></a></li>
+                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">{% trans "Задача" %}</span></a></li>
+                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">{% trans "Заметка" %}</span></a></li>
                         </ul>
                     </div>
                     <div class="calendar-wrapper">
@@ -34,12 +34,12 @@
                     </div>
                     <div class="nav-list">
                         <ul style="list-style-type: none;">
-                            <li class="current_page"><a href="{% url 'main' %}">Главная</a></li>
-                            <li><a href="{% url 'notes' %}">Заметки</a></li>
-                            <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                            <li><a href="{% url 'trash' %}">Корзина</a></li>
-                            <li><a href="{% url 'user_settings' %}">Настройки</a></li>
-                            <li class="logout-menu"><a href="{% url 'logout' %}">Выйти</a></li>
+                            <li class="current_page"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                            <li><a href="{% url 'notes' %}">{% trans "Заметки" %}</a></li>
+                            <li><a href="{% url 'tasks' %}">{% trans "Задачи" %}</a></li>
+                            <li><a href="{% url 'trash' %}">{% trans "Корзина" %}</a></li>
+                            <li><a href="{% url 'user_settings' %}">{% trans "Настройки" %}</a></li>
+                            <li class="logout-menu"><a href="{% url 'logout' %}">{% trans "Выйти" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 notes" style="background: rgba(255, 255, 255, 0.5); height: 732px;">
-                        <p class="main-header">Последние заметки</p>
+                        <p class="main-header">{% trans "Последние заметки" %}</p>
                         <div class="col-10 offset-1 main-notes">
                         {% for note in notes_pin %}
                             <div class="note-block">
@@ -180,12 +180,12 @@
                     </div>
                     <div class="col-6 but-div d-flex align-items-center">
                         <div class="next-button m-auto"style="width: 60%;">
-                            <button type="button" id="task-but"><a href="{% url 'tasks' %}">Создать задачу</a></button>
+                            <button type="button" id="task-but"><a href="{% url 'tasks' %}">{% trans "Создать задачу" %}</a></button>
                         </div>
                     </div>
                     <div class="col-6 but-div d-flex align-items-center" style="background: rgba(255, 255, 255, 0.5);">
                         <div class="next-button m-auto">
-                            <button type="button" id="note-but"><a href="{% url 'notes' %}">Создать заметку</a></button>
+                            <button type="button" id="note-but"><a href="{% url 'notes' %}">{% trans "Создать заметку" %}</a></button>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,325 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-23 19:09+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\change_password.html:23 .\templates\main2.html:23
+#: .\templates\note_details.html:29 .\templates\note_edit.html:25
+#: .\templates\notes.html:23 .\templates\search.html:23
+#: .\templates\settings.html:23 .\templates\tasks.html:23
+#: .\templates\trash.html:23
+msgid "Создать"
+msgstr "Add"
+
+#: .\templates\change_password.html:25 .\templates\main2.html:25
+#: .\templates\note_details.html:31 .\templates\note_edit.html:27
+#: .\templates\notes.html:25 .\templates\search.html:25
+#: .\templates\settings.html:25 .\templates\tasks.html:25
+#: .\templates\trash.html:25
+msgid "Задача"
+msgstr "Task"
+
+#: .\templates\change_password.html:26 .\templates\main2.html:26
+#: .\templates\note_details.html:32 .\templates\note_edit.html:28
+#: .\templates\notes.html:26 .\templates\search.html:26
+#: .\templates\settings.html:26 .\templates\tasks.html:26
+#: .\templates\trash.html:26
+msgid "Заметка"
+msgstr "Note"
+
+#: .\templates\change_password.html:37 .\templates\main2.html:37
+#: .\templates\note_details.html:43 .\templates\note_edit.html:39
+#: .\templates\notes.html:37 .\templates\search.html:37
+#: .\templates\settings.html:37 .\templates\tasks.html:37
+#: .\templates\trash.html:37
+msgid "Главная"
+msgstr "Main"
+
+#: .\templates\change_password.html:38 .\templates\main2.html:38
+#: .\templates\note_details.html:44 .\templates\note_details.html:56
+#: .\templates\note_edit.html:40 .\templates\note_edit.html:52
+#: .\templates\notes.html:38 .\templates\notes.html:53
+#: .\templates\search.html:38 .\templates\search.html:114
+#: .\templates\settings.html:38 .\templates\tasks.html:38
+#: .\templates\trash.html:38 .\templates\trash.html:71
+msgid "Заметки"
+msgstr "Notes"
+
+#: .\templates\change_password.html:39 .\templates\main2.html:39
+#: .\templates\note_details.html:45 .\templates\note_edit.html:41
+#: .\templates\notes.html:39 .\templates\search.html:39
+#: .\templates\search.html:54 .\templates\settings.html:39
+#: .\templates\tasks.html:39 .\templates\tasks.html:53
+#: .\templates\trash.html:39 .\templates\trash.html:53
+msgid "Задачи"
+msgstr "Tasks"
+
+#: .\templates\change_password.html:40 .\templates\main2.html:40
+#: .\templates\note_details.html:46 .\templates\note_edit.html:42
+#: .\templates\notes.html:40 .\templates\search.html:40
+#: .\templates\settings.html:40 .\templates\tasks.html:40
+#: .\templates\trash.html:40
+msgid "Корзина"
+msgstr "Trash"
+
+#: .\templates\change_password.html:41 .\templates\change_password.html:51
+#: .\templates\main2.html:41 .\templates\note_details.html:47
+#: .\templates\note_edit.html:43 .\templates\notes.html:41
+#: .\templates\search.html:41 .\templates\settings.html:41
+#: .\templates\settings.html:51 .\templates\tasks.html:41
+#: .\templates\trash.html:41
+msgid "Настройки"
+msgstr "Settings"
+
+#: .\templates\change_password.html:42 .\templates\main2.html:42
+#: .\templates\note_details.html:48 .\templates\note_edit.html:44
+#: .\templates\notes.html:42 .\templates\search.html:42
+#: .\templates\settings.html:42 .\templates\tasks.html:42
+#: .\templates\trash.html:42
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\templates\change_password.html:74 .\templates\settings.html:74
+msgid "Имя"
+msgstr "Name"
+
+#: .\templates\change_password.html:78 .\templates\settings.html:78
+msgid "Адрес электронной почты"
+msgstr "Email address"
+
+#: .\templates\change_password.html:82 .\templates\settings.html:82
+msgid "Аватар"
+msgstr "Avatar"
+
+#: .\templates\change_password.html:88 .\templates\login.html:19
+#: .\templates\settings.html:88
+msgid "Пароль"
+msgstr "Password"
+
+#: .\templates\change_password.html:89
+#: .\templates\password_reset_confirm.html:19
+msgid "Введите новый пароль"
+msgstr "Enter new password"
+
+#: .\templates\change_password.html:92
+#: .\templates\password_reset_confirm.html:22
+msgid "Повторите пароль"
+msgstr "Confirm password"
+
+#: .\templates\change_password.html:95 .\templates\settings.html:94
+msgid "Сохранить изменения"
+msgstr "Save changes"
+
+#: .\templates\change_password_letter.html:10
+msgid "Здравствуйте"
+msgstr "Hello"
+
+#: .\templates\change_password_letter.html:12
+msgid ""
+"Мы получили запрос на восстановление пароля к вашей учетной записи в "
+"приложении Noted"
+msgstr "We received a request to restore your account's password in Noted app"
+
+#: .\templates\change_password_letter.html:14
+msgid ""
+"Чтобы изменить пароль, пожалуйста, пройдите по ссылке, расположенной ниже"
+msgstr "In order to get a new password you should click the link below"
+
+#: .\templates\change_password_letter.html:18
+msgid "Если вы не делали этот запрос, можете просто проигнорировать это письмо"
+msgstr "Just ignore this letter if you didn't make a request"
+
+#: .\templates\default.html:38
+msgid "Поиск"
+msgstr "Search"
+
+#: .\templates\default.html:58 .\templates\default2.html:49
+#: .\templates\enter_page.html:75
+msgid "Данное приложение разработано в рамках проекта"
+msgstr "The application was developed as part of the project"
+
+#: .\templates\enter_page.html:34 .\templates\login.html:28
+msgid "Войти"
+msgstr "Login"
+
+#: .\templates\enter_page.html:39
+msgid "Начни планировать в Noted прямо сейчас и забудь о нехватке времени"
+msgstr "Start to plan in Noted app right now and forget about lack of time"
+
+#: .\templates\enter_page.html:42
+msgid ""
+"Noted - это место, где ты можешь собирать информацию, записывать свои идеи и "
+"организовать любой контент в одной записной книжке"
+msgstr "Noted is the right place to store information, write down your ideas and organize any content in one notebook"
+
+#: .\templates\enter_page.html:45
+msgid "Приступить к планированию"
+msgstr "Start planning"
+
+#: .\templates\enter_page.html:48 .\templates\registration.html:24
+msgid "Уже есть аккаунт"
+msgstr "Got an account"
+
+#: .\templates\enter_page.html:48 .\templates\registration.html:24
+msgid "Войдите"
+msgstr "Login"
+
+#: .\templates\enter_page.html:57
+msgid "твой привычный ежедневник, но теперь в электронном виде"
+msgstr "your usual day planner, but now in online format"
+
+#: .\templates\enter_page.html:60
+msgid "планируй свои рабочие будни и выходные с помощью задач"
+msgstr "organize your workdays and weekends by scheduled tasks"
+
+#: .\templates\enter_page.html:63
+msgid "создавай резервную копию своих мыслей с помощью заметок"
+msgstr "make a backup copy of your thoughts by notes"
+
+#: .\templates\login.html:12
+msgid "Авторизация"
+msgstr "Authorization"
+
+#: .\templates\login.html:25
+msgid "Запомнить"
+msgstr "Remember me"
+
+#: .\templates\login.html:34 .\templates\registration.html:12
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\templates\login.html:37
+msgid "Забыли пароль"
+msgstr "Forgot password"
+
+#: .\templates\main2.html:115
+msgid "Последние заметки"
+msgstr "Last notes"
+
+#: .\templates\main2.html:183
+msgid "Создать задачу"
+msgstr "Add task"
+
+#: .\templates\main2.html:188 .\templates\notes.html:118
+#, fuzzy
+#| msgid "Последние заметки"
+msgid "Создать заметку"
+msgstr "Add note"
+
+#: .\templates\note_details.html:75 .\templates\note_edit.html:71
+#: .\templates\notes.html:67
+msgid "Открепить"
+msgstr "Unpin"
+
+#: .\templates\note_details.html:77 .\templates\note_details.html:112
+#: .\templates\note_edit.html:73 .\templates\note_edit.html:108
+#: .\templates\notes.html:69 .\templates\notes.html:99
+msgid "Поделиться"
+msgstr "Share"
+
+#: .\templates\note_details.html:79 .\templates\note_details.html:114
+#: .\templates\note_edit.html:75 .\templates\note_edit.html:110
+#: .\templates\notes.html:71 .\templates\notes.html:101
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\templates\note_details.html:110 .\templates\note_edit.html:106
+#: .\templates\notes.html:97
+msgid "Закрепить"
+msgstr "Pin"
+
+#: .\templates\note_edit.html:130
+msgid "Изменить заметку"
+msgstr "Edit note"
+
+#: .\templates\note_edit.html:147
+msgid "Удалить файл"
+msgstr "Delete file"
+
+#: .\templates\note_edit.html:150
+msgid "Изменить файл"
+msgstr "Change file"
+
+#: .\templates\note_edit.html:157 .\templates\notes.html:136
+#: .\templates\tasks.html:155
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\templates\notes.html:122
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\notes.html:125
+msgid "Наберите текст"
+msgstr "Enter text"
+
+#: .\templates\password_reset_confirm.html:12
+msgid "Изменение пароля"
+msgstr "Change password"
+
+#: .\templates\password_reset_confirm.html:13
+msgid "Пожалуйста, установите новый пароль к Вашей учетной записи"
+msgstr "Please set a new password to your account"
+
+#: .\templates\password_reset_confirm.html:25
+msgid "Установить пароль"
+msgstr "Set password"
+
+#: .\templates\registration.html:18
+msgid "Зарегистрироваться"
+msgstr "Register"
+
+#: .\templates\reset_password_form.html:12
+msgid "Восстановление пароля"
+msgstr "Password reset"
+
+#: .\templates\reset_password_form.html:13
+msgid ""
+"Для восстановления пароля нужно указать Ваш E-mail. На указанный Вами адрес "
+"будет отправлено письмо с дальнейшими инструкциями"
+msgstr "Enter your email address to reset the password. You will receive an email message with further instructions"
+
+#: .\templates\reset_password_form.html:22
+msgid "Восстановить пароль"
+msgstr "Reset password"
+
+#: .\templates\reset_password_form.html:27
+msgid "Что делать, если письмо не приходит"
+msgstr ""
+
+#: .\templates\reset_password_form.html:28
+msgid "Если Вы не получили письмо через несколько минут, проверьте папку Спам"
+msgstr "If you haven't received our message within a few minutes, please check your spam folder"
+
+#: .\templates\settings.html:90
+msgid "Сменить пароль"
+msgstr "Change password"
+
+#: .\templates\tasks.html:131
+msgid "Изменить задачу"
+msgstr "Edit task"
+
+#: .\templates\tasks.html:133
+#, fuzzy
+#| msgid "Создать задачу"
+msgid "Добавить задачу"
+msgstr "Add task"
+
+#: .\templates\tasks.html:148 .\templates\tasks.html:151
+msgid "Приоритет"
+msgstr "Priority"

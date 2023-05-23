@@ -1,5 +1,5 @@
 {% extends "default.html" %}
-
+{% load i18n %}
 {% block title %}
 Настройки
 {% endblock title %}
@@ -20,10 +20,10 @@
                         <button type="button" class="btn btn-primary" id="side-but" style="background: #282A25; border-color: #282A25; width: 17%;">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">Создать</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">{% trans "Создать" %}</button>
                         <ul style="padding: 0;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">Задача</span></a></li>
-                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">Заметка</span></a></li>
+                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">{% trans "Задача" %}</span></a></li>
+                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">{% trans "Заметка" %}</span></a></li>
                         </ul>
                     </div>
                     <div class="calendar-wrapper">
@@ -34,12 +34,12 @@
                     </div>
                     <div class="nav-list">
                         <ul style="list-style-type: none;">
-                            <li><a href="{% url 'main' %}">Главная</a></li>
-                            <li><a href="{% url 'notes' %}">Заметки</a></li>
-                            <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                            <li><a href="{% url 'trash' %}">Корзина</a></li>
-                            <li class="current_page"><a href="{% url 'user_settings' %}">Настройки</a></li>
-                            <li class="logout-menu"><a href="{% url 'logout' %}">Выйти</a></li>
+                            <li><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                            <li><a href="{% url 'notes' %}">{% trans "Заметки" %}</a></li>
+                            <li><a href="{% url 'tasks' %}">{% trans "Задачи" %}</a></li>
+                            <li><a href="{% url 'trash' %}">{% trans "Корзина" %}</a></li>
+                            <li class="current_page"><a href="{% url 'user_settings' %}">{% trans "Настройки" %}</a></li>
+                            <li class="logout-menu"><a href="{% url 'logout' %}">{% trans "Выйти" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                     <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                 </button>
-                <p class="main-header">Настройки</p>
+                <p class="main-header">{% trans "Настройки" %}</p>
                 {% if user_form.errors %}
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <div id="form_errors">
@@ -71,27 +71,27 @@
                     <form method="post" enctype="multipart/form-data" class="set-form" onsubmit="return validateSize(this)">
                         {% csrf_token %}
                         <div>
-                            <label class="mb-2 set-label">Имя:</label>
+                            <label class="mb-2 set-label">{% trans "Имя" %}:</label>
                                 {{ profile_form.name }}
                         </div>
                         <div class="mail-field set-label" style="margin-top: 30px;">
-                            <label class="mb-2">Адрес электронной почты:</label>
+                            <label class="mb-2">{% trans "Адрес электронной почты" %}:</label>
                                 {{ user_form.email }}
                         </div>
                         <div style="margin-top: 30px;">
-                            <label class="mb-2 set-label">Аватар:</label>
+                            <label class="mb-2 set-label">{% trans "Аватар" %}:</label>
                             {{ profile_form.avatar }}
                         </div>
                         <div id ="file_error">
                         </div>
                         <div style="margin-top: 30px;">
-                            <label class="mb-2 set-label">Пароль:</label>
+                            <label class="mb-2 set-label">{% trans "Пароль" %}:</label>
                             <div class="save-but2">
-                                <button class="btn btn-light"><a style="text-decoration: none; color: black;" href="{% url 'change_password' %}">Сменить пароль</a></button>
+                                <button class="btn btn-light"><a style="text-decoration: none; color: black;" href="{% url 'change_password' %}">{% trans "Сменить пароль" %}</a></button>
                             </div>
                         </div>
                         <div class="mt-313">
-                            <button type="submit" class="lg-but" style="width: 240px;">Сохранить изменения</button>
+                            <button type="submit" class="lg-but" style="width: 240px;">{% trans "Сохранить изменения" %}</button>
                         </div>
                     </form>
                 </div>

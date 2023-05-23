@@ -1,5 +1,5 @@
 {% extends "default2.html" %}
-
+{% load i18n %}
 {% block title %}
 Регистрация
 {% endblock title %}
@@ -9,19 +9,19 @@
 <main>
     <div class="container-xxl main-area">
         <div class="col-10 offset-1 col-lg-4 offset-lg-4 form-block">
-            <p class="auth-header">Регистрация</p>
+            <p class="auth-header">{% trans "Регистрация" %}</p>
             <form method="post" class="form-area">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="row">
                     <div class="col button-wrapper" style="margin: 10px 0px 10px; ">
-                        <button type="submit" class="btn lg-but" style="margin-right: auto; margin-left: auto;" id="form_submit" onclick="subformbtn()">Зарегистрироваться</button>
+                        <button type="submit" class="btn lg-but" style="margin-right: auto; margin-left: auto;" id="form_submit" onclick="subformbtn()">{% trans "Зарегистрироваться" %}</button>
                     </div>
                 </div>
              </form>
             <div class="row" id="reg">
                 <div style=" display: flex; flex-direction: column; align-items: center;">
-                    <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></p>
+                    <p>{% trans "Уже есть аккаунт" %}? <a href="{% url 'login' %}">{% trans "Войдите" %}</a></p>
                 </div>
             </div>
         </div>

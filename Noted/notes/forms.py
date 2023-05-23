@@ -10,11 +10,13 @@ class TaskForm(ModelForm):
     task_title = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Добавьте название...'}))
     task_date = forms.DateField(label='', widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'date-widget',
                                                 'style': 'border-radius: 0.375rem; padding: 4px 13px; font-size: 15px; color: #282A25;'}))
-    task_priority = forms.BooleanField(label='Приоритет', required=False, widget=forms.widgets.CheckboxInput(attrs={'class': 'check-priority'}))
+    # task_priority = forms.BooleanField(label='Приоритет', required=False, widget=forms.widgets.CheckboxInput(attrs={'class': 'check-priority'}))
+    # task_time = forms.TimeField(label='', widget=forms.widgets.TimeInput(attrs={'type': 'time', 'class': 'time-widget'}))
+    # task_timestamp = forms.CharField(widget=forms.HiddenInput(attrs={}))
 
     class Meta:
         model = Task
-        fields = ['task_title', 'task_date', 'task_priority']
+        fields = ['task_title', 'task_date', 'task_time', 'task_priority']
 
 
 # форма для редактирования данных пользователя

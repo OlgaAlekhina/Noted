@@ -1,5 +1,5 @@
 {% extends "default.html" %}
-
+{% load i18n %}
 {% block title %}
 Все заметки
 {% endblock title %}
@@ -20,10 +20,10 @@
                         <button type="button" class="btn btn-primary " id="side-but" style="background: #282A25; border-color: #282A25; width: 17%;">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">Создать</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 80%; text-align: left;">{% trans "Создать" %}</button>
                         <ul style="padding: 0;" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">Задача</span></a></li>
-                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">Заметка</span></a></li>
+                            <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_circle_icon.svg" /></button><span class="drop-head">{% trans "Задача" %}</span></a></li>
+                            <li><a style="padding: 0px;"class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_icon.svg" /></button><span class="drop-head">{% trans "Заметка" %}</span></a></li>
                         </ul>
                     </div>
                     <div class="calendar-wrapper">
@@ -34,12 +34,12 @@
                     </div>
                     <div class="nav-list">
                         <ul style="list-style-type: none;">
-                            <li><a href="{% url 'main' %}">Главная</a></li>
-                            <li class="current_page"><a href="{% url 'notes' %}">Заметки</a></li>
-                            <li><a href="{% url 'tasks' %}">Задачи</a></li>
-                            <li><a href="{% url 'trash' %}">Корзина</a></li>
-                            <li><a href="{% url 'user_settings' %}">Настройки</a></li>
-                            <li class="logout-menu"><a href="{% url 'logout' %}">Выйти</a></li>
+                            <li><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                            <li class="current_page"><a href="{% url 'notes' %}">{% trans "Заметки" %}</a></li>
+                            <li><a href="{% url 'tasks' %}">{% trans "Задачи" %}</a></li>
+                            <li><a href="{% url 'trash' %}">{% trans "Корзина" %}</a></li>
+                            <li><a href="{% url 'user_settings' %}">{% trans "Настройки" %}</a></li>
+                            <li class="logout-menu"><a href="{% url 'logout' %}">{% trans "Выйти" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
-                        <p class="main-header">Заметки</p>
+                        <p class="main-header">{% trans "Заметки" %}</p>
                         <div class="col-10 offset-1">
                         {% for note in notes_pin %}
                             <div class="note-block">
@@ -64,11 +64,11 @@
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                             <li><a class="dropdown-item black-li" href="#" onclick="DateUnpin({{ note.id }})">
-                                                Открепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_red.svg" /></a></li>
+                                                {% trans "Открепить" %}<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_red.svg" /></a></li>
                                             <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
-                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                                {% trans "Поделиться" %}<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
                                             <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                                {% trans "Удалить" %}<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -94,11 +94,11 @@
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                                             <li><a class="dropdown-item black-li" href="#" onclick="DatePin({{ note.id }})">
-                                                Закрепить<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_black.svg" /></a></li>
+                                                {% trans "Закрепить" %}<img style="float: right;" width="15px" height="15px" src="/static/images/icons/pin_black.svg" /></a></li>
                                             <li><a class="dropdown-item black-li" href="{% url 'send_note' note.id %}?next={{ request.path }}">
-                                                Поделиться<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
+                                                {% trans "Поделиться" %}<img style="float: right;" width="17px" height="17px" src="/static/images/icons/paper_plane_icon.svg" /></a></li>
                                             <li><a class="dropdown-item red-li" href="{% url 'note_delete' note.id %}?next={{ request.path }}">
-                                                Удалить<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
+                                                {% trans "Удалить" %}<img style="float: right;" width="17px" height="17px" src="/static/images/icons/trash_icon.svg" /></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -115,14 +115,14 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-8 notes" style="background: rgba(255, 255, 255, 0.5);">
-                        <p class="main-header" >Создать заметку</p>
+                        <p class="main-header" >{% trans "Создать заметку" %}</p>
                         <form method="post" action="{% url 'notes' %}" enctype='multipart/form-data' onsubmit="return validateSize(this)">
                         {% csrf_token %}
                             <div class="mb-1">
-                                <input required type="text" class="form-control note-title" name="note_title" placeholder="Заголовок">
+                                <input required type="text" class="form-control note-title" name="note_title" placeholder="{% trans 'Заголовок' %}">
                             </div>
                             <div>
-                                <textarea class="form-control note-text" rows="30" name="note_text" placeholder="Наберите текст..."></textarea>
+                                <textarea class="form-control note-text" rows="30" name="note_text" placeholder="{% trans 'Наберите текст' %}..."></textarea>
                             </div>
                             <div>
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
@@ -133,7 +133,7 @@
                             <div id ="file_error">
                             </div>
                             <div class="save-but mb-3">
-                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">Сохранить</button>
+                                <button type="submit" class="btn btn-primary" id="task_submit" onclick="submitbtn()">{% trans "Сохранить" %}</button>
                             </div>
                         </form>
                     </div>
