@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.core.mail import EmailMessage
 
 
-# выводит главную страницу со всеми заметками и задачами на текущую дату
+# страница с яваскриптом, который определяет дату пользователя и делает редирект на главную страницу со всеми заметками и задачами на эту дату
 @login_required
 def main_page(request):
     return render(request, 'main.html', context={})

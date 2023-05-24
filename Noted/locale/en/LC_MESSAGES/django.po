@@ -216,8 +216,6 @@ msgid "Создать задачу"
 msgstr "Add task"
 
 #: .\templates\main2.html:188 .\templates\notes.html:118
-#, fuzzy
-#| msgid "Последние заметки"
 msgid "Создать заметку"
 msgstr "Add note"
 
@@ -299,8 +297,8 @@ msgid "Восстановить пароль"
 msgstr "Reset password"
 
 #: .\templates\reset_password_form.html:27
-msgid "Что делать, если письмо не приходит"
-msgstr ""
+msgid "Что делать, если письмо не приходит?"
+msgstr " "
 
 #: .\templates\reset_password_form.html:28
 msgid "Если Вы не получили письмо через несколько минут, проверьте папку Спам"
@@ -315,8 +313,6 @@ msgid "Изменить задачу"
 msgstr "Edit task"
 
 #: .\templates\tasks.html:133
-#, fuzzy
-#| msgid "Создать задачу"
 msgid "Добавить задачу"
 msgstr "Add task"
 
