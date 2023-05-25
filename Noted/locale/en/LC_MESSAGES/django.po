@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-23 19:09+0300\n"
+"POT-Creation-Date: 2023-05-25 13:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,112 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\accounts\forms.py:12 .\templates\change_password.html:88
+#: .\templates\login.html:19 .\templates\settings.html:88
+msgid "Пароль"
+msgstr "Password"
+
+#: .\accounts\forms.py:13 .\templates\change_password.html:92
+#: .\templates\password_reset_confirm.html:22
+msgid "Повторите пароль"
+msgstr "Confirm password"
+
+#: .\accounts\forms.py:23
+msgid "Пользователь с таким email уже зарегистрирован"
+msgstr "User with email address you entered is already exists"
+
+#: .\accounts\forms.py:31
+msgid "Пароли не совпадают"
+msgstr "Passwords don't match"
+
+#: .\accounts\views.py:53
+msgid "Неправильно введены учетные данные."
+msgstr "There is no user with such credentials"
+
+#: .\accounts\views.py:67
+msgid "Восстановление пароля в приложении Noted"
+msgstr "Reset password in Noted app"
+
+#: .\accounts\views.py:83
+msgid ""
+"Мы отправили вам на электронную почту письмо с инструкциями для "
+"восстановления пароля.  \n"
+"\t\t\t\t\t\t\t\t\t\t\tЕсли вы не получили письмо в течение нескольких минут, "
+"пожалуйста, проверьте папку \"Спам\". "
+msgstr "We sent you a letter with further instructions for password reset. If you haven't received our message within a few minutes, please check your spam folder"
+
+#: .\accounts\views.py:87
+msgid "Пользователь с таким E-mail не зарегистрирован в приложении."
+msgstr "There is no user registered by this E-mail"
+
+#: .\accounts\views.py:90
+msgid "Вы забыли ввести свой E-mail."
+msgstr "You forgot to enter your E-mail"
+
+#: .\accounts\views.py:109
+msgid "Пароли не совпадают."
+msgstr "Passwords don't match"
+
+#: .\accounts\views.py:118
+msgid "Ссылка устарела."
+msgstr "The link you followed has expired"
+
+#: .\accounts\views.py:120
+msgid "Что-то пошло не так. Попробуйте еще раз зайти на сайт."
+msgstr "Something wrong happened. Please try to login once again"
+
+#: .\notes\forms.py:11
+msgid "Добавьте название..."
+msgstr "Enter title..."
+
+#: .\notes\views.py:34
+msgid "января"
+msgstr "January"
+
+#: .\notes\views.py:34
+msgid "февраля"
+msgstr "February"
+
+#: .\notes\views.py:34
+msgid "марта"
+msgstr "March"
+
+#: .\notes\views.py:34
+msgid "апреля"
+msgstr "April"
+
+#: .\notes\views.py:34
+msgid "мая"
+msgstr "May"
+
+#: .\notes\views.py:34
+msgid "июня"
+msgstr "June"
+
+#: .\notes\views.py:35
+msgid "июля"
+msgstr "July"
+
+#: .\notes\views.py:35
+msgid "августа"
+msgstr "August"
+
+#: .\notes\views.py:35
+msgid "сентября"
+msgstr "September"
+
+#: .\notes\views.py:35
+msgid "октября"
+msgstr "October"
+
+#: .\notes\views.py:35
+msgid "ноября"
+msgstr "November"
+
+#: .\notes\views.py:35
+msgid "декабря"
+msgstr "December"
 
 #: .\templates\change_password.html:23 .\templates\main2.html:23
 #: .\templates\note_details.html:29 .\templates\note_edit.html:25
@@ -106,20 +212,10 @@ msgstr "Email address"
 msgid "Аватар"
 msgstr "Avatar"
 
-#: .\templates\change_password.html:88 .\templates\login.html:19
-#: .\templates\settings.html:88
-msgid "Пароль"
-msgstr "Password"
-
 #: .\templates\change_password.html:89
 #: .\templates\password_reset_confirm.html:19
 msgid "Введите новый пароль"
 msgstr "Enter new password"
-
-#: .\templates\change_password.html:92
-#: .\templates\password_reset_confirm.html:22
-msgid "Повторите пароль"
-msgstr "Confirm password"
 
 #: .\templates\change_password.html:95 .\templates\settings.html:94
 msgid "Сохранить изменения"
@@ -148,7 +244,7 @@ msgstr "Just ignore this letter if you didn't make a request"
 msgid "Поиск"
 msgstr "Search"
 
-#: .\templates\default.html:58 .\templates\default2.html:49
+#: .\templates\default.html:70 .\templates\default2.html:49
 #: .\templates\enter_page.html:75
 msgid "Данное приложение разработано в рамках проекта"
 msgstr "The application was developed as part of the project"
@@ -165,7 +261,9 @@ msgstr "Start to plan in Noted app right now and forget about lack of time"
 msgid ""
 "Noted - это место, где ты можешь собирать информацию, записывать свои идеи и "
 "организовать любой контент в одной записной книжке"
-msgstr "Noted is the right place to store information, write down your ideas and organize any content in one notebook"
+msgstr ""
+"Noted is the right place to store information, write down your ideas and "
+"organize any content in one notebook"
 
 #: .\templates\enter_page.html:45
 msgid "Приступить к планированию"
@@ -206,6 +304,10 @@ msgstr "Registration"
 #: .\templates\login.html:37
 msgid "Забыли пароль"
 msgstr "Forgot password"
+
+#: .\templates\main2.html:54
+msgid "Задачи на"
+msgstr "Tasks for"
 
 #: .\templates\main2.html:115
 msgid "Последние заметки"
@@ -290,7 +392,9 @@ msgstr "Password reset"
 msgid ""
 "Для восстановления пароля нужно указать Ваш E-mail. На указанный Вами адрес "
 "будет отправлено письмо с дальнейшими инструкциями"
-msgstr "Enter your email address to reset the password. You will receive an email message with further instructions"
+msgstr ""
+"Enter your email address to reset the password. You will receive an email "
+"message with further instructions"
 
 #: .\templates\reset_password_form.html:22
 msgid "Восстановить пароль"
@@ -302,7 +406,9 @@ msgstr " "
 
 #: .\templates\reset_password_form.html:28
 msgid "Если Вы не получили письмо через несколько минут, проверьте папку Спам"
-msgstr "If you haven't received our message within a few minutes, please check your spam folder"
+msgstr ""
+"If you haven't received our message within a few minutes, please check your "
+"spam folder"
 
 #: .\templates\settings.html:90
 msgid "Сменить пароль"

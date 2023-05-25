@@ -9,6 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import user_token
+from django.utils.translation import gettext as _
 
 
 # выводит форму для регистрации нового пользователя
@@ -49,7 +50,7 @@ def login_user(request):
 			login(request, user)
 			return redirect('main')
 		else:
-			messages.error(request, "Неправильно введены учетные данные.")
+			messages.error(request, _("Неправильно введены учетные данные."))
 			return redirect('login')
 	else:
 		return render(request, "login.html", {})
@@ -63,7 +64,7 @@ def reset_password_request(request):
 			user = User.objects.filter(email=email).first()
 			if user:
 				msg = EmailMultiAlternatives(
-					subject='Восстановление пароля в приложении Noted',
+					subject=_('Восстановление пароля в приложении Noted'),
 					from_email='olga-olechka-5@yandex.ru',
 					to=[user.email, ]
 				)
@@ -79,14 +80,14 @@ def reset_password_request(request):
 
 				msg.attach_alternative(html_content, "text/html")
 				msg.send()
-				messages.success(request, """Мы отправили вам на электронную почту письмо с инструкциями для восстановления пароля.  
-											Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте папку "Спам". """)
+				messages.success(request, _("""Мы отправили вам на электронную почту письмо с инструкциями для восстановления пароля.  
+											Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте папку "Спам". """))
 				return redirect("login")
 			else:
-				messages.error(request, "Пользователь с таким E-mail не зарегистрирован в приложении.")
+				messages.error(request, _("Пользователь с таким E-mail не зарегистрирован в приложении."))
 				return redirect("reset_password")
 		else:
-			messages.error(request, "Вы забыли ввести свой E-mail.")
+			messages.error(request, _("Вы забыли ввести свой E-mail."))
 			return redirect("reset_password")
 	else:
 		return render(request=request, template_name="reset_password_form.html")
@@ -105,7 +106,7 @@ def password_reset_confirm(request, uidb64, token):
 			password1 = request.POST['password1']
 			password2 = request.POST['password2']
 			if password1 and password2 and password1 != password2:
-				messages.error(request, "Пароли не совпадают.")
+				messages.error(request, _("Пароли не совпадают."))
 			else:
 				user.set_password(password1)
 				user.save()
@@ -114,9 +115,9 @@ def password_reset_confirm(request, uidb64, token):
 
 		return render(request, 'password_reset_confirm.html', {})
 	else:
-		messages.error(request, "Ссылка устарела.")
+		messages.error(request, _("Ссылка устарела."))
 
-	messages.error(request, 'Что-то пошло не так. Попоробуйте еще раз зайти на сайт.')
+	messages.error(request, _('Что-то пошло не так. Попробуйте еще раз зайти на сайт.'))
 	return redirect("login")
 
 

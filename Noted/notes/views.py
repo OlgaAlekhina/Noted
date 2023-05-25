@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.utils import timezone
 from django.core.mail import EmailMessage
+from django.utils.translation import gettext as _
 
 
 # страница с яваскриптом, который определяет дату пользователя и делает редирект на главную страницу со всеми заметками и задачами на эту дату
@@ -30,8 +31,8 @@ def main_page_date(request, date):
                                           task_trash=False).order_by('-add_at')
     notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
     notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
-    month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-                  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+    month_list = [_('января'), _('февраля'), _('марта'), _('апреля'), _('мая'), _('июня'),
+                  _('июля'), _('августа'), _('сентября'), _('октября'), _('ноября'), _('декабря')]
     date = f'{date.day} {month_list[int(date.month) - 1]}'
     return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                   'tasks_important': tasks_important, 'notes': notes, 'date': date,

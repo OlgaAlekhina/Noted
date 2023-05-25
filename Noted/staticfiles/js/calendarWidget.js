@@ -12,8 +12,18 @@ var Cal = function(divId1, divId2) {
     'СБ',
     'ВС'
   ];
+  this.DaysOfWeek2 = [
+    'MO',
+    'TU',
+    'WE',
+    'TH',
+    'FR',
+    'SA',
+    'SU'
+  ];
   // Месяцы начиная с января
   this.Months =['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  this.Months2 =['January', 'Fabruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   //Устанавливаем текущий месяц, год
   var d = new Date();
   this.currMonth = d.getMonth();
@@ -57,15 +67,27 @@ Cal.prototype.showMonth = function(y, m) {
   , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
 
   var html1 = '';
+  var lang = document.getElementById('lang_select').value;
+  if (lang === 'ru') {
   // Запись выбранного месяца и года
-  html1 += this.Months[m] + ', ' + y;
-
+    html1 += this.Months[m] + ', ' + y;
+  }
+  else {
+    html1 += this.Months2[m] + ', ' + y;
+  }
   var html = '<table>';
 
   // заголовок дней недели
   html += '<tr class="days">';
-  for(var i=0; i < this.DaysOfWeek.length;i++) {
-    html += '<td>' + this.DaysOfWeek[i] + '</td>';
+  if (lang === 'ru') {
+      for(var i=0; i < this.DaysOfWeek.length;i++) {
+        html += '<td>' + this.DaysOfWeek[i] + '</td>';
+      }
+  }
+  else {
+      for(var i=0; i < this.DaysOfWeek2.length;i++) {
+        html += '<td>' + this.DaysOfWeek2[i] + '</td>';
+      }
   }
   html += '</tr>';
   // Записываем дни

@@ -51,7 +51,7 @@
                             <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                         </button>
                         <p class="main-header">
-                            <a href="{% url 'date_notes' prev_date %}"><span style="padding-right: 30px;"><img src="/static/images/icons/arrow_left.svg"></span></a>Задачи на {{ date }}<a href="{% url 'date_notes' next_date %}"><span style="padding-left: 30px;"><img src="/static/images/icons/arrow_right.svg"></span></a>
+                            <a href="{% url 'date_notes' prev_date %}"><span style="padding-right: 30px;"><img src="/static/images/icons/arrow_left.svg"></span></a>{% trans "Задачи на" %} {{ date }}<a href="{% url 'date_notes' next_date %}"><span style="padding-left: 30px;"><img src="/static/images/icons/arrow_right.svg"></span></a>
                         </p>
                         <div class="col-11">
                             {% for task in tasks_important %}
