@@ -139,7 +139,7 @@
                             <div>
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
                             </div>
-                            <div class="mb-3 upload-file">
+                            <div class="upload-file" style="margin-bottom: 0;">
                                 {% if note.note_file %}
                                     <hr>
                                     <a href="{{ note.note_file.url }}">{{ note.note_file.name|file_name }}</a>
@@ -147,9 +147,15 @@
                                         <label for="delete-file">{% trans "Удалить файл" %}</label>
                                         <input type="checkbox" id="delete-file" name="file_delete"/>
                                     </div>
-                                    <label for="note_file" class="small mb-1">{% trans "Изменить файл" %}:</label>
+                                    <p class="small" style="margin-bottom: 0;">{% trans "Изменить файл" %}:</p>
                                 {% endif %}
-                                <input class="form-control" type="file" name="note_file" id="note_file" style="width: 60%;">
+                                <label for="note-file" class="form-label file-label2">
+                                    <div class="input-group" style="padding-right: 0; padding-left: 0;">
+                                        <span class="input-group-text" id="text_input_span_id">Добавить файл</span>
+                                        <input type="text" id='text_input_id' class="form-control" placeholder="Файл не выбран" autocomplete="off">
+                                    </div>
+                                </label>
+                                <input class="form-control" type="file" name="note_file" id="note-file" onchange="fileinputChange()" style="opacity: 0; height: 0;">
                             </div>
                             <div id ="file_error">
                             </div>
@@ -187,5 +193,9 @@ function validateSize(form) {
 </script>
 
 <script src="/static/js/calendarWidget.js"></script>
+
+<script>
+    document.addEventListener('load', transAddfile())
+</script>
 
 {% endblock content %}

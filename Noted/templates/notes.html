@@ -127,15 +127,12 @@
                             <div>
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
                             </div>
-                            <div class="mb-4 mt-4">
-                                <!-- use opacity and height style to hide file input form -->
+                            <div>
                                 <input class="form-control" type="file" name="note_file" id="note-file" onchange="fileinputChange()" style="opacity: 0; height: 0;">
-                                <!-- use another text input group to replace file input form -->
-                                <label for="note-file" class="form-label">
+                                <label for="note-file" class="form-label file-label">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="text_input_span_id">Выберите файл</span>
-                                        <!-- use 'caret-color: transparent' to hide input cursor, set autocomplete to off to remove possible input hint -->
-                                        <input type="text" id='text_input_id' class="form-control" placeholder="Файл не выбран" style="caret-color: transparent" autocomplete="off">
+                                        <span class="input-group-text" id="text_input_span_id">Добавить файл</span>
+                                        <input type="text" id='text_input_id' class="form-control" placeholder="Файл не выбран" autocomplete="off">
                                     </div>
                                 </label>
                             </div>
@@ -175,5 +172,9 @@ function validateSize(form) {
 </script>
 
 <script src="/static/js/calendarWidget.js"></script>
+
+<script>
+    document.addEventListener('load', transAddfile())
+</script>
 
 {% endblock content %}

@@ -496,10 +496,27 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     font-size: 15px;
 }
 
-.note-file {
-    width: 60%  !important;
-    margin-left:  37px !important;
+.file-label {
+    width: 70% !important;
+    margin-left:  15px !important;
+}
+
+.file-label2 {
+    width: 70% !important;
+}
+
+#text_input_span_id {
+    font-size: 10px !important;
     background: rgba(236, 247, 251, 0.8) !important;
+    cursor: pointer;
+    width: 100px !important;
+    margin:auto;
+    display:table;
+}
+
+#text_input_id {
+    font-size: 10px !important;
+    caret-color: transparent;
 }
 
 .save-but {
