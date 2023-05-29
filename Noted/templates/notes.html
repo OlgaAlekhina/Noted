@@ -128,7 +128,16 @@
                                 <input type="hidden" id="note_date" name="note_date" value="CurrentDate">
                             </div>
                             <div class="mb-4 mt-4">
-                              <input class="form-control note-file" type="file" name="note_file" id="note-file">
+                                <!-- use opacity and height style to hide file input form -->
+                                <input class="form-control" type="file" name="note_file" id="note-file" onchange="fileinputChange()" style="opacity: 0; height: 0;">
+                                <!-- use another text input group to replace file input form -->
+                                <label for="note-file" class="form-label">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="text_input_span_id">Выберите файл</span>
+                                        <!-- use 'caret-color: transparent' to hide input cursor, set autocomplete to off to remove possible input hint -->
+                                        <input type="text" id='text_input_id' class="form-control" placeholder="Файл не выбран" style="caret-color: transparent" autocomplete="off">
+                                    </div>
+                                </label>
                             </div>
                             <div id ="file_error">
                             </div>

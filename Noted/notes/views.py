@@ -22,6 +22,7 @@ def main_page(request):
 @login_required
 def main_page_date(request, date):
     user = request.user
+    lang = request.LANGUAGE_CODE
     next_date = date + datetime.timedelta(days=1)
     prev_date = date - datetime.timedelta(days=1)
     tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
@@ -33,7 +34,17 @@ def main_page_date(request, date):
     notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
     month_list = [_('января'), _('февраля'), _('марта'), _('апреля'), _('мая'), _('июня'),
                   _('июля'), _('августа'), _('сентября'), _('октября'), _('ноября'), _('декабря')]
-    date = f'{date.day} {month_list[int(date.month) - 1]}'
+    if lang == 'ru':
+        date = f'{date.day} {month_list[int(date.month) - 1]}'
+    else:
+        if date.day in (1, 21, 31):
+            date = f'{month_list[int(date.month) - 1]}, {date.day}st'
+        elif date.day in (2, 22):
+            date = f'{month_list[int(date.month) - 1]}, {date.day}nd'
+        elif date.day in (3, 23):
+            date = f'{month_list[int(date.month) - 1]}, {date.day}rd'
+        else:
+            date = f'{month_list[int(date.month) - 1]}, {date.day}th'
     return render(request, 'main2.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
                                                   'tasks_important': tasks_important, 'notes': notes, 'date': date,
                                                   'next_date': next_date, 'prev_date': prev_date, 'notes_pin': notes_pin})

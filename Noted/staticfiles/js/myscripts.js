@@ -64,3 +64,19 @@ function togglePassword() {
     img.setAttribute("src", src);
 }
 
+function fileinputChange() {
+    var file = document.getElementById('note-file');
+    var placeholder = document.getElementById('text_input_id')
+    if (file.value == "")
+    {
+        alert('no file');
+        placeholder.setAttribute("placeholder", "Файл ни фига не выбран");
+    }
+    else
+    {
+        var theSplit = file.value.split('\\');
+        alert(theSplit);
+        placeholder.setAttribute("placeholder", theSplit[theSplit.length-1]);
+    }
+}
+
