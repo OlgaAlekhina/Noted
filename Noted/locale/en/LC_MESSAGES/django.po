@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 13:27+0300\n"
+"POT-Creation-Date: 2023-05-31 19:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\accounts\forms.py:12 .\templates\change_password.html:88
-#: .\templates\login.html:19 .\templates\settings.html:88
+#: .\accounts\forms.py:12 .\templates\change_password.html:94
+#: .\templates\login.html:19 .\templates\settings.html:94
 msgid "Пароль"
 msgstr "Password"
 
-#: .\accounts\forms.py:13 .\templates\change_password.html:92
+#: .\accounts\forms.py:13 .\templates\change_password.html:98
 #: .\templates\password_reset_confirm.html:22
 msgid "Повторите пароль"
 msgstr "Confirm password"
 
-#: .\accounts\forms.py:23
+#: .\accounts\forms.py:23 .\notes\validators.py:15
 msgid "Пользователь с таким email уже зарегистрирован"
 msgstr "User with email address you entered is already exists"
 
@@ -50,7 +50,10 @@ msgid ""
 "восстановления пароля.  \n"
 "\t\t\t\t\t\t\t\t\t\t\tЕсли вы не получили письмо в течение нескольких минут, "
 "пожалуйста, проверьте папку \"Спам\". "
-msgstr "We sent you a letter with further instructions for password reset. If you haven't received our message within a few minutes, please check your spam folder"
+msgstr ""
+"We sent you a letter with further instructions for password reset. If you "
+"haven't received our message within a few minutes, please check your spam "
+"folder"
 
 #: .\accounts\views.py:87
 msgid "Пользователь с таким E-mail не зарегистрирован в приложении."
@@ -60,7 +63,7 @@ msgstr "There is no user registered by this E-mail"
 msgid "Вы забыли ввести свой E-mail."
 msgstr "You forgot to enter your E-mail"
 
-#: .\accounts\views.py:109
+#: .\accounts\views.py:109 .\notes\views.py:253
 msgid "Пароли не совпадают."
 msgstr "Passwords don't match"
 
@@ -76,53 +79,70 @@ msgstr "Something wrong happened. Please try to login once again"
 msgid "Добавьте название..."
 msgstr "Enter title..."
 
-#: .\notes\views.py:34
+#: .\notes\validators.py:26 .\notes\views.py:255
+msgid "Пароль должен содержать не менее 8 символов"
+msgstr "Your password must have at least 8 characters"
+
+#: .\notes\validators.py:33
+#, python-format
+msgid "Your password must contain at least %(min_length)d characters."
+msgstr ""
+
+#: .\notes\views.py:35
 msgid "января"
 msgstr "January"
 
-#: .\notes\views.py:34
+#: .\notes\views.py:35
 msgid "февраля"
 msgstr "February"
 
-#: .\notes\views.py:34
+#: .\notes\views.py:35
 msgid "марта"
 msgstr "March"
 
-#: .\notes\views.py:34
+#: .\notes\views.py:35
 msgid "апреля"
 msgstr "April"
 
-#: .\notes\views.py:34
+#: .\notes\views.py:35
 msgid "мая"
 msgstr "May"
 
-#: .\notes\views.py:34
+#: .\notes\views.py:35
 msgid "июня"
 msgstr "June"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "июля"
 msgstr "July"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "августа"
 msgstr "August"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "сентября"
 msgstr "September"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "октября"
 msgstr "October"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "ноября"
 msgstr "November"
 
-#: .\notes\views.py:35
+#: .\notes\views.py:36
 msgid "декабря"
 msgstr "December"
+
+#: .\notes\views.py:262
+msgid "Ваш профиль успешно обновлен"
+msgstr "Successfully updated your personal information"
+
+#: .\notes\views.py:321
+msgid "Заметка отправлена по адресу: "
+msgstr "The note was sent to: "
 
 #: .\templates\change_password.html:23 .\templates\main2.html:23
 #: .\templates\note_details.html:29 .\templates\note_edit.html:25
@@ -160,9 +180,9 @@ msgstr "Main"
 #: .\templates\note_details.html:44 .\templates\note_details.html:56
 #: .\templates\note_edit.html:40 .\templates\note_edit.html:52
 #: .\templates\notes.html:38 .\templates\notes.html:53
-#: .\templates\search.html:38 .\templates\search.html:114
+#: .\templates\search.html:38 .\templates\search.html:120
 #: .\templates\settings.html:38 .\templates\tasks.html:38
-#: .\templates\trash.html:38 .\templates\trash.html:71
+#: .\templates\trash.html:38 .\templates\trash.html:74
 msgid "Заметки"
 msgstr "Notes"
 
@@ -190,7 +210,7 @@ msgstr "Trash"
 #: .\templates\settings.html:51 .\templates\tasks.html:41
 #: .\templates\trash.html:41
 msgid "Настройки"
-msgstr "Settings"
+msgstr "Profile"
 
 #: .\templates\change_password.html:42 .\templates\main2.html:42
 #: .\templates\note_details.html:48 .\templates\note_edit.html:44
@@ -212,12 +232,12 @@ msgstr "Email address"
 msgid "Аватар"
 msgstr "Avatar"
 
-#: .\templates\change_password.html:89
+#: .\templates\change_password.html:95
 #: .\templates\password_reset_confirm.html:19
 msgid "Введите новый пароль"
 msgstr "Enter new password"
 
-#: .\templates\change_password.html:95 .\templates\settings.html:94
+#: .\templates\change_password.html:101 .\templates\settings.html:100
 msgid "Сохранить изменения"
 msgstr "Save changes"
 
@@ -244,7 +264,7 @@ msgstr "Just ignore this letter if you didn't make a request"
 msgid "Поиск"
 msgstr "Search"
 
-#: .\templates\default.html:70 .\templates\default2.html:49
+#: .\templates\default.html:70 .\templates\default2.html:61
 #: .\templates\enter_page.html:75
 msgid "Данное приложение разработано в рамках проекта"
 msgstr "The application was developed as part of the project"
@@ -309,15 +329,15 @@ msgstr "Forgot password"
 msgid "Задачи на"
 msgstr "Tasks for"
 
-#: .\templates\main2.html:115
+#: .\templates\main2.html:121
 msgid "Последние заметки"
 msgstr "Last notes"
 
-#: .\templates\main2.html:183
+#: .\templates\main2.html:189
 msgid "Создать задачу"
 msgstr "Add task"
 
-#: .\templates\main2.html:188 .\templates\notes.html:118
+#: .\templates\main2.html:194 .\templates\notes.html:118
 msgid "Создать заметку"
 msgstr "Add note"
 
@@ -355,8 +375,8 @@ msgstr "Delete file"
 msgid "Изменить файл"
 msgstr "Change file"
 
-#: .\templates\note_edit.html:157 .\templates\notes.html:136
-#: .\templates\tasks.html:155
+#: .\templates\note_edit.html:163 .\templates\notes.html:142
+#: .\templates\tasks.html:164
 msgid "Сохранить"
 msgstr "Save"
 
@@ -410,18 +430,18 @@ msgstr ""
 "If you haven't received our message within a few minutes, please check your "
 "spam folder"
 
-#: .\templates\settings.html:90
+#: .\templates\settings.html:96
 msgid "Сменить пароль"
 msgstr "Change password"
 
-#: .\templates\tasks.html:131
+#: .\templates\tasks.html:137
 msgid "Изменить задачу"
 msgstr "Edit task"
 
-#: .\templates\tasks.html:133
+#: .\templates\tasks.html:139
 msgid "Добавить задачу"
 msgstr "Add task"
 
-#: .\templates\tasks.html:148 .\templates\tasks.html:151
+#: .\templates\tasks.html:157 .\templates\tasks.html:160
 msgid "Приоритет"
 msgstr "Priority"

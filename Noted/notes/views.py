@@ -250,14 +250,16 @@ def change_password(request):
 
         if user_form.is_valid() and profile_form.is_valid():
             if password1 and password2 and password1 != password2:
-                messages.error(request, "Пароли не совпадают.")
+                messages.error(request, _("Пароли не совпадают."))
+            elif password1 and password2 and password1 == password2 and len(password1) < 8:
+                messages.error(request, _("Пароль должен содержать не менее 8 символов"))
             else:
                 request.user.set_password(password1)
                 request.user.save()
                 user_form.save()
                 profile_form.save()
                 login(request, request.user)
-                messages.success(request, 'Ваш профиль успешно обновлен')
+                messages.success(request, _('Ваш профиль успешно обновлен'))
                 return redirect('user_settings')
     else:
         user_form = UpdateUserForm(instance=request.user)
@@ -305,6 +307,7 @@ def note_unpin(request, date, pk):
 @login_required
 def send_note(request, pk):
     user = request.user
+    email = user.email
     note = Note.objects.get(id=pk)
     subject = note.note_title
     message = note.note_text
@@ -315,7 +318,7 @@ def send_note(request, pk):
     if note_file:
         msg.attach_file(note_file.path)
     msg.send()
-    messages.success(request, f'_(Заметка отправлена по адресу): {user.email}')
+    messages.success(request, _("Заметка отправлена по адресу: ") + email)
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
 
