@@ -13,7 +13,7 @@
             <form method="post" action="{% url 'login' %}" class="form-area">
             {% csrf_token %}
                 <div class="mb-3">
-                    <input type="email" class="form-control my-inp" name="email" placeholder="E-mail">
+                    <input required type="email" class="form-control my-inp" name="email" placeholder="E-mail">
                 </div>
                 <div id="pass-inp">
                     <input type="password" class="form-control my-inp" id="password" name="password" placeholder="{% trans 'Пароль' %}">

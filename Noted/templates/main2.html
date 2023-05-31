@@ -62,6 +62,9 @@
                                     <div class="col-10 row note-block">
                                         <div class="col-11 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
+                                            {% if task.task_time %}
+                                                <span class="task-time">{{ task.task_time|time:"H:i" }}</span>
+                                            {% endif %}
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>
@@ -83,6 +86,9 @@
                                     <div class="row col-10 note-block">
                                         <div class="col-10 text-break">
                                             <h6><b>{{ task.task_title }}</b></h6>
+                                            {% if task.task_time %}
+                                                <span class="task-time">{{ task.task_time|time:"H:i" }}</span>
+                                            {% endif %}
                                             <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                 <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                             </a>

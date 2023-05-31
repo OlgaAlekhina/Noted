@@ -56,6 +56,9 @@
                                 <div class="row note-block">
                                     <div class="col-10 text-break">
                                         <h6><b>{{ task.task_title }}</b></h6>
+                                                {% if task.task_time %}
+                                                    <span class="task-time">{{ task.task_time|time:"H:i" }}</span>
+                                                {% endif %}
                                         <a style="padding-right: 10px;" href="#" onclick="restoreTask({{ task.id }})">
                                             <img width="17px" height="17px" src="/static/images/icons/reset_icon.svg"/>
                                         </a>

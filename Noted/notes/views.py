@@ -26,10 +26,10 @@ def main_page_date(request, date):
     next_date = date + datetime.timedelta(days=1)
     prev_date = date - datetime.timedelta(days=1)
     tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
-                                       task_trash=False).order_by('-add_at')
+                                       task_trash=False).order_by('task_time')
     tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
     tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
-                                          task_trash=False).order_by('-add_at')
+                                          task_trash=False).order_by('task_time')
     notes_pin = Note.objects.filter(note_author=user, note_trash=False, note_pin=True).order_by('-add_at')
     notes = Note.objects.filter(note_author=user, note_trash=False, note_pin=False).order_by('-add_at')
     month_list = [_('января'), _('февраля'), _('марта'), _('апреля'), _('мая'), _('июня'),
@@ -125,10 +125,10 @@ def tasks(request):
 def all_tasks(request, date, pk=None):
     user = request.user
     tasks_active = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=False,
-                                       task_trash=False).order_by('-add_at')
+                                       task_trash=False).order_by('task_time')
     tasks_deleted = Task.objects.filter(task_date=date, task_author=user, task_deleted=True, task_trash=False).order_by('add_at')
     tasks_important = Task.objects.filter(task_date=date, task_author=user, task_deleted=False, task_priority=True,
-                                          task_trash=False).order_by('-add_at')
+                                          task_trash=False).order_by('task_time')
     task2 = None
     try:
         task2 = Task.objects.get(id=pk)
@@ -139,17 +139,26 @@ def all_tasks(request, date, pk=None):
     if request.method == "POST":
         task_title = request.POST['task_title']
         task_date = request.POST['task_date']
+        task_time = request.POST['task_time']
         task_priority = request.POST.get('priority', False)
         add_at = timezone.now()
         if task_priority:
             task_priority = True
         try:
             task = Task.objects.get(id=pk)
-            Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_date=task_date,
+            if task_time == '':
+                Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority, task_date=task_date,
                                               add_at=add_at)
+            else:
+                Task.objects.filter(id=pk).update(task_title=task_title, task_priority=task_priority,
+                                                  task_date=task_date, add_at=add_at, task_time=task_time)
         except:
-            Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
+            if task_time == '':
+                Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
                                 task_date=task_date, add_at=add_at)
+            else:
+                Task.objects.create(task_title=task_title, task_priority=task_priority, task_author=user,
+                                    task_date=task_date, add_at=add_at, task_time=task_time)
         return redirect('tasks')
 
     return render(request, 'tasks.html', context={'today_tasks': tasks_active, 'tasks_deleted': tasks_deleted,
@@ -265,8 +274,8 @@ def search(request):
     note_search = Note.objects.filter(note_author=user, note_title__icontains=q, note_pin=False, note_trash=False).order_by('-add_at')
     notepin_search = Note.objects.filter(note_author=user, note_title__icontains=q, note_pin=True, note_trash=False).order_by('-add_at')
     task_search_imp = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False,
-                                                                         task_priority=True, task_trash=False).order_by('-add_at')
-    task_search = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('-add_at')
+                                                                         task_priority=True, task_trash=False).order_by('task_time')
+    task_search = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=False, task_priority=False, task_trash=False).order_by('task_time')
     task_search_done = Task.objects.filter(task_title__icontains=q).filter(task_author=user, task_deleted=True,
                                                                           task_trash=False).order_by('add_at')
     return render(request, 'search.html', context={'note_search': note_search, 'task_search': task_search,
@@ -274,7 +283,7 @@ def search(request):
                                                    'task_search_done': task_search_done, 'notepin_search': notepin_search})
 
 
-# функция для запинивания задачи
+# функция для запинивания заметки
 @login_required
 def note_pin(request, date, pk):
     add_at = datetime.datetime.now()
@@ -283,7 +292,7 @@ def note_pin(request, date, pk):
     return HttpResponseRedirect(next)
 
 
-# функция для распинивания задачи
+# функция для распинивания заметки
 @login_required
 def note_unpin(request, date, pk):
     add_at = datetime.datetime.now()
@@ -306,7 +315,7 @@ def send_note(request, pk):
     if note_file:
         msg.attach_file(note_file.path)
     msg.send()
-    messages.success(request, f'Заметка отправлена по адресу: {user.email}')
+    messages.success(request, f'_(Заметка отправлена по адресу): {user.email}')
     next = request.GET.get('next', reverse('main'))
     return HttpResponseRedirect(next)
 

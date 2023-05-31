@@ -245,7 +245,7 @@ input[type="search"]::-webkit-search-cancel-button {
     display: flex;
 }
 
-.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_date, #id_avatar:focus, #id_avatar:active, #note-file:focus, .no-focus, #dropdownMenuButton1:focus {
+.my-inp:focus, #id_task_title, #id_task_date:focus-visible, #id_task_time:focus-visible, #id_task_date, #id_task_time, #id_avatar:focus, #id_avatar:active, #note-file:focus, .no-focus, #dropdownMenuButton1:focus {
     border: none;
     outline: none;
 }
@@ -419,6 +419,12 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+.task-time {
+    color: red;
+    padding-right: 10px;
+    font-size: 15px;
+}
+
 .but-div {
      height: 100px;
      /*border: 0.5px solid #b1b1b1;
@@ -456,7 +462,7 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 
 .note-title3 {
     border: 0 !important;
-    background: none !important;
+    background: rgba(255, 255, 255, 0.8) !important;
     font-size: 20px !important;
     width: 95% !important;
     margin-left: 25px !important;
@@ -478,10 +484,10 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 }
 
 .note-text3 {
-    border: 0  !important;
-    background:  none !important;
+    border: 0 !important;
+    background: rgba(255, 255, 255, 0.8) !important;
     width: 95%  !important;
-    margin-left:  25px !important;
+    margin-left: 25px !important;
     font-size: 15px !important;
     line-height: 18px !important;
     color: #000000 !important;
@@ -503,20 +509,29 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
 
 .file-label2 {
     width: 70% !important;
+    margin-bottom: 0 !important;
+}
+
+.file-label3 {
+    width: 100%;
 }
 
 #text_input_span_id {
-    font-size: 10px !important;
+    font-size: 15px !important;
     background: rgba(236, 247, 251, 0.8) !important;
     cursor: pointer;
     width: 100px !important;
     margin:auto;
     display:table;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
 }
 
 #text_input_id {
-    font-size: 10px !important;
+    font-size: 15px !important;
     caret-color: transparent;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
 }
 
 .save-but {
@@ -609,6 +624,7 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     font-size: 15px;
     line-height: 18px;
     color: #282A25;
+    margin-bottom: 0;
 }
 
 .save-but2 button {

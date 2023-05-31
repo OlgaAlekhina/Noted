@@ -34,6 +34,7 @@ function submitbtn() {
     setTimeout(function(){document.getElementById("task_submit").style.display= "block";},3000);
 }
 
+// после нажатия на кнопку отправки формы убирает эту кнопку на 3 секунды
 function subformbtn() {
     document.getElementById("form_submit").style.display= "none";
     setTimeout(function(){document.getElementById("form_submit").style.display= "block";},3000);

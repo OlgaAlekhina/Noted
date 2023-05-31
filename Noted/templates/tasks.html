@@ -66,6 +66,9 @@
                                             <div class="row task-row">
                                                 <div class="col-10 col-lg-11 text-break" style="padding-left: 18px;">
                                                     <h6><b>{{ task.task_title }}</b></h6>
+                                                    {% if task.task_time %}
+                                                        <span class="task-time">{{ task.task_time|time:"H:i" }}</span>
+                                                    {% endif %}
                                                     <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                         <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                                     </a>
@@ -94,6 +97,9 @@
                                             <div class="row" style="padding-right: 20px;">
                                                 <div class="col-11 text-break" style="padding-left: 18px;">
                                                     <h6><b>{{ task.task_title }}</b></h6>
+                                                    {% if task.task_time %}
+                                                        <span class="task-time">{{ task.task_time|time:"H:i" }}</span>
+                                                    {% endif %}
                                                     <a style="padding-right: 10px;" href="#" onclick="DateInsert({{ task.id }})">
                                                         <img width="17px" height="17px" src="/static/images/icons/pen_icon.svg" />
                                                     </a>
@@ -141,6 +147,9 @@
                                 </div>
                                 <div class="mt-4" style="margin-left: 25px;">
                                     {{ form.task_date }}
+                                </div>
+                                <div class="mt-4" style="margin-left: 25px;">
+                                    {{ form.task_time }}
                                 </div>
                                 <div class="mt-4 prior-check" id="prior_choice">
                                     {% if task and task2.task_priority is True %}
