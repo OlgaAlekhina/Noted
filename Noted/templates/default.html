@@ -29,7 +29,7 @@
     <header>
         <div class="container-xxl header-area" >
             <div class="row align-items-center" style="height: 70px;">
-                <div class="col-2 col-lg-6">
+                <div class="col-2 col-lg-6 logo-div">
                     <a href="{% url 'main' %}"><img src="/static/images/Noted_colour_full_RGB.png" alt="Logo" width="140" height="60"></a>
                 </div>
                 <div class="col-8 col-lg-5 search-wrapper">
@@ -40,7 +40,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-2 col-lg-1" style="padding: 0 25px;">
+                <div class="col-2 col-lg-1 lang-mob" style="padding: 0 25px;">
                     <form action="{% url 'set_language' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ redirect_to }}">

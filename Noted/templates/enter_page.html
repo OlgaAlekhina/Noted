@@ -26,14 +26,14 @@
               <div class="pc-pic">
                   <img src="/static/images/pc_pic.png" width="600" height="500">
               </div>
-              <div class="row align-items-center justify-content-between" style="height: 100px;">
-                  <div class="col-3 col-lg-9" style="margin-left: 20px;">
+              <div class="row align-items-center" style="height: 100px;">
+                  <div class="col-3 col-lg-2 logo-div" style="margin-left: 20px;">
                       <a href="{% url 'login' %}"><img src="/static/images/Noted_colour_full_RGB.png" alt="Logo" width="140" height="60"></a>
                   </div>
-                  <div class="col-1">
+                  <div class="col-2 offset-2 offset-lg-7 text-end">
                       <a href="{% url 'login' %}"><button class="btn sm-but">{% trans "Войти" %}</button></a>
                   </div>
-                  <div class="col-2 col-lg-1" style="padding: 0 25px;">
+                  <div class="col-2 offset-2 offset-lg-0 col-lg-1" style="width: 60px;">
                       <form action="{% url 'set_language' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ redirect_to }}">
