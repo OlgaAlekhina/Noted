@@ -10,8 +10,18 @@
     <div class="container-xxl main-area">
         <div class="col-10 offset-1 col-lg-4 offset-lg-4 form-block">
             <p class="auth-header">{% trans "Регистрация" %}</p>
+            {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 20px !important;">
+                        <div id="form_errors">
+                            {% for key, value in form.errors.items %}
+                                <strong>{{ value }}</strong>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
             <form method="post" class="form-area">
                 {% csrf_token %}
+                {{ form.username }}
                <div style="margin-bottom: 20px;">
                     {{ form.email }}
                 </div>

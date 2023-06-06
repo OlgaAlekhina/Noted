@@ -20,7 +20,6 @@ def register_request(request):
 			user = f.save()
 			login(request, user)
 			return redirect('main')
-
 	else:
 		f = NewUserForm()
 
@@ -108,10 +107,13 @@ def password_reset_confirm(request, uidb64, token):
 			if password1 and password2 and password1 != password2:
 				messages.error(request, _("Пароли не совпадают."))
 			else:
-				user.set_password(password1)
-				user.save()
-				login(request, user)
-				return redirect('main')
+				if len(password1) < 8:
+					messages.error(request, _("Пароль должен содержать не менее 8 символов."))
+				else:
+					user.set_password(password1)
+					user.save()
+					login(request, user)
+					return redirect('main')
 
 		return render(request, 'password_reset_confirm.html', {})
 	else:
