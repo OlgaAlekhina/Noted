@@ -12,7 +12,17 @@
             <p class="auth-header">{% trans "Регистрация" %}</p>
             <form method="post" class="form-area">
                 {% csrf_token %}
-                {{ form.as_p }}
+               <div style="margin-bottom: 20px;">
+                    {{ form.email }}
+                </div>
+                <div style="margin-bottom: 20px; position: relative;">
+                    {{ form.password1 }}
+                    <span class="eye"><a onclick="togglePassword()"><img width="25px" height="25px" id="togglePassword" src="/static/images/icons/eye_closed.svg"/></a></span>
+                </div>
+                <div style="margin-bottom: 20px; position: relative;">
+                    {{ form.password2 }}
+                    <span class="eye"><a onclick="togglePassword2()"><img width="25px" height="25px" id="togglePassword2" src="/static/images/icons/eye_closed.svg"/></a></span>
+                </div>
                 <div class="row">
                     <div class="col button-wrapper" style="margin: 10px 0px 10px; ">
                         <button type="submit" class="btn lg-but" style="margin-right: auto; margin-left: auto;" id="form_submit" onclick="subformbtn()">{% trans "Зарегистрироваться" %}</button>
@@ -20,7 +30,7 @@
                 </div>
              </form>
             <div class="row" id="reg">
-                <div style=" display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
                     <p>{% trans "Уже есть аккаунт" %}? <a href="{% url 'login' %}">{% trans "Войдите" %}</a></p>
                 </div>
             </div>

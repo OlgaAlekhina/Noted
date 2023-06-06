@@ -29,6 +29,7 @@ function DatePin(note_id) {
     window.location.replace(url);
     }
 
+// после нажатия на кнопку отправки формы убирает эту кнопку на 3 секунды
 function submitbtn() {
     document.getElementById("task_submit").style.display= "none";
     setTimeout(function(){document.getElementById("task_submit").style.display= "block";},3000);
@@ -61,10 +62,20 @@ function restoreTask(task_id) {
 
 // показывает или скрывает пароль при нажатии на иконку глаза
 function togglePassword() {
-    const password = document.getElementById("password");
+    const password = document.getElementById("id_password1");
     const type = password.getAttribute('type') === "password" ? "text" : "password";
     password.setAttribute("type", type);
     const img = document.getElementById("togglePassword");
+    const src = img.getAttribute('src') === "/static/images/icons/eye_closed.svg" ? "/static/images/icons/eye.svg" : "/static/images/icons/eye_closed.svg";
+    img.setAttribute("src", src);
+}
+
+// показывает или скрывает пароль при нажатии на иконку глаза
+function togglePassword2() {
+    const password = document.getElementById("id_password2");
+    const type = password.getAttribute('type') === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+    const img = document.getElementById("togglePassword2");
     const src = img.getAttribute('src') === "/static/images/icons/eye_closed.svg" ? "/static/images/icons/eye.svg" : "/static/images/icons/eye_closed.svg";
     img.setAttribute("src", src);
 }

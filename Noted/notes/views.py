@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from django.utils import timezone
 from django.core.mail import EmailMessage
 from django.utils.translation import gettext as _
+from django.contrib.auth.models import User
 
 
 # страница с яваскриптом, который определяет дату пользователя и делает редирект на главную страницу со всеми заметками и задачами на эту дату
@@ -336,6 +337,14 @@ def task_restore(request, date, pk):
 def note_restore(request, pk):
     Note.objects.filter(id=pk).update(note_trash=False, note_pin=False)
     return redirect('trash')
+
+
+# функция для удаления профиля пользователя
+@login_required
+def user_delete(request):
+    user = request.user
+    User.objects.filter(id=user.id).delete()
+    return redirect('login')
 
 
 
