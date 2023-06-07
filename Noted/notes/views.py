@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.core.mail import EmailMessage
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
+from .validators import validate_password
 
 
 # страница с яваскриптом, который определяет дату пользователя и делает редирект на главную страницу со всеми заметками и задачами на эту дату
@@ -231,7 +232,7 @@ def user_settings(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Ваш профиль успешно обновлен')
+            messages.success(request, _('Ваш профиль успешно обновлен'))
             return redirect('user_settings')
     else:
         user_form = UpdateUserForm(instance=request.user)
@@ -254,6 +255,8 @@ def change_password(request):
                 messages.error(request, _("Пароли не совпадают."))
             elif password1 and password2 and password1 == password2 and len(password1) < 8:
                 messages.error(request, _("Пароль должен содержать не менее 8 символов"))
+            elif validate_password(password1) == False:
+                messages.error(request, _("Пароль может содержать только буквы и символы '!@#$^&()_.-' без пробелов"))
             else:
                 request.user.set_password(password1)
                 request.user.save()
@@ -344,9 +347,13 @@ def note_restore(request, pk):
 def user_delete(request):
     user = request.user
     User.objects.filter(id=user.id).delete()
-    return redirect('login')
+    return redirect('enter_page')
 
 
+# страница для разработки DatePicker виджета
+@login_required
+def date_picker(request):
+    return render(request, 'date_picker.html', context={})
 
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-06 18:46+0300\n"
+"POT-Creation-Date: 2023-06-07 19:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Password"
 msgid "Повторите пароль"
 msgstr "Confirm password"
 
-#: .\accounts\forms.py:23 .\notes\validators.py:15
+#: .\accounts\forms.py:23 .\notes\validators.py:16
 msgid "Пользователь с таким email уже зарегистрирован"
 msgstr "User with email address you entered is already exists"
 
@@ -36,15 +36,15 @@ msgstr "User with email address you entered is already exists"
 msgid "Пароли не совпадают"
 msgstr "Passwords don't match"
 
-#: .\accounts\views.py:52
+#: .\accounts\views.py:53
 msgid "Неправильно введены учетные данные."
 msgstr "There is no user with such credentials"
 
-#: .\accounts\views.py:66
+#: .\accounts\views.py:67
 msgid "Восстановление пароля в приложении Noted"
 msgstr "Reset password in Noted app"
 
-#: .\accounts\views.py:82
+#: .\accounts\views.py:83
 msgid ""
 "Мы отправили вам на электронную почту письмо с инструкциями для "
 "восстановления пароля.  \n"
@@ -55,29 +55,34 @@ msgstr ""
 "haven't received our message within a few minutes, please check your spam "
 "folder"
 
-#: .\accounts\views.py:86
+#: .\accounts\views.py:87
 msgid "Пользователь с таким E-mail не зарегистрирован в приложении."
 msgstr "There is no user registered by this E-mail"
 
-#: .\accounts\views.py:89
+#: .\accounts\views.py:90
 msgid "Вы забыли ввести свой E-mail."
 msgstr "You forgot to enter your E-mail"
 
-#: .\accounts\views.py:108 .\notes\views.py:254
+#: .\accounts\views.py:109 .\notes\views.py:255
 msgid "Пароли не совпадают."
 msgstr "Passwords don't match"
 
-#: .\accounts\views.py:111
+#: .\accounts\views.py:112
 #, fuzzy
 #| msgid "Пароль должен содержать не менее 8 символов"
 msgid "Пароль должен содержать не менее 8 символов."
-msgstr "Your password must have at least 8 characters"
+msgstr "Your password must contain at least 8 characters"
 
-#: .\accounts\views.py:120
+#: .\accounts\views.py:114 .\notes\validators.py:50 .\notes\views.py:259
+msgid ""
+"Пароль может содержать только буквы и символы '!@#$^&()_.-' без пробелов"
+msgstr "Your password must contain only letters and special characters '!@#$^&()_.-' without spaces."
+
+#: .\accounts\views.py:123
 msgid "Ссылка устарела."
 msgstr "The link you followed has expired"
 
-#: .\accounts\views.py:122
+#: .\accounts\views.py:125
 msgid "Что-то пошло не так. Попробуйте еще раз зайти на сайт."
 msgstr "Something wrong happened. Please try to login once again"
 
@@ -85,68 +90,74 @@ msgstr "Something wrong happened. Please try to login once again"
 msgid "Добавьте название..."
 msgstr "Enter title..."
 
-#: .\notes\validators.py:26 .\notes\views.py:256
+#: .\notes\validators.py:27 .\notes\views.py:257
 msgid "Пароль должен содержать не менее 8 символов"
-msgstr "Your password must have at least 8 characters"
+msgstr "Your password must contain at least 8 characters"
 
-#: .\notes\validators.py:33
+#: .\notes\validators.py:34
 #, python-format
 msgid "Your password must contain at least %(min_length)d characters."
 msgstr ""
 
-#: .\notes\views.py:36
+#: .\notes\validators.py:57
+msgid ""
+"Your password must contain only letters and special characters '!@#$^&()_.-' "
+"without spaces."
+msgstr ""
+
+#: .\notes\views.py:37
 msgid "января"
 msgstr "January"
 
-#: .\notes\views.py:36
+#: .\notes\views.py:37
 msgid "февраля"
 msgstr "February"
 
-#: .\notes\views.py:36
+#: .\notes\views.py:37
 msgid "марта"
 msgstr "March"
 
-#: .\notes\views.py:36
+#: .\notes\views.py:37
 msgid "апреля"
 msgstr "April"
 
-#: .\notes\views.py:36
+#: .\notes\views.py:37
 msgid "мая"
 msgstr "May"
 
-#: .\notes\views.py:36
+#: .\notes\views.py:37
 msgid "июня"
 msgstr "June"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "июля"
 msgstr "July"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "августа"
 msgstr "August"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "сентября"
 msgstr "September"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "октября"
 msgstr "October"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "ноября"
 msgstr "November"
 
-#: .\notes\views.py:37
+#: .\notes\views.py:38
 msgid "декабря"
 msgstr "December"
 
-#: .\notes\views.py:263
+#: .\notes\views.py:235 .\notes\views.py:266
 msgid "Ваш профиль успешно обновлен"
 msgstr "Successfully updated your personal information"
 
-#: .\notes\views.py:322
+#: .\notes\views.py:325
 msgid "Заметка отправлена по адресу: "
 msgstr "The note was sent to: "
 
@@ -230,7 +241,8 @@ msgstr "Logout"
 msgid ""
 "Вы уверены, что хотите удалить свою учетную запись? Отменить это действие "
 "будет невозможно."
-msgstr "Are you sure you want to delete your account? This action cannot be undone."
+msgstr ""
+"Are you sure you want to delete your account? This action cannot be undone."
 
 #: .\templates\change_password.html:56 .\templates\note_details.html:79
 #: .\templates\note_details.html:114 .\templates\note_edit.html:75
@@ -438,7 +450,7 @@ msgid "Восстановить пароль"
 msgstr "Reset password"
 
 #: .\templates\reset_password_form.html:25
-msgid "Назад"
+msgid "Вернуться"
 msgstr "Back"
 
 #: .\templates\reset_password_form.html:28

@@ -961,3 +961,16 @@ td.not-current a {
    .cancel:hover {
       background-color: rgb(167, 167, 167);
    }
+
+/* стили для виджета DatePicker */
+
+.datepicker-wrapper {
+    width: 300px;
+    height: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.select-date {
+    position: relative;
+}

@@ -1,7 +1,7 @@
 from django.urls import path, register_converter
 from .views import main_page, main_page_date, all_notes, note_details, note_edit, all_tasks, \
     task_done, trash, task_delete, note_delete, user_settings, change_password, search, note_perm_delete, \
-    task_perm_delete, task_undone, tasks, note_pin, note_unpin, send_note, task_restore, note_restore, user_delete
+    task_perm_delete, task_undone, tasks, note_pin, note_unpin, send_note, task_restore, note_restore, user_delete, date_picker
 from .path_converters import DateConverter
 
 
@@ -16,7 +16,7 @@ urlpatterns = [
     path('notes/edit/<int:pk>', note_edit, name='note_edit'),
     path('<date:date>/pin/<int:pk>', note_pin, name='note_pin'),
     path('<date:date>/unpin/<int:pk>', note_unpin, name='note_unpin'),
-    path('tasks', tasks, name='tasks'),
+    path('tasks/', tasks, name='tasks'),
     path('tasks/<date:date>/', all_tasks, name='tasks_date'),
     path('tasks/<date:date>/edit/<int:pk>', all_tasks, name='task_edit'),
     path('done/<int:pk>', task_done, name='task_done'),
@@ -33,4 +33,5 @@ urlpatterns = [
     path('task_restore/<date:date>/<int:pk>', task_restore, name='task_restore'),
     path('note_restore/<int:pk>', note_restore, name='note_restore'),
     path('user_delete', user_delete, name='user_delete'),
+    path('date_picker', date_picker, name='date_picker'),
     ]

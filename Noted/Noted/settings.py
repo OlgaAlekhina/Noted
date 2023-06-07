@@ -100,6 +100,8 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'notes.validators.LengthValidator',
+
+        'NAME': 'notes.validators.CharacterValidator',
     },
 ]
 

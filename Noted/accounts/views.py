@@ -10,6 +10,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import user_token
 from django.utils.translation import gettext as _
+from notes.validators import validate_password
 
 
 # выводит форму для регистрации нового пользователя
@@ -109,6 +110,8 @@ def password_reset_confirm(request, uidb64, token):
 			else:
 				if len(password1) < 8:
 					messages.error(request, _("Пароль должен содержать не менее 8 символов."))
+				elif validate_password(password1) == False:
+					messages.error(request, _("Пароль может содержать только буквы и символы '!@#$^&()_.-' без пробелов"))
 				else:
 					user.set_password(password1)
 					user.save()
