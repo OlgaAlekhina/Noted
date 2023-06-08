@@ -103,8 +103,7 @@ Cal.prototype.showMonth = function(y, m) {
       html += '<tr>';
       var k = lastDayOfLastMonth - firstDayOfMonth+1;
       for(var j=0; j < firstDayOfMonth; j++) {
-        var m0 = (m<10 ? '0' : '') + m;
-        html += '<td class="not-current"><a href=/main/' + k + '-' + (m==0 ? '12' : m0) + '-' + (m==0 ? y-1 : y) + '/>' + k + '</td>';
+        html += '<td class="not-current">' + k + '</td>';
         k++;
       }
     }
@@ -112,13 +111,10 @@ Cal.prototype.showMonth = function(y, m) {
     var chk = new Date();
     var chkY = chk.getFullYear();
     var chkM = chk.getMonth();
-    var day = (i<10 ? '0' : '') + i;
-    var mon = m+1;
-    var mon0 = (mon<10 ? '0' : '') + mon;
     if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-      html += '<td><span class="today"><a href=/main/' + day + '-' + mon0 + '-' + y + '/>' + i + '</span></td>';
+      html += '<td><span class="today">' + i + '</span></td>';
     } else {
-      html += '<td class="normal"><a href=/main/' + day + '-' + mon0 + '-' + y + '/>' + i + '</td>';
+      html += '<td class="normal">' + i + '</td>';
     }
     // закрыть строку в воскресенье
     if ( dow == 0 ) {
@@ -127,11 +123,8 @@ Cal.prototype.showMonth = function(y, m) {
     // Если последний день месяца не воскресенье, показать первые дни следующего месяца
     else if ( i == lastDateOfMonth ) {
       var k=1;
-      var m1 = m+2;
-      var m0 = (m1<10 ? '0' : '') + m1;
       for(dow; dow < 7; dow++) {
-        var k0 = (k<10 ? '0' : '') + k;
-        html += '<td class="not-current"><a href=/main/' + k0 + '-' + (m==11 ? '01' : m0) + '-' + (m==11 ? y+1 : y) + '/>' + k + '</td>';
+        html += '<td class="not-current">' + k + '</td>';
 
 	k++;
       }
