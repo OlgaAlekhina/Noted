@@ -351,7 +351,7 @@ def user_delete(request):
 
 
 # страница для разработки DatePicker виджета
-@login_required
+# @login_required
 def date_picker(request):
     return render(request, 'date_picker.html', context={})
 

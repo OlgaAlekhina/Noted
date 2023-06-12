@@ -6,11 +6,11 @@ DatePicker Widget
 
 {% block content %}
     <div class="datepicker-wrapper">
-        <div class="select-date">
-            <input type="text" name="task_date" class="form-control" id="id_task_date">
-            <span class="eye"><a onclick=""><img width="25px" height="25px" id="togglePicker" src="/static/images/icons/calendar_icon.svg"/></a></span>
+        <div class="select-date" onclick="datepickerToggler()">
+            <input type="text" placeholder="Выберите дату" name="task_date" class="form-control" id="id_task_date" style="cursor: pointer;">
+            <span class="eye"><a><img width="25px" height="25px" id="togglePicker" src="/static/images/icons/calendar_icon.svg"/></a></span>
         </div>
-        <div class="calendar-wrapper" style="margin: 0;">
+        <div class="calendar-wrapper2" style="margin: 0;">
             <button id="btnPrev" type="button" style="margin-top: 15px;"></button>
             <h6 id="headCal"></h6>
             <button id="btnNext" type="button"></button>

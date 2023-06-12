@@ -96,11 +96,11 @@ Cal.prototype.showMonth = function(y, m) {
     var dow = new Date(y, m, i).getDay();
     // Начать новую строку в понедельник
     if ( dow == 1 ) {
-      html += '<tr>';
+      html += '<tr class="dates">';
     }
     // Если первый день недели не понедельник, показать последние дни предыдущего месяца
     else if ( i == 1 ) {
-      html += '<tr>';
+      html += '<tr class="dates">';
       var k = lastDayOfLastMonth - firstDayOfMonth+1;
       for(var j=0; j < firstDayOfMonth; j++) {
         html += '<td class="not-current">' + k + '</td>';
@@ -154,4 +154,9 @@ Cal.prototype.showMonth = function(y, m) {
 // Получить элемент по id
 function getId(id) {
   return document.getElementById(id);
+}
+
+function datepickerToggler() {
+    var date_picker_elem = document.querySelector(".calendar-wrapper2");
+    date_picker_elem.classList.toggle("active");
 }
