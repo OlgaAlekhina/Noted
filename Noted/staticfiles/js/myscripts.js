@@ -1,3 +1,4 @@
+// получает текущую дату и выводит в виде строки дд-мм-гггг
 function GetDatestring() {
     var today = new Date();
     var day = today.getDate();

@@ -114,7 +114,7 @@ Cal.prototype.showMonth = function(y, m) {
     if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
       html += '<td><span class="today">' + i + '</span></td>';
     } else {
-      html += '<td class="normal">' + i + '</td>';
+      html += '<td class="normal" onclick="selectDate(this)">' + i + '</td>';
     }
     // закрыть строку в воскресенье
     if ( dow == 0 ) {
@@ -156,7 +156,18 @@ function getId(id) {
   return document.getElementById(id);
 }
 
+// Показывает календарь по клику на input "выберите дату"
 function datepickerToggler() {
     var date_picker_elem = document.querySelector(".calendar-wrapper2");
     date_picker_elem.classList.toggle("active");
 }
+
+function selectDate(i) {
+    alert("kuku");
+    date = i.innerHTML;
+    m_y = document.getElementById('headCal').innerHTML;
+    document.getElementById('id_task_date').value = date + m_y;
+}
+
+
+var selected_date = new Date(y, m, d);
