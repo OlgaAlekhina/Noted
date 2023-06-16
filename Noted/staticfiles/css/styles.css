@@ -326,7 +326,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .drop-icon {
     width: 40px;
     height: 40px;
-    background: rgba(126, 159, 164);
+    background: #282A25;
     border: none;
     padding: 0;
 }
@@ -665,98 +665,6 @@ textarea::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb, .tasks::-web
     margin-top: 260px;
 }
 
-/* стили для виджета "календарь" */
-
-.calendar-wrapper {
-    margin: 70px 25px 0px 25px;
-    border: 0.5px solid #b1b1b1;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.8);
-}
-
-#divCal {
-    margin-top: 10px;
-    padding: 0 15px 15px 15px;
-}
-
-table {
-  clear: both;
-  width: 100%;
-  color: #444;
-}
-
-td {
-  height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  width: 14.28571429%;
-}
-
-td a {
-    text-decoration: none;
-    color: black;
-    font-size: 10px;
-}
-
-.days td {
-    font-size: 11px;
-    font-weight: 700;
-}
-
-td.not-current a {
-  color: #c0c0c0;
-}
-
-.today {
-    border-radius: 50%;
-    background: rgba(196, 162, 127, 0.8);
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-}
-
-#headCal {
-    margin: 0px 0px;
-    text-transform: uppercase;
-    font-size: 12px;
-    display: inline;
-    font-weight: 700;
-}
-
-#btnPrev:before {
-  content: '\f104';
-  font-family: FontAwesome;
-  padding-right: 4px;
-}
-
-#btnNext:after {
-  content: '\f105';
-  font-family: FontAwesome;
-  padding-left: 4px;
-}
-
-#btnPrev {
-    padding-left: 20px;
-}
-
-#btnPrev,
-#btnNext {
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 0.6em;
-  color: #c0c0c0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#btnPrev:hover,
-#btnNext:hover {
-  color: #28283b;
-  font-weight: bold;
-}
-
 /* стили боковой колонки */
 
 .sidebar {
@@ -961,6 +869,98 @@ td.not-current a {
    .cancel:hover {
       background-color: rgb(167, 167, 167);
    }
+
+/* стили для виджета "календарь" */
+
+.calendar-wrapper {
+    margin: 70px 25px 0px 25px;
+    border: 0.5px solid #b1b1b1;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#divCal {
+    margin-top: 10px;
+    padding: 0 15px 15px 15px;
+}
+
+table {
+  clear: both;
+  width: 100%;
+  color: #444;
+}
+
+td {
+  /*height: 20px;*/
+  text-align: center;
+  vertical-align: middle;
+  width: 14.28571429%;
+}
+
+td a {
+    text-decoration: none;
+    color: black;
+    font-size: 10px;
+}
+
+.days td {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+td.not-current a {
+  color: #c0c0c0;
+}
+
+.today {
+    border-radius: 50%;
+    background: rgba(196, 162, 127, 0.8);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    display: table-cell;
+    width: 26px;
+    height: 26px;
+}
+
+#headCal {
+    margin: 0px 0px;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: inline;
+    font-weight: 700;
+}
+
+#btnPrev:before {
+  content: '\f104';
+  font-family: FontAwesome;
+  padding-right: 4px;
+}
+
+#btnNext:after {
+  content: '\f105';
+  font-family: FontAwesome;
+  padding-left: 4px;
+}
+
+#btnPrev {
+    padding-left: 20px;
+}
+
+#btnPrev,
+#btnNext {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.6em;
+  color: #c0c0c0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#btnPrev:hover,
+#btnNext:hover {
+  color: #28283b;
+  font-weight: bold;
+}
 
 /* стили для виджета DatePicker */
 
