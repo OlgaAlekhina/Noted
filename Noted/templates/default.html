@@ -92,5 +92,21 @@ window.onload = function() {
 }, true);
 </script>
 
+<script src="/static/js/calendarWidget.js"></script>
+
+<script>
+    var calendar = document.getElementsByClassName('calendar-wrapper')[0];
+    var drop_but = document.getElementById('drop_but');
+    const dropdownPr = document.getElementsByClassName('dropdown')[0];
+    dropdownPr.addEventListener('shown.bs.dropdown', () => {
+        drop_but.style.display = "none";
+        calendar.style.margin = "130px 25px 0px 25px";
+    })
+    dropdownPr.addEventListener('hidden.bs.dropdown', () => {
+        drop_but.style.display = "flex";
+        calendar.style.margin = "70px 25px 0px 25px";
+    })
+</script>
+
 </body>
 </html>

@@ -21,15 +21,15 @@
                     <div>
                         <a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
                             <div class="dropdown" style="margin: 0 25px;">
-                                <div class="input-group" style="padding: 0;">
+                                <div class="input-group" id="drop_but" style="padding: 0;">
                                     <button type="button" class="btn btn-primary" id="side-but" style="background: #282A25; border-color: #282A25; width: 18.5%;">
                                         <i class="fas fa-plus" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" class="btn btn-primary" style="background: rgba(255, 255, 255, 0.8); color: black; border: none; width: 81.5%; text-align: left;">{% trans "Создать" %}</button>
                                 </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 0; width: 80%;">
-                                    <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/check_white.svg" /></button><span class="drop-head">{% trans "Задача" %}</span></a></li>
-                                    <li><a style="padding: 0px;" class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon"><img width="25px" height="25px" src="/static/images/icons/document_white.svg" /></button><span class="drop-head">{% trans "Заметка" %}</span></a></li>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="padding: 0; background: rgba(255, 255, 255, 0.8); width: 100%; border: none;">
+                                    <li><a style="padding: 0px; border-radius: 5px 5px 0 0; border: none;" class="dropdown-item" href="{% url 'tasks' %}"><button class="drop-icon" style="border-top-left-radius: 5px;"><img width="25px" height="25px" src="/static/images/icons/check_white.svg" /></button><span class="drop-head">{% trans "Задача" %}</span></a></li>
+                                    <li><a style="padding: 0px; border-radius: 0 0 5px 5px; border: none;" class="dropdown-item" href="{% url 'notes' %}"><button class="drop-icon" style="border-bottom-left-radius: 5px;"><img width="25px" height="25px" src="/static/images/icons/document_white.svg" /></button><span class="drop-head">{% trans "Заметка" %}</span></a></li>
                                 </ul>
                             </div>
                         </a>
@@ -203,8 +203,6 @@ function validateSize(form) {
     }
 }
 </script>
-
-<script src="/static/js/calendarWidget.js"></script>
 
 <script>
     document.addEventListener('load', transAddfile())
