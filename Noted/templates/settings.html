@@ -54,7 +54,9 @@
                 <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" style="background-color: transparent; border: none;">
                     <img width="30px" height="30px" src="/static/images/icons/menu_2.png" />
                 </button>
-                <img class="openModal" style="float: right; margin: 10px;" width="25px" height="25px" src="/static/images/icons/delete_profile.png" />
+                <p class="main-header">{% trans "Настройки" %}
+                    <img class="openModal" style="float: right; margin: 10px 15px; cursor: pointer;" width="20px" height="20px" src="/static/images/icons/user_remove_icon.svg" />
+                </p>
                 <div class="modal">
                     <div class="modalContent">
                         <span class="close">×</span>
@@ -63,7 +65,6 @@
                         <button class="cancel" onclick="hideModal()">{% trans "Отменить" %}</button>
                     </div>
                 </div>
-                <p class="main-header">{% trans "Настройки" %}</p>
                 {% if user_form.errors %}
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <div id="form_errors">

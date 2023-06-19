@@ -138,7 +138,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">
+                                            {% if note.note_file %}
+                                                <img width="17px" height="17px" src="/static/images/icons/paperclip_icon.svg" />
+                                            {% endif %}
+                                            {{ note.note_text | truncatechars:25 }}
+                                        </a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
                                         <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}#note{{ note.id }}">
@@ -169,7 +174,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8 text-break note-link">
-                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">{{ note.note_text | truncatechars:25 }}</a>
+                                        <a href="{% url 'note_details' note.id %}#note{{ note.id }}">
+                                            {% if note.note_file %}
+                                                <img width="17px" height="17px" src="/static/images/icons/paperclip_icon.svg" />
+                                            {% endif %}
+                                            {{ note.note_text | truncatechars:25 }}
+                                        </a>
                                     </div>
                                     <div class="col-4" style="display: flex; justify-content: right;">
                                         <a style="padding-right: 10px;" href="{% url 'note_edit' note.id %}#note{{ note.id }}">

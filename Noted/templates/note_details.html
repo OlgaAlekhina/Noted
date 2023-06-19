@@ -84,7 +84,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-9 text-break note-text2 note-link">
-                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ not.note_text | truncatechars:25 }}</a>
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">
+                                                {% if not.note_file %}
+                                                    <img width="17px" height="17px" src="/static/images/icons/paperclip_icon.svg" />
+                                                {% endif %}
+                                                {{ not.note_text | truncatechars:25 }}
+                                            </a>
                                         </div>
                                         <div class="col-3 note_date2" style="display: flex; justify-content: right;">
                                             {{ not.note_date | date:"j.m.Y" }}
@@ -119,7 +124,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-9 text-break note-text2 note-link">
-                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">{{ not.note_text | truncatechars:25 }}</a>
+                                            <a href="{% url 'note_details' not.id %}#note{{ not.id }}">
+                                                {% if not.note_file %}
+                                                    <img width="17px" height="17px" src="/static/images/icons/paperclip_icon.svg" />
+                                                {% endif %}
+                                                {{ not.note_text | truncatechars:25 }}
+                                            </a>
                                         </div>
                                         <div class="col-3 note_date2" style="display: flex; justify-content: right;">
                                             {{ not.note_date | date:"j.m.Y" }}
