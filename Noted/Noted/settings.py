@@ -31,7 +31,6 @@ DEBUG = bool( os.getenv('DJANGO_DEBUG', False) ) # в продакшн испо�
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
-
 # Application definition
 
 INSTALLED_APPS = [
