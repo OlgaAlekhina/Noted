@@ -52,6 +52,9 @@ jobs:
           REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
           REGISTRY_PASS: ${{ secrets.REGISTRY_PASS }}
         run: |
-          ssh target "cd ~/docker_deploy && docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
+          ssh target "cd ~/docker_deploy && 
+          docker-compose down &&
+          docker rmi $REGISTRY_USER/noted:app-1.0 &&
+          docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
           docker pull $REGISTRY_USER/noted:app-1.0 &&
           docker-compose up -d"
